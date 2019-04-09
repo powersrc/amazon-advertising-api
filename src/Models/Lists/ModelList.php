@@ -6,6 +6,7 @@ namespace PowerSrc\AmazonAdvertisingApi\Models\Lists;
 
 use ArrayAccess;
 use ArrayIterator;
+use Countable;
 use InvalidArgumentException;
 use IteratorAggregate;
 use JsonSerializable;
@@ -15,7 +16,7 @@ use PowerSrc\AmazonAdvertisingApi\Exceptions\ClassNotFoundException;
 use PowerSrc\AmazonAdvertisingApi\Models\Model;
 use PowerSrc\AmazonAdvertisingApi\Support\CastType;
 
-abstract class ModelList implements ArrayAccess, Arrayable, Jsonable, JsonSerializable, IteratorAggregate
+abstract class ModelList implements ArrayAccess, Arrayable, Countable, Jsonable, JsonSerializable, IteratorAggregate
 {
     /**
      * @var Model[]
@@ -108,6 +109,17 @@ abstract class ModelList implements ArrayAccess, Arrayable, Jsonable, JsonSerial
     public function toArray(): array
     {
         return array_map(function (Model $item) { return $item->toArray(); }, $this->itemList);
+    }
+
+    /*
+    |-------------------------------------------------------------------------------------------------------------------
+    | Countable implementation:
+    |-------------------------------------------------------------------------------------------------------------------
+    */
+
+    public function count(): int
+    {
+        return count($this->itemList);
     }
 
     /*

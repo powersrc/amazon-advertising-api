@@ -6,6 +6,7 @@ namespace PowerSrc\AmazonAdvertisingApi\Models\Lists;
 
 use ArrayAccess;
 use ArrayIterator;
+use Countable;
 use ErrorException;
 use InvalidArgumentException;
 use IteratorAggregate;
@@ -22,7 +23,7 @@ use function implode;
 use function is_string;
 use function sprintf;
 
-abstract class ReportMetricsList implements ArrayAccess, Arrayable, Jsonable, JsonSerializable, IteratorAggregate
+abstract class ReportMetricsList implements ArrayAccess, Arrayable, Countable, Jsonable, JsonSerializable, IteratorAggregate
 {
     /**
      * @var ReportMetric[]
@@ -136,6 +137,17 @@ abstract class ReportMetricsList implements ArrayAccess, Arrayable, Jsonable, Js
     public function toArray(): array
     {
         return $this->metricList;
+    }
+
+    /*
+    |-------------------------------------------------------------------------------------------------------------------
+    | Countable implementation:
+    |-------------------------------------------------------------------------------------------------------------------
+    */
+
+    public function count(): int
+    {
+        return count($this->itemList);
     }
 
     /*
