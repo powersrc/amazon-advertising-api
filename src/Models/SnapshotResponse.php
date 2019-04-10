@@ -6,7 +6,7 @@ namespace PowerSrc\AmazonAdvertisingApi\Models;
 
 use PowerSrc\AmazonAdvertisingApi\Concerns\HasPropertyCasts;
 use PowerSrc\AmazonAdvertisingApi\Enums\PrimitiveType;
-use PowerSrc\AmazonAdvertisingApi\Enums\SnapshotRecordType;
+use PowerSrc\AmazonAdvertisingApi\Enums\SnapshotResponseRecordType;
 use PowerSrc\AmazonAdvertisingApi\Enums\SnapshotStatus;
 
 class SnapshotResponse extends Model
@@ -24,7 +24,7 @@ class SnapshotResponse extends Model
      * The record type of the report.
      * It can be portfolio, campaign, adGroup, productAd, keyword, negativeKeyword, or campaignNegativeKeyword.
      *
-     * @var SnapshotRecordType
+     * @var SnapshotResponseRecordType
      */
     public $recordType;
 
@@ -76,7 +76,7 @@ class SnapshotResponse extends Model
      */
     private $casts = [
         'snapshotId'    => PrimitiveType::STRING,
-        'recordType'    => SnapshotRecordType::class,
+        'recordType'    => SnapshotResponseRecordType::class,
         'status'        => SnapshotStatus::class,
         'statusDetails' => PrimitiveType::STRING,
         'location'      => PrimitiveType::STRING,
