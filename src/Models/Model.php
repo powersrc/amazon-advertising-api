@@ -162,6 +162,10 @@ abstract class Model implements Arrayable, JsonSerializable, Jsonable
      */
     protected function castProperty(string $name, $value)
     {
+        if ($value === null) {
+            return null;
+        }
+
         if ( ! Arr::exists($this->propertyCasts, $name)) {
             return $value;
         }

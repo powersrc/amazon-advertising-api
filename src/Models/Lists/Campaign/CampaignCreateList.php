@@ -35,9 +35,7 @@ class CampaignCreateList extends CampaignList
             'bidding',
         ];
 
-        $data = [];
-
-        $data[] = array_map(function (Campaign $campaign) use ($props, $optional) {
+        $data = array_map(function (Campaign $campaign) use ($props, $optional) {
             /*
              * Unset properties that are not set on the Campaign object.
              */

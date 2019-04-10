@@ -49,12 +49,9 @@ trait HandlesApiErrors
     {
         $error = $this->responseCanBeParsed($response) ? new Error(CastType::fromJson(CastType::toString($response->getBody()))) : null;
 
-        $message = $message ?? Data::get($error, 'details');
+        $message = $message ?? (Data::get($error, 'code') . ': ' . (Data::get($error, 'details') ?? Data::get($error, 'description')));
 
-        $status = $status ?? Data::get($error, 'code');
-        $status = $status !== null ? (int) $status : $status;
-
-        throw $this->getHttpExceptionFor($response, $message, $status);
+        throw $this->getHttpExceptionFor($response, $message, $status)->setErrorResponse($error);
     }
 
     /**

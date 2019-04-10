@@ -7,6 +7,7 @@ namespace PowerSrc\AmazonAdvertisingApi\Concerns;
 use PowerSrc\AmazonAdvertisingApi\Enums\HttpMethod;
 use PowerSrc\AmazonAdvertisingApi\Enums\MimeType;
 use PowerSrc\AmazonAdvertisingApi\Exceptions\ClassNotFoundException;
+use PowerSrc\AmazonAdvertisingApi\Exceptions\HttpException;
 use PowerSrc\AmazonAdvertisingApi\Models\AdGroup;
 use PowerSrc\AmazonAdvertisingApi\Models\AdGroupBidRecommendation;
 use PowerSrc\AmazonAdvertisingApi\Models\AdGroupEx;
@@ -30,6 +31,7 @@ trait MakesAdGroupApiCalls
      * @param int $adGroupId
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      * @throws ReflectionException
      *
      * @return AdGroup
@@ -51,6 +53,7 @@ trait MakesAdGroupApiCalls
      * @param int $adGroupId
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      * @throws ReflectionException
      *
      * @return AdGroupEx
@@ -68,6 +71,7 @@ trait MakesAdGroupApiCalls
      * @param AdGroupCreateList $adGroupCreateList
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      *
      * @return AdGroupResponseList
      */
@@ -84,6 +88,7 @@ trait MakesAdGroupApiCalls
      * @param AdGroupUpdateList $adGroupUpdateList
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      *
      * @return AdGroupResponseList
      */
@@ -103,6 +108,7 @@ trait MakesAdGroupApiCalls
      * @param int $adGroupId
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      * @throws ReflectionException
      *
      * @return AdGroupResponse
@@ -120,6 +126,7 @@ trait MakesAdGroupApiCalls
      * @param AdGroupParams $params
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      *
      * @return AdGroupList
      */
@@ -135,7 +142,8 @@ trait MakesAdGroupApiCalls
      *
      * @param AdGroupParams $params
      *
-     * @throws ClassNotFoundException*@throws ReflectionException
+     * @throws ClassNotFoundException
+     * @throws HttpException
      *
      * @return AdGroupExList
      */
@@ -152,6 +160,7 @@ trait MakesAdGroupApiCalls
      * @param int $adGroupId
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      * @throws ReflectionException
      *
      * @return AdGroupBidRecommendation
