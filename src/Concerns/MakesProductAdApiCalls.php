@@ -7,6 +7,7 @@ namespace PowerSrc\AmazonAdvertisingApi\Concerns;
 use PowerSrc\AmazonAdvertisingApi\Enums\HttpMethod;
 use PowerSrc\AmazonAdvertisingApi\Enums\MimeType;
 use PowerSrc\AmazonAdvertisingApi\Exceptions\ClassNotFoundException;
+use PowerSrc\AmazonAdvertisingApi\Exceptions\HttpException;
 use PowerSrc\AmazonAdvertisingApi\Models\Lists\ProductAd\ProductAdCreateList;
 use PowerSrc\AmazonAdvertisingApi\Models\Lists\ProductAd\ProductAdExList;
 use PowerSrc\AmazonAdvertisingApi\Models\Lists\ProductAd\ProductAdList;
@@ -24,6 +25,7 @@ trait MakesProductAdApiCalls
      * @param int $adId
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      * @throws ReflectionException
      *
      * @return ProductAd
@@ -39,6 +41,7 @@ trait MakesProductAdApiCalls
      * @param int $adId
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      * @throws ReflectionException
      *
      * @return ProductAdEx
@@ -54,6 +57,7 @@ trait MakesProductAdApiCalls
      * @param ProductAdCreateList $adCreateList
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      *
      * @return ProductAdResponseList
      */
@@ -68,6 +72,7 @@ trait MakesProductAdApiCalls
      * @param ProductAdUpdateList $adUpdateList
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      *
      * @return ProductAdResponseList
      */
@@ -82,6 +87,7 @@ trait MakesProductAdApiCalls
      * @param int $adId
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      * @throws ReflectionException
      *
      * @return ProductAdResponse
@@ -96,7 +102,8 @@ trait MakesProductAdApiCalls
     /**
      * @param ProductAdParams $params
      *
-     * @throws ClassNotFoundException *@throws ReflectionException
+     * @throws ClassNotFoundException
+     * @throws HttpException
      *
      * @return ProductAdList
      */
@@ -110,7 +117,8 @@ trait MakesProductAdApiCalls
     /**
      * @param ProductAdParams $params
      *
-     * @throws ClassNotFoundException *@throws ReflectionException
+     * @throws ClassNotFoundException
+     * @throws HttpException
      *
      * @return ProductAdExList
      */

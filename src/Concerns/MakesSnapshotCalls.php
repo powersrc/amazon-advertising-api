@@ -28,8 +28,8 @@ trait MakesSnapshotCalls
      * @param SnapshotParams     $params
      *
      * @throws ClassNotFoundException
-     * @throws ReflectionException
      * @throws HttpException
+     * @throws ReflectionException
      *
      * @return SnapshotResponse
      */
@@ -44,8 +44,8 @@ trait MakesSnapshotCalls
      * @param string $snapshotId
      *
      * @throws ClassNotFoundException
-     * @throws ReflectionException
      * @throws HttpException
+     * @throws ReflectionException
      *
      * @return SnapshotResponse
      */
@@ -77,9 +77,9 @@ trait MakesSnapshotCalls
     /**
      * @param SnapshotParams $params
      *
-     * @throws ReflectionException
      * @throws ClassNotFoundException
      * @throws HttpException
+     * @throws ReflectionException
      *
      * @return SnapshotResponse
      */
@@ -91,9 +91,9 @@ trait MakesSnapshotCalls
     /**
      * @param SnapshotParams $params
      *
-     * @throws ReflectionException
      * @throws ClassNotFoundException
      * @throws HttpException
+     * @throws ReflectionException
      *
      * @return SnapshotResponse
      */
@@ -105,9 +105,9 @@ trait MakesSnapshotCalls
     /**
      * @param SnapshotParams $params
      *
-     * @throws ReflectionException
      * @throws ClassNotFoundException
      * @throws HttpException
+     * @throws ReflectionException
      *
      * @return SnapshotResponse
      */
@@ -119,9 +119,9 @@ trait MakesSnapshotCalls
     /**
      * @param SnapshotParams $params
      *
-     * @throws ReflectionException
      * @throws ClassNotFoundException
      * @throws HttpException
+     * @throws ReflectionException
      *
      * @return SnapshotResponse
      */
@@ -133,9 +133,9 @@ trait MakesSnapshotCalls
     /**
      * @param SnapshotParams $params
      *
-     * @throws ReflectionException
      * @throws ClassNotFoundException
      * @throws HttpException
+     * @throws ReflectionException
      *
      * @return SnapshotResponse
      */
@@ -147,9 +147,9 @@ trait MakesSnapshotCalls
     /**
      * @param SnapshotParams $params
      *
-     * @throws ReflectionException
      * @throws ClassNotFoundException
      * @throws HttpException
+     * @throws ReflectionException
      *
      * @return SnapshotResponse
      */
@@ -161,9 +161,9 @@ trait MakesSnapshotCalls
     /**
      * @param SnapshotParams $params
      *
-     * @throws ReflectionException
      * @throws ClassNotFoundException
      * @throws HttpException
+     * @throws ReflectionException
      *
      * @return SnapshotResponse
      */

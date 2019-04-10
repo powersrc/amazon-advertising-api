@@ -5,22 +5,12 @@ declare(strict_types=1);
 namespace PowerSrc\AmazonAdvertisingApi\Models;
 
 use PowerSrc\AmazonAdvertisingApi\Concerns\HasPropertyCasts;
-use PowerSrc\AmazonAdvertisingApi\Enums\BiddingAdjustmentPredicate;
 use PowerSrc\AmazonAdvertisingApi\Enums\PrimitiveType;
+use PowerSrc\AmazonAdvertisingApi\Models\Lists\BidRecommendations\BidRecommendationsList;
 
-class BiddingStrategyAdjustment extends Model
+class BidRecommendationsResponse extends Model
 {
     use HasPropertyCasts;
-
-    /**
-     * @var BiddingAdjustmentPredicate
-     */
-    public $predicate;
-
-    /**
-     * @var float
-     */
-    public $percentage;
 
     /**
      * An array of types to cast values to on object creation.
@@ -30,7 +20,7 @@ class BiddingStrategyAdjustment extends Model
      * @var array
      */
     private $casts = [
-        'predicate'  => BiddingAdjustmentPredicate::class,
-        'percentage' => PrimitiveType::FLOAT,
+        'adGroupId'       => PrimitiveType::INT,
+        'recommendations' => BidRecommendationsList::class,
     ];
 }

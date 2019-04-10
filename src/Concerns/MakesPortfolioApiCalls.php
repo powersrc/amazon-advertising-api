@@ -7,6 +7,7 @@ namespace PowerSrc\AmazonAdvertisingApi\Concerns;
 use PowerSrc\AmazonAdvertisingApi\Enums\HttpMethod;
 use PowerSrc\AmazonAdvertisingApi\Enums\MimeType;
 use PowerSrc\AmazonAdvertisingApi\Exceptions\ClassNotFoundException;
+use PowerSrc\AmazonAdvertisingApi\Exceptions\HttpException;
 use PowerSrc\AmazonAdvertisingApi\Models\Lists\Portfolio\PortfolioCreateList;
 use PowerSrc\AmazonAdvertisingApi\Models\Lists\Portfolio\PortfolioExList;
 use PowerSrc\AmazonAdvertisingApi\Models\Lists\Portfolio\PortfolioList;
@@ -23,6 +24,7 @@ trait MakesPortfolioApiCalls
      * @param PortfolioParams $params
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      *
      * @return PortfolioList
      */
@@ -36,7 +38,8 @@ trait MakesPortfolioApiCalls
     /**
      * @param PortfolioParams $params
      *
-     * @throws ClassNotFoundException *@throws ReflectionException
+     * @throws ClassNotFoundException
+     * @throws HttpException
      *
      * @return PortfolioExList
      */
@@ -51,6 +54,7 @@ trait MakesPortfolioApiCalls
      * @param int $portfolioId
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      * @throws ReflectionException
      *
      * @return Portfolio
@@ -66,6 +70,7 @@ trait MakesPortfolioApiCalls
      * @param int $portfolioId
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      * @throws ReflectionException
      *
      * @return PortfolioEx
@@ -81,6 +86,7 @@ trait MakesPortfolioApiCalls
      * @param PortfolioCreateList $portfolios
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      *
      * @return PortfolioResponseList
      */
@@ -95,6 +101,7 @@ trait MakesPortfolioApiCalls
      * @param PortfolioUpdateList $portfolios
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      *
      * @return PortfolioResponseList
      */

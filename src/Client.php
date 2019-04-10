@@ -277,8 +277,8 @@ class Client implements LoggerAwareInterface
      */
     protected function shouldThrottleRequests(int $statusCode, int $attempt, bool $isDownload = false): bool
     {
-        return $this->throttleManager instanceof RequestThrottle
-            && ($this->httpResponseIsThrottleError($statusCode) || $this->httpResponseIsServerError($statusCode))
+        return ($this->httpResponseIsThrottleError($statusCode) || $this->httpResponseIsServerError($statusCode))
+            && $this->throttleManager instanceof RequestThrottle
             && ( ! $isDownload ? true : $this->shouldThrottleDownloads())
             && $attempt < $this->throttleManager->getMaxAttempts($isDownload);
     }

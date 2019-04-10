@@ -6,17 +6,21 @@ namespace PowerSrc\AmazonAdvertisingApi\Exceptions;
 
 use PowerSrc\AmazonAdvertisingApi\Contracts\HttpException as HttpExceptionInterface;
 use Exception;
+use PowerSrc\AmazonAdvertisingApi\Models\Error;
 use RuntimeException;
 
 class HttpException extends RuntimeException implements HttpExceptionInterface
 {
     private $statusCode;
     private $headers;
+    private $errorResponse;
 
     public function __construct(int $statusCode, string $message = null, Exception $previous = null, array $headers = [], ?int $code = 0)
     {
         $this->statusCode = $statusCode;
         $this->headers    = $headers;
+
+        $this->errorResponse = null;
 
         parent::__construct($message, $code, $previous);
     }
@@ -49,5 +53,29 @@ class HttpException extends RuntimeException implements HttpExceptionInterface
     public function setHeaders(array $headers)
     {
         $this->headers = $headers;
+    }
+
+    /**
+     * Set the Amazon error response if available.
+     *
+     * @param Error $error
+     *
+     * @return HttpExceptionInterface
+     */
+    public function setErrorResponse(Error $error): HttpExceptionInterface
+    {
+        $this->errorResponse = $error;
+
+        return $this;
+    }
+
+    /**
+     * Return the Amazon error response or null if not present.
+     *
+     * @return Error|null
+     */
+    public function getErrorResponse(): ?Error
+    {
+        return $this->errorResponse;
     }
 }

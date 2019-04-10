@@ -7,10 +7,13 @@ namespace PowerSrc\AmazonAdvertisingApi\Concerns;
 use PowerSrc\AmazonAdvertisingApi\Enums\HttpMethod;
 use PowerSrc\AmazonAdvertisingApi\Enums\MimeType;
 use PowerSrc\AmazonAdvertisingApi\Exceptions\ClassNotFoundException;
+use PowerSrc\AmazonAdvertisingApi\Exceptions\HttpException;
+use PowerSrc\AmazonAdvertisingApi\Models\BidRecommendationsResponse;
 use PowerSrc\AmazonAdvertisingApi\Models\CampaignNegativeKeyword;
 use PowerSrc\AmazonAdvertisingApi\Models\CampaignNegativeKeywordEx;
 use PowerSrc\AmazonAdvertisingApi\Models\CampaignNegativeKeywordResponse;
 use PowerSrc\AmazonAdvertisingApi\Models\Keyword;
+use PowerSrc\AmazonAdvertisingApi\Models\KeywordBidRecommendation;
 use PowerSrc\AmazonAdvertisingApi\Models\KeywordEx;
 use PowerSrc\AmazonAdvertisingApi\Models\KeywordResponse;
 use PowerSrc\AmazonAdvertisingApi\Models\Lists\Keyword\CampaignNegativeKeywordCreateList;
@@ -32,6 +35,7 @@ use PowerSrc\AmazonAdvertisingApi\Models\NegativeKeyword;
 use PowerSrc\AmazonAdvertisingApi\Models\NegativeKeywordEx;
 use PowerSrc\AmazonAdvertisingApi\Models\NegativeKeywordResponse;
 use PowerSrc\AmazonAdvertisingApi\Models\RequestParams\CampaignNegativeKeywordParams;
+use PowerSrc\AmazonAdvertisingApi\Models\RequestParams\KeywordBidRecommendationParams;
 use PowerSrc\AmazonAdvertisingApi\Models\RequestParams\KeywordParams;
 use PowerSrc\AmazonAdvertisingApi\Models\RequestParams\NegativeKeywordParams;
 use ReflectionException;
@@ -47,6 +51,7 @@ trait MakesKeywordApiCalls
      * @param int $keywordId
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      * @throws ReflectionException
      *
      * @return Keyword
@@ -68,6 +73,7 @@ trait MakesKeywordApiCalls
      * @param int $keywordId
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      * @throws ReflectionException
      *
      * @return KeywordEx
@@ -86,6 +92,7 @@ trait MakesKeywordApiCalls
      * @param KeywordCreateList $keywordCreateList
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      *
      * @return KeywordResponseList
      */
@@ -102,6 +109,7 @@ trait MakesKeywordApiCalls
      * @param KeywordUpdateList $keywordUpdateList
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      *
      * @return KeywordResponseList
      */
@@ -121,6 +129,7 @@ trait MakesKeywordApiCalls
      * @param int $keywordId
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      * @throws ReflectionException
      *
      * @return KeywordResponse
@@ -141,6 +150,7 @@ trait MakesKeywordApiCalls
      * @param KeywordParams $params
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      *
      * @return KeywordList
      */
@@ -160,7 +170,8 @@ trait MakesKeywordApiCalls
      *
      * @param KeywordParams $params
      *
-     * @throws ClassNotFoundException *@throws ReflectionException
+     * @throws ClassNotFoundException
+     * @throws HttpException
      *
      * @return KeywordExList
      */
@@ -180,6 +191,7 @@ trait MakesKeywordApiCalls
      * @param int $keywordId
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      * @throws ReflectionException
      *
      * @return NegativeKeyword
@@ -201,6 +213,7 @@ trait MakesKeywordApiCalls
      * @param int $keywordId
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      * @throws ReflectionException
      *
      * @return NegativeKeywordEx
@@ -219,6 +232,7 @@ trait MakesKeywordApiCalls
      * @param NegativeKeywordCreateList $keywordCreateList
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      *
      * @return NegativeKeywordResponseList
      */
@@ -235,6 +249,7 @@ trait MakesKeywordApiCalls
      * @param NegativeKeywordUpdateList $keywordUpdateList
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      *
      * @return NegativeKeywordResponseList
      */
@@ -254,6 +269,7 @@ trait MakesKeywordApiCalls
      * @param int $keywordId
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      * @throws ReflectionException
      *
      * @return NegativeKeywordResponse
@@ -274,6 +290,7 @@ trait MakesKeywordApiCalls
      * @param NegativeKeywordParams $params
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      *
      * @return NegativeKeywordList
      */
@@ -293,7 +310,8 @@ trait MakesKeywordApiCalls
      *
      * @param NegativeKeywordParams $params
      *
-     * @throws ClassNotFoundException *@throws ReflectionException
+     * @throws ClassNotFoundException
+     * @throws HttpException
      *
      * @return NegativeKeywordExList
      */
@@ -313,6 +331,7 @@ trait MakesKeywordApiCalls
      * @param int $keywordId
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      * @throws ReflectionException
      *
      * @return CampaignNegativeKeyword
@@ -334,6 +353,7 @@ trait MakesKeywordApiCalls
      * @param int $keywordId
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      * @throws ReflectionException
      *
      * @return CampaignNegativeKeywordEx
@@ -352,6 +372,7 @@ trait MakesKeywordApiCalls
      * @param CampaignNegativeKeywordCreateList $keywordCreateList
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      *
      * @return CampaignNegativeKeywordResponseList
      */
@@ -368,6 +389,7 @@ trait MakesKeywordApiCalls
      * @param CampaignNegativeKeywordUpdateList $keywordUpdateList
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      *
      * @return CampaignNegativeKeywordResponseList
      */
@@ -387,6 +409,7 @@ trait MakesKeywordApiCalls
      * @param int $keywordId
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      * @throws ReflectionException
      *
      * @return CampaignNegativeKeywordResponse
@@ -407,6 +430,7 @@ trait MakesKeywordApiCalls
      * @param CampaignNegativeKeywordParams $params
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      *
      * @return CampaignNegativeKeywordList
      */
@@ -426,7 +450,8 @@ trait MakesKeywordApiCalls
      *
      * @param CampaignNegativeKeywordParams $params
      *
-     * @throws ClassNotFoundException *@throws ReflectionException
+     * @throws ClassNotFoundException
+     * @throws HttpException
      *
      * @return CampaignNegativeKeywordExList
      */
@@ -435,5 +460,39 @@ trait MakesKeywordApiCalls
         $response = $this->operation(HttpMethod::GET(), $this->getApiUrl('sp/campaignNegativeKeywords/extended', $params));
 
         return new CampaignNegativeKeywordExList($this->decodeResponseBody($response, MimeType::JSON()));
+    }
+
+    /**
+     * Retrieve bid recommendation data for the specified keywordId.
+     *
+     * @param int $keywordId
+     *
+     * @throws ClassNotFoundException
+     * @throws HttpException
+     * @throws ReflectionException
+     *
+     * @return KeywordBidRecommendation
+     */
+    public function getKeywordBidRecommendations(int $keywordId): KeywordBidRecommendation
+    {
+        $response = $this->operation(HttpMethod::GET(), $this->getApiUrl('keywords/' . $keywordId . '/bidRecommendations'));
+
+        return new KeywordBidRecommendation($this->decodeResponseBody($response, MimeType::JSON()));
+    }
+
+    /**
+     * @param KeywordBidRecommendationParams $params
+     *
+     * @throws ClassNotFoundException
+     * @throws HttpException
+     * @throws ReflectionException
+     *
+     * @return BidRecommendationsResponse
+     */
+    public function createKeywordBidRecommendations(KeywordBidRecommendationParams $params): BidRecommendationsResponse
+    {
+        $response = $this->operation(HttpMethod::POST(), $this->getApiUrl('keywords/bidRecommendations'), $params);
+
+        return new BidRecommendationsResponse($this->decodeResponseBody($response, MimeType::JSON()));
     }
 }

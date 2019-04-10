@@ -17,7 +17,6 @@ use PowerSrc\AmazonAdvertisingApi\Models\Lists\Report\KeywordReportList;
 use PowerSrc\AmazonAdvertisingApi\Models\Lists\Report\ProductAdReportList;
 use PowerSrc\AmazonAdvertisingApi\Models\Lists\Report\TargetReportList;
 use PowerSrc\AmazonAdvertisingApi\Models\ReportResponse;
-use PowerSrc\AmazonAdvertisingApi\Models\Reports\CampaignReport;
 use PowerSrc\AmazonAdvertisingApi\Models\RequestParams\AdGroupReportParams;
 use PowerSrc\AmazonAdvertisingApi\Models\RequestParams\AsinReportParams;
 use PowerSrc\AmazonAdvertisingApi\Models\RequestParams\CampaignReportParams;
@@ -25,7 +24,6 @@ use PowerSrc\AmazonAdvertisingApi\Models\RequestParams\KeywordReportParams;
 use PowerSrc\AmazonAdvertisingApi\Models\RequestParams\ProductAdReportParams;
 use PowerSrc\AmazonAdvertisingApi\Models\RequestParams\ReportParams;
 use PowerSrc\AmazonAdvertisingApi\Models\RequestParams\TargetReportParams;
-use PowerSrc\AmazonAdvertisingApi\Support\CastType;
 use ReflectionException;
 
 trait MakesReportCalls
@@ -35,6 +33,7 @@ trait MakesReportCalls
      * @param ReportParams     $params
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      * @throws ReflectionException
      *
      * @return ReportResponse
@@ -50,6 +49,7 @@ trait MakesReportCalls
      * @param string $reportId
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      * @throws ReflectionException
      *
      * @return ReportResponse
@@ -83,6 +83,7 @@ trait MakesReportCalls
      * @param CampaignReportParams $params
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      * @throws ReflectionException
      *
      * @return ReportResponse
@@ -96,6 +97,7 @@ trait MakesReportCalls
      * @param AdGroupReportParams $params
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      * @throws ReflectionException
      *
      * @return ReportResponse
@@ -109,6 +111,7 @@ trait MakesReportCalls
      * @param ProductAdReportParams $params
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      * @throws ReflectionException
      *
      * @return ReportResponse
@@ -122,6 +125,7 @@ trait MakesReportCalls
      * @param KeywordReportParams $params
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      * @throws ReflectionException
      *
      * @return ReportResponse
@@ -135,6 +139,7 @@ trait MakesReportCalls
      * @param TargetReportParams $params
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      * @throws ReflectionException
      *
      * @return ReportResponse
@@ -148,6 +153,7 @@ trait MakesReportCalls
      * @param AsinReportParams $params
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      * @throws ReflectionException
      *
      * @return ReportResponse
@@ -161,6 +167,7 @@ trait MakesReportCalls
      * @param string $location
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      * @throws ReportGZDecodeError
      *
      * @return CampaignReportList
@@ -174,6 +181,7 @@ trait MakesReportCalls
      * @param string $location
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      * @throws ReportGZDecodeError
      *
      * @return AdGroupReportList
@@ -187,6 +195,7 @@ trait MakesReportCalls
      * @param string $location
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      * @throws ReportGZDecodeError
      *
      * @return AsinReportList
@@ -200,6 +209,7 @@ trait MakesReportCalls
      * @param string $location
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      * @throws ReportGZDecodeError
      *
      * @return KeywordReportList
@@ -213,6 +223,7 @@ trait MakesReportCalls
      * @param string $location
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      * @throws ReportGZDecodeError
      *
      * @return ProductAdReportList
@@ -226,6 +237,7 @@ trait MakesReportCalls
      * @param string $location
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      * @throws ReportGZDecodeError
      *
      * @return TargetReportList

@@ -7,6 +7,7 @@ namespace PowerSrc\AmazonAdvertisingApi\Concerns;
 use PowerSrc\AmazonAdvertisingApi\Enums\HttpMethod;
 use PowerSrc\AmazonAdvertisingApi\Enums\MimeType;
 use PowerSrc\AmazonAdvertisingApi\Exceptions\ClassNotFoundException;
+use PowerSrc\AmazonAdvertisingApi\Exceptions\HttpException;
 use PowerSrc\AmazonAdvertisingApi\Models\Campaign;
 use PowerSrc\AmazonAdvertisingApi\Models\CampaignEx;
 use PowerSrc\AmazonAdvertisingApi\Models\CampaignResponse;
@@ -27,6 +28,7 @@ trait MakesCampaignApiCalls
      * @param int $campaignId
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      * @throws ReflectionException
      *
      * @return Campaign
@@ -48,6 +50,7 @@ trait MakesCampaignApiCalls
      * @param int $campaignId
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      * @throws ReflectionException
      *
      * @return CampaignEx
@@ -66,6 +69,7 @@ trait MakesCampaignApiCalls
      * @param CampaignCreateList $campaignList
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      *
      * @return CampaignResponseList
      */
@@ -83,6 +87,7 @@ trait MakesCampaignApiCalls
      * @param CampaignUpdateList $campaignList
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      *
      * @return CampaignResponseList
      */
@@ -99,6 +104,7 @@ trait MakesCampaignApiCalls
      * @param int $campaignId
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      * @throws ReflectionException
      *
      * @return CampaignResponse
@@ -116,6 +122,7 @@ trait MakesCampaignApiCalls
      * @param CampaignParams $params
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      *
      * @return CampaignList
      */
@@ -132,6 +139,7 @@ trait MakesCampaignApiCalls
      * @param CampaignParams $params
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      *
      * @return CampaignExList
      */

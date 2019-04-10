@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace PowerSrc\AmazonAdvertisingApi\Models\RequestParams;
 
-use JsonSerializable;
 use PowerSrc\AmazonAdvertisingApi\Enums\ReportSegment;
 use PowerSrc\AmazonAdvertisingApi\Exceptions\InvalidMetricListTypeException;
 use PowerSrc\AmazonAdvertisingApi\Models\Lists\ReportMetricsList;
 use function get_class;
 use function sprintf;
 
-abstract class ReportParams extends RequestParams implements JsonSerializable
+abstract class ReportParams extends RequestParams
 {
     /**
      * The list of parameter names and default values.
@@ -43,19 +42,6 @@ abstract class ReportParams extends RequestParams implements JsonSerializable
     protected $filters = [
         'metrics',
     ];
-
-    /**
-     * Specify data which should be serialized to JSON. This method returns data that can be serialized by json_encode()
-     * natively.
-     *
-     * @return array
-     *
-     * @see http://php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    public function jsonSerialize(): array
-    {
-        return $this->toArray();
-    }
 
     /**
      * @param ReportMetricsList $metricsList

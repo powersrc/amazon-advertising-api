@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace PowerSrc\AmazonAdvertisingApi\Models;
 
 use PowerSrc\AmazonAdvertisingApi\Concerns\HasPropertyCasts;
+use PowerSrc\AmazonAdvertisingApi\Enums\BiddingStrategyType;
 use PowerSrc\AmazonAdvertisingApi\Enums\PrimitiveType;
 use PowerSrc\AmazonAdvertisingApi\Models\Lists\BiddingStrategyAdjustmentList;
 
@@ -12,10 +13,14 @@ class BiddingStrategy extends Model
 {
     use HasPropertyCasts;
 
-    /** @var string */
+    /**
+     * @var BiddingStrategyType
+     */
     public $strategy;
 
-    /** @var BiddingStrategyAdjustmentList */
+    /**
+     * @var BiddingStrategyAdjustmentList
+     */
     public $adjustments;
 
     /**
@@ -26,7 +31,7 @@ class BiddingStrategy extends Model
      * @var array
      */
     private $casts = [
-        'strategy'    => PrimitiveType::STRING,
+        'strategy'    => BiddingStrategyType::class,
         'adjustments' => BiddingStrategyAdjustmentList::class,
     ];
 }

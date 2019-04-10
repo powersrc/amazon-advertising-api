@@ -100,6 +100,7 @@ class Campaign extends Model
         'portfolioId'          => PrimitiveType::INT,
         'campaignId'           => PrimitiveType::INT,
         'name'                 => PrimitiveType::STRING,
+        'targetingType'        => PrimitiveType::STRING,
         'dailyBudget'          => PrimitiveType::FLOAT,
         'startDate'            => PrimitiveType::STRING,
         'endDate'              => PrimitiveType::STRING,

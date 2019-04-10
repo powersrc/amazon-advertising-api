@@ -7,6 +7,7 @@ namespace PowerSrc\AmazonAdvertisingApi\Concerns;
 use PowerSrc\AmazonAdvertisingApi\Enums\HttpMethod;
 use PowerSrc\AmazonAdvertisingApi\Enums\MimeType;
 use PowerSrc\AmazonAdvertisingApi\Exceptions\ClassNotFoundException;
+use PowerSrc\AmazonAdvertisingApi\Exceptions\HttpException;
 use PowerSrc\AmazonAdvertisingApi\Models\Lists\Profile\ProfileList;
 use PowerSrc\AmazonAdvertisingApi\Models\Lists\Profile\ProfileResponseList;
 use PowerSrc\AmazonAdvertisingApi\Models\Lists\Profile\ProfileUpdateList;
@@ -19,7 +20,8 @@ trait MakesProfileApiCalls
     /**
      * Retrieves profiles associated with an auth token.
      *
-     * @throws ClassNotFoundException *@throws ReflectionException
+     * @throws ClassNotFoundException
+     * @throws HttpException
      *
      * @return ProfileList
      */
@@ -36,6 +38,7 @@ trait MakesProfileApiCalls
      * @param int $profileId
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      * @throws ReflectionException
      *
      * @return Profile
@@ -53,6 +56,7 @@ trait MakesProfileApiCalls
      * @param ProfileUpdateList $profileList
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      *
      * @return ProfileResponseList
      */
@@ -69,6 +73,7 @@ trait MakesProfileApiCalls
      * @param Profile $profile
      *
      * @throws ClassNotFoundException
+     * @throws HttpException
      * @throws ReflectionException
      *
      * @return ProfileResponse
