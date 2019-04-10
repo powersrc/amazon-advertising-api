@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace PowerSrc\AmazonAdvertisingApi\Models\RequestParams;
 
+use JsonSerializable;
 use PowerSrc\AmazonAdvertisingApi\Contracts\Arrayable;
 use PowerSrc\AmazonAdvertisingApi\Support\Arr;
 use function array_combine;
@@ -16,7 +17,7 @@ use function implode;
 use function in_array;
 use function is_array;
 
-abstract class RequestParams implements Arrayable
+abstract class RequestParams implements Arrayable, JsonSerializable
 {
     /**
      * The list of parameter names and default values.
@@ -72,5 +73,10 @@ abstract class RequestParams implements Arrayable
         }, $params, $keys);
 
         return array_combine($keys, $params);
+    }
+
+    public function jsonSerialize()
+    {
+        return $this->toArray();
     }
 }
