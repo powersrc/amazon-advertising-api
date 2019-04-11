@@ -133,7 +133,7 @@ abstract class ModelList implements ArrayAccess, Arrayable, Countable, Jsonable,
      */
     public function toArray(): array
     {
-        return array_map(function (Model $item) { return $item->toArray(); }, $this->itemList);
+        return $this->itemList;
     }
 
     /*
