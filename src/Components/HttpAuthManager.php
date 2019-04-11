@@ -161,8 +161,8 @@ final class HttpAuthManager implements HttpRequestAuth
     /**
      * Calls the Amazon oauth endpoint to refresh the access token.
      *
-     * @throws GuzzleException
      * @throws ClassNotFoundException
+     * @throws GuzzleException
      * @throws ReflectionException
      */
     private function refreshAuthToken(): void

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace PowerSrc\AmazonAdvertisingApi\Concerns;
 
 use Exception;
+use InvalidArgumentException;
 use PowerSrc\AmazonAdvertisingApi\Enums\MimeType;
 use PowerSrc\AmazonAdvertisingApi\Exceptions\AccessDeniedHttpException;
 use PowerSrc\AmazonAdvertisingApi\Exceptions\BadRequestHttpException;
@@ -42,7 +43,7 @@ trait HandlesApiErrors
      * @param int|null          $status
      *
      * @throws ClassNotFoundException
-     * @throws HttpException
+     * @throws InvalidArgumentException
      * @throws ReflectionException
      */
     protected function handleHttpError(ResponseInterface $response, ?string $message = null, ?int $status = null): void
@@ -51,7 +52,10 @@ trait HandlesApiErrors
 
         $message = $message ?? (Data::get($error, 'code') . ': ' . (Data::get($error, 'details') ?? Data::get($error, 'description')));
 
-        throw $this->getHttpExceptionFor($response, $message, $status)->setErrorResponse($error);
+        $e = $this->getHttpExceptionFor($response, $message, $status);
+        $e->setErrorResponse($error);
+
+        throw $e;
     }
 
     /**

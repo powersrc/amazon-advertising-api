@@ -84,6 +84,7 @@ abstract class Model implements Arrayable, JsonSerializable, Jsonable
     /**
      * Specify data which should be serialized to JSON.
      *
+     * @throws InvalidArgumentException
      * @throws ReflectionException
      *
      * @return stdClass
@@ -112,6 +113,7 @@ abstract class Model implements Arrayable, JsonSerializable, Jsonable
      *
      * @param int $options
      *
+     * @throws InvalidArgumentException
      * @throws ReflectionException
      *
      * @return string
@@ -156,7 +158,6 @@ abstract class Model implements Arrayable, JsonSerializable, Jsonable
      * @param mixed  $value
      *
      * @throws ClassNotFoundException
-     * @throws ReflectionException
      *
      * @return mixed
      */

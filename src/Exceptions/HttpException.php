@@ -59,14 +59,10 @@ class HttpException extends RuntimeException implements HttpExceptionInterface
      * Set the Amazon error response if available.
      *
      * @param Error|null $error
-     *
-     * @return HttpExceptionInterface
      */
-    public function setErrorResponse(?Error $error): HttpExceptionInterface
+    public function setErrorResponse(?Error $error)
     {
         $this->errorResponse = $error;
-
-        return $this;
     }
 
     /**
