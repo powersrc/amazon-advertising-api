@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace PowerSrc\AmazonAdvertisingApi\Models\Lists\BidRecommendations;
 
 use PowerSrc\AmazonAdvertisingApi\Concerns\HasListItemClass;
-use PowerSrc\AmazonAdvertisingApi\Models\AdGroup;
 use PowerSrc\AmazonAdvertisingApi\Models\BidRecommendation;
 use PowerSrc\AmazonAdvertisingApi\Models\Lists\ModelList;
 

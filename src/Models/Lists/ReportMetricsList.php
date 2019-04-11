@@ -67,7 +67,6 @@ abstract class ReportMetricsList implements ArrayAccess, Arrayable, Countable, J
      * @throws ReflectionException
      *
      * @return ReportMetricsList
-     *
      */
     public function addMetric($metric): ReportMetricsList
     {

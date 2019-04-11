@@ -41,7 +41,15 @@
   },
   "require-dev": {
     "friendsofphp/php-cs-fixer": "2.11",
-    "phpunit/phpunit": "~7.0"
+    "phpro/grumphp": "^0.15.0",
+    "phpunit/phpunit": "~7.0",
+    "sensiolabs/security-checker": "^5.0"
+  },
+  "scripts": {
+    "check-style": "grumphp run",
+    "fix-style": [
+      "php-cs-fixer fix -v"
+    ]
   },
   "config": {
     "sort-packages": true

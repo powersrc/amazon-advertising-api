@@ -8,7 +8,6 @@ use Exception;
 
 class ClassNotFoundException extends Exception
 {
-
     /**
      * Name of the class that was unable to be found.
      *

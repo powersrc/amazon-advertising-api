@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace PowerSrc\AmazonAdvertisingApi\Components;
 
-use PowerSrc\AmazonAdvertisingApi\Contracts\RequestThrottle;
 use InvalidArgumentException;
+use PowerSrc\AmazonAdvertisingApi\Contracts\RequestThrottle;
 use function round;
 
 final class RequestThrottleManager implements RequestThrottle

@@ -22,7 +22,6 @@ use ReflectionException;
 
 trait MakesSnapshotCalls
 {
-
     /**
      * @param SnapshotRecordType $type
      * @param SnapshotParams     $params

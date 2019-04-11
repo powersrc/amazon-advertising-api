@@ -3,6 +3,7 @@
  * Modified version of Enum class from My C-Labs.
  *
  * @see http://github.com/myclabs/php-enum
+ *
  * @version 1.6.6
  *
  * @license http://www.opensource.org/licenses/mit-license.php MIT (see the LICENSE file)

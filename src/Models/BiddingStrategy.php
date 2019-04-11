@@ -6,7 +6,6 @@ namespace PowerSrc\AmazonAdvertisingApi\Models;
 
 use PowerSrc\AmazonAdvertisingApi\Concerns\HasPropertyCasts;
 use PowerSrc\AmazonAdvertisingApi\Enums\BiddingStrategyType;
-use PowerSrc\AmazonAdvertisingApi\Enums\PrimitiveType;
 use PowerSrc\AmazonAdvertisingApi\Models\Lists\BiddingStrategyAdjustmentList;
 
 class BiddingStrategy extends Model

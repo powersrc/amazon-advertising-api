@@ -6,7 +6,6 @@ namespace PowerSrc\AmazonAdvertisingApi\Concerns;
 
 trait HasListItemClass
 {
-
     /**
      * Return the FQCN of the class to cast the list items to.
      *

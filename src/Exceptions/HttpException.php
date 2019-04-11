@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace PowerSrc\AmazonAdvertisingApi\Exceptions;
 
-use PowerSrc\AmazonAdvertisingApi\Contracts\HttpException as HttpExceptionInterface;
 use Exception;
+use PowerSrc\AmazonAdvertisingApi\Contracts\HttpException as HttpExceptionInterface;
 use PowerSrc\AmazonAdvertisingApi\Models\Error;
 use RuntimeException;
 
