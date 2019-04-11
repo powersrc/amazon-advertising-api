@@ -6,7 +6,6 @@ namespace PowerSrc\AmazonAdvertisingApi\Models\Lists\Report;
 
 use PowerSrc\AmazonAdvertisingApi\Concerns\HasListItemClass;
 use PowerSrc\AmazonAdvertisingApi\Models\Lists\ModelList;
-use PowerSrc\AmazonAdvertisingApi\Models\Reports\AdGroupReport;
 use PowerSrc\AmazonAdvertisingApi\Models\Reports\AsinReport;
 
 class AsinReportList extends ModelList

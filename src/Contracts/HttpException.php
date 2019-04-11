@@ -25,11 +25,9 @@ interface HttpException
     /**
      * Set the Amazon error response if available.
      *
-     * @param Error $error
-     *
-     * @return HttpException
+     * @param Error|null $error
      */
-    public function setErrorResponse(Error $error): HttpException;
+    public function setErrorResponse(?Error $error);
 
     /**
      * Return the Amazon error response or null if not present.

@@ -73,5 +73,4 @@ class ReportResponse extends Model
         'location'      => PrimitiveType::STRING,
         'fileSize'      => PrimitiveType::INT,
     ];
-
 }

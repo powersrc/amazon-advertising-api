@@ -67,7 +67,6 @@ abstract class ReportMetricsList implements ArrayAccess, Arrayable, Countable, J
      * @throws ReflectionException
      *
      * @return ReportMetricsList
-     *
      */
     public function addMetric($metric): ReportMetricsList
     {
@@ -134,6 +133,9 @@ abstract class ReportMetricsList implements ArrayAccess, Arrayable, Countable, J
     |-------------------------------------------------------------------------------------------------------------------
     */
 
+    /**
+     * @return array
+     */
     public function toArray(): array
     {
         return $this->metricList;
@@ -145,9 +147,12 @@ abstract class ReportMetricsList implements ArrayAccess, Arrayable, Countable, J
     |-------------------------------------------------------------------------------------------------------------------
     */
 
+    /**
+     * @return int
+     */
     public function count(): int
     {
-        return count($this->itemList);
+        return count($this->metricList);
     }
 
     /*
@@ -156,6 +161,13 @@ abstract class ReportMetricsList implements ArrayAccess, Arrayable, Countable, J
     |-------------------------------------------------------------------------------------------------------------------
     */
 
+    /**
+     * @param int $options
+     *
+     * @throws InvalidArgumentException
+     *
+     * @return string
+     */
     public function toJson(int $options = 0): string
     {
         return CastType::toJson($this->jsonSerialize(), $options);
@@ -167,6 +179,9 @@ abstract class ReportMetricsList implements ArrayAccess, Arrayable, Countable, J
     |-------------------------------------------------------------------------------------------------------------------
     */
 
+    /**
+     * @return array
+     */
     public function jsonSerialize(): array
     {
         return $this->toArray();
@@ -178,6 +193,9 @@ abstract class ReportMetricsList implements ArrayAccess, Arrayable, Countable, J
     |-------------------------------------------------------------------------------------------------------------------
     */
 
+    /**
+     * @return ArrayIterator
+     */
     public function getIterator(): ArrayIterator
     {
         return new ArrayIterator($this->metricList);

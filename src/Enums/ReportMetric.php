@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace PowerSrc\AmazonAdvertisingApi\Enums;
 
 use PowerSrc\AmazonAdvertisingApi\Support\Arr;
-use ReflectionException;
 use function in_array;
 
 /**
@@ -322,8 +321,6 @@ class ReportMetric extends Enum
     /**
      * @param ReportRecordType $type
      * @param string           $value
-     *
-     * @throws ReflectionException
      *
      * @return bool
      */

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace PowerSrc\AmazonAdvertisingApi\Exceptions;
 
-use PowerSrc\AmazonAdvertisingApi\Contracts\HttpException as HttpExceptionInterface;
 use Exception;
+use PowerSrc\AmazonAdvertisingApi\Contracts\HttpException as HttpExceptionInterface;
 use PowerSrc\AmazonAdvertisingApi\Models\Error;
 use RuntimeException;
 
@@ -59,14 +59,10 @@ class HttpException extends RuntimeException implements HttpExceptionInterface
      * Set the Amazon error response if available.
      *
      * @param Error|null $error
-     *
-     * @return HttpExceptionInterface
      */
-    public function setErrorResponse(?Error $error): HttpExceptionInterface
+    public function setErrorResponse(?Error $error)
     {
         $this->errorResponse = $error;
-
-        return $this;
     }
 
     /**

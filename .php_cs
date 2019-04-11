@@ -24,7 +24,6 @@ return PhpCsFixer\Config::create()
                             'class_keyword_remove'                      => false, // Disabled because not considered a problem.
                             'combine_consecutive_unsets'                => true,
                             'general_phpdoc_annotation_remove'          => true,
-                            'linebreak_after_opening_tag'               => false, // Disabled to allow one-line tags within HTML
                             'no_multiline_whitespace_before_semicolons' => true,
                             'no_short_echo_tag'                         => true,
                             'no_useless_else'                           => true,

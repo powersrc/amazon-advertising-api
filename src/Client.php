@@ -7,6 +7,7 @@ namespace PowerSrc\AmazonAdvertisingApi;
 use GuzzleHttp\ClientInterface as HttpClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\RequestOptions;
+use InvalidArgumentException;
 use JsonSerializable;
 use PowerSrc\AmazonAdvertisingApi\Concerns\HandlesApiErrors;
 use PowerSrc\AmazonAdvertisingApi\Concerns\MakesAdGroupApiCalls;
@@ -204,6 +205,7 @@ class Client implements LoggerAwareInterface
      *
      * @throws ClassNotFoundException
      * @throws GuzzleException
+     * @throws InvalidArgumentException
      * @throws ReflectionException
      *
      * @return ResponseInterface
@@ -308,6 +310,8 @@ class Client implements LoggerAwareInterface
      * @param ResponseInterface $response
      * @param MimeType|null     $type
      *
+     * @throws InvalidArgumentException
+     *
      * @return mixed
      */
     protected function decodeResponseBody(ResponseInterface $response, MimeType $type = null)
@@ -333,6 +337,7 @@ class Client implements LoggerAwareInterface
      * @param ResponseInterface $reportResponse
      * @param string            $location
      *
+     * @throws InvalidArgumentException
      * @throws ReportGZDecodeError
      *
      * @return mixed
@@ -340,7 +345,6 @@ class Client implements LoggerAwareInterface
     protected function decodeReport(ResponseInterface $reportResponse, string $location)
     {
         $body = $this->decodeResponseBody($reportResponse, MimeType::TEXT_PLAIN());
-        //printf($this->gzdecode($body, $location));
 
         return CastType::fromJson($body) ?? CastType::fromJson($this->gzdecode($body, $location));
     }

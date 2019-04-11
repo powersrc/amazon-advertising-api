@@ -83,5 +83,4 @@ class SnapshotResponse extends Model
         'fileSize'      => PrimitiveType::INT,
         'expiration'    => PrimitiveType::INT,
     ];
-
 }

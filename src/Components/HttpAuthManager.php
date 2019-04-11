@@ -149,10 +149,20 @@ final class HttpAuthManager implements HttpRequestAuth
     }
 
     /**
+     * Gets the LWA client identifier.
+     *
+     * @return string
+     */
+    public function getClientId(): string
+    {
+        return $this->clientId;
+    }
+
+    /**
      * Calls the Amazon oauth endpoint to refresh the access token.
      *
-     * @throws GuzzleException
      * @throws ClassNotFoundException
+     * @throws GuzzleException
      * @throws ReflectionException
      */
     private function refreshAuthToken(): void
@@ -212,15 +222,5 @@ final class HttpAuthManager implements HttpRequestAuth
     private function authTokenIsExpired(): bool
     {
         return $this->validTill === null || (int) $this->validTill < time();
-    }
-
-    /**
-     * Gets the LWA client identifier.
-     *
-     * @return string
-     */
-    public function getClientId(): string
-    {
-        return $this->clientId;
     }
 }
