@@ -13,6 +13,20 @@ class BidRecommendationsResponse extends Model
     use HasPropertyCasts;
 
     /**
+     * The ID of the adGroup that bid recommendations were created against, if successful.
+     *
+     * @var int
+     */
+    public $adGroupId;
+
+    /**
+     * List of returned bid recommendations.
+     *
+     * @var BidRecommendationsList
+     */
+    public $recommendations;
+
+    /**
      * An array of types to cast values to on object creation.
      *
      * The property to cast is the key and the type to cast to is the value.
