@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace PowerSrc\AmazonAdvertisingApi\Models;
 
 use PowerSrc\AmazonAdvertisingApi\Concerns\HasPropertyCasts;
-use PowerSrc\AmazonAdvertisingApi\Enums\KeywordMatchType;
+use PowerSrc\AmazonAdvertisingApi\Enums\NegativeKeywordMatchType;
 use PowerSrc\AmazonAdvertisingApi\Enums\PrimitiveType;
 use PowerSrc\AmazonAdvertisingApi\Enums\State;
 
@@ -44,7 +44,7 @@ class CampaignNegativeKeyword extends Model
     /**
      * The match type used to match the keyword to search query.
      *
-     * @var KeywordMatchType
+     * @var NegativeKeywordMatchType
      */
     public $matchType;
 
@@ -60,6 +60,6 @@ class CampaignNegativeKeyword extends Model
         'campaignId'  => PrimitiveType::INT,
         'state'       => State::class,
         'keywordText' => PrimitiveType::STRING,
-        'matchType'   => KeywordMatchType::class,
+        'matchType'   => NegativeKeywordMatchType::class,
     ];
 }

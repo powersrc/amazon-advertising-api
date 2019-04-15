@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace PowerSrc\AmazonAdvertisingApi\Support;
 
-use ArrayAccess;
 use function array_key_exists;
 use function array_keys;
 use function array_merge;
+use ArrayAccess;
 use function explode;
 use function is_array;
 use function is_object;

@@ -6,9 +6,8 @@ namespace PowerSrc\AmazonAdvertisingApi\Models\Lists\AdGroup;
 
 use PowerSrc\AmazonAdvertisingApi\Concerns\HasListItemClass;
 use PowerSrc\AmazonAdvertisingApi\Models\AdGroupEx;
-use PowerSrc\AmazonAdvertisingApi\Models\Lists\ModelList;
 
-class AdGroupExList extends ModelList
+class AdGroupExList extends AdGroupList
 {
     use HasListItemClass;
 

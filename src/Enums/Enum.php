@@ -77,7 +77,7 @@ abstract class Enum extends \MyCLabs\Enum\Enum
     /**
      * Get the enum description if available.
      *
-     * @param null|string $default
+     * @param string|null $default
      *
      * @return string
      */

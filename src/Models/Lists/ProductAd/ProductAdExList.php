@@ -5,10 +5,9 @@ declare(strict_types=1);
 namespace PowerSrc\AmazonAdvertisingApi\Models\Lists\ProductAd;
 
 use PowerSrc\AmazonAdvertisingApi\Concerns\HasListItemClass;
-use PowerSrc\AmazonAdvertisingApi\Models\Lists\ModelList;
 use PowerSrc\AmazonAdvertisingApi\Models\ProductAdEx;
 
-class ProductAdExList extends ModelList
+class ProductAdExList extends ProductAdList
 {
     use HasListItemClass;
 

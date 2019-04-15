@@ -22,16 +22,6 @@ abstract class MutationResponse extends Model
     /**
      * A human-readable description of the error, if unsuccessful.
      *
-     * API Docs show this as the property name but it is actually sent as `description`,
-     * leaving this in the off chance they correct API to match docs.
-     *
-     * @var string
-     */
-    public $details;
-
-    /**
-     * A human-readable description of the error, if unsuccessful.
-     *
      * @var string
      */
     public $description;
@@ -45,7 +35,6 @@ abstract class MutationResponse extends Model
      */
     private $casts = [
         'code'        => ResponseCode::class,
-        'details'     => PrimitiveType::STRING,
         'description' => PrimitiveType::STRING,
     ];
 }

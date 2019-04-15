@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace PowerSrc\AmazonAdvertisingApi\Models\RequestParams;
 
-use JsonSerializable;
-use PowerSrc\AmazonAdvertisingApi\Contracts\Arrayable;
-use PowerSrc\AmazonAdvertisingApi\Support\Arr;
 use function array_combine;
 use function array_filter;
 use function array_keys;
@@ -16,6 +13,9 @@ use function array_walk;
 use function implode;
 use function in_array;
 use function is_array;
+use JsonSerializable;
+use PowerSrc\AmazonAdvertisingApi\Contracts\Arrayable;
+use PowerSrc\AmazonAdvertisingApi\Support\Arr;
 
 abstract class RequestParams implements Arrayable, JsonSerializable
 {
