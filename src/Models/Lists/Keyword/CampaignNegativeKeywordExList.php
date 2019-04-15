@@ -6,9 +6,8 @@ namespace PowerSrc\AmazonAdvertisingApi\Models\Lists\Keyword;
 
 use PowerSrc\AmazonAdvertisingApi\Concerns\HasListItemClass;
 use PowerSrc\AmazonAdvertisingApi\Models\CampaignNegativeKeywordEx;
-use PowerSrc\AmazonAdvertisingApi\Models\Lists\ModelList;
 
-class CampaignNegativeKeywordExList extends ModelList
+class CampaignNegativeKeywordExList extends CampaignNegativeKeywordList
 {
     use HasListItemClass;
 

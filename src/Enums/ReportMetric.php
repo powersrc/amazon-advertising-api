@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace PowerSrc\AmazonAdvertisingApi\Enums;
 
-use PowerSrc\AmazonAdvertisingApi\Support\Arr;
 use function in_array;
+use PowerSrc\AmazonAdvertisingApi\Support\Arr;
 
 /**
  * @method static ReportMetric BID_PLUS()

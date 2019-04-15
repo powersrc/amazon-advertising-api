@@ -10,13 +10,13 @@ use PowerSrc\AmazonAdvertisingApi\Enums\ReportRecordType;
 use PowerSrc\AmazonAdvertisingApi\Exceptions\ClassNotFoundException;
 use PowerSrc\AmazonAdvertisingApi\Exceptions\HttpException;
 use PowerSrc\AmazonAdvertisingApi\Exceptions\ReportGZDecodeError;
-use PowerSrc\AmazonAdvertisingApi\Models\Lists\Report\AdGroupReportList;
-use PowerSrc\AmazonAdvertisingApi\Models\Lists\Report\AsinReportList;
-use PowerSrc\AmazonAdvertisingApi\Models\Lists\Report\CampaignReportList;
-use PowerSrc\AmazonAdvertisingApi\Models\Lists\Report\KeywordReportList;
-use PowerSrc\AmazonAdvertisingApi\Models\Lists\Report\ProductAdReportList;
-use PowerSrc\AmazonAdvertisingApi\Models\Lists\Report\TargetReportList;
 use PowerSrc\AmazonAdvertisingApi\Models\ReportResponse;
+use PowerSrc\AmazonAdvertisingApi\Models\Reports\AdGroupReport;
+use PowerSrc\AmazonAdvertisingApi\Models\Reports\AsinReport;
+use PowerSrc\AmazonAdvertisingApi\Models\Reports\CampaignReport;
+use PowerSrc\AmazonAdvertisingApi\Models\Reports\KeywordReport;
+use PowerSrc\AmazonAdvertisingApi\Models\Reports\ProductAdReport;
+use PowerSrc\AmazonAdvertisingApi\Models\Reports\TargetReport;
 use PowerSrc\AmazonAdvertisingApi\Models\RequestParams\AdGroupReportParams;
 use PowerSrc\AmazonAdvertisingApi\Models\RequestParams\AsinReportParams;
 use PowerSrc\AmazonAdvertisingApi\Models\RequestParams\CampaignReportParams;
@@ -166,84 +166,84 @@ trait MakesReportCalls
     /**
      * @param string $location
      *
-     * @throws ClassNotFoundException
-     * @throws HttpException
+     *@throws HttpException
      * @throws ReportGZDecodeError
+     * @throws ClassNotFoundException
      *
-     * @return CampaignReportList
+     * @return \PowerSrc\AmazonAdvertisingApi\Models\Reports\CampaignReport
      */
-    public function downloadCampaignsReport(string $location): CampaignReportList
+    public function downloadCampaignsReport(string $location): CampaignReport
     {
-        return new CampaignReportList($this->downloadReport($location));
+        return new CampaignReport($this->downloadReport($location));
     }
 
     /**
      * @param string $location
      *
-     * @throws ClassNotFoundException
-     * @throws HttpException
+     *@throws HttpException
      * @throws ReportGZDecodeError
+     * @throws ClassNotFoundException
      *
-     * @return AdGroupReportList
+     * @return AdGroupReport
      */
-    public function downloadAdGroupsReport(string $location): AdGroupReportList
+    public function downloadAdGroupsReport(string $location): AdGroupReport
     {
-        return new AdGroupReportList($this->downloadReport($location));
+        return new AdGroupReport($this->downloadReport($location));
     }
 
     /**
      * @param string $location
      *
-     * @throws ClassNotFoundException
-     * @throws HttpException
+     *@throws HttpException
      * @throws ReportGZDecodeError
+     * @throws ClassNotFoundException
      *
-     * @return AsinReportList
+     * @return AsinReport
      */
-    public function downloadAsinsReport(string $location): AsinReportList
+    public function downloadAsinsReport(string $location): AsinReport
     {
-        return new AsinReportList($this->downloadReport($location));
+        return new AsinReport($this->downloadReport($location));
     }
 
     /**
      * @param string $location
      *
-     * @throws ClassNotFoundException
-     * @throws HttpException
+     *@throws HttpException
      * @throws ReportGZDecodeError
+     * @throws ClassNotFoundException
      *
-     * @return KeywordReportList
+     * @return KeywordReport
      */
-    public function downloadKeywordssReport(string $location): KeywordReportList
+    public function downloadKeywordsReport(string $location): KeywordReport
     {
-        return new KeywordReportList($this->downloadReport($location));
+        return new KeywordReport($this->downloadReport($location));
     }
 
     /**
      * @param string $location
      *
-     * @throws ClassNotFoundException
-     * @throws HttpException
+     *@throws HttpException
      * @throws ReportGZDecodeError
+     * @throws ClassNotFoundException
      *
-     * @return ProductAdReportList
+     * @return \PowerSrc\AmazonAdvertisingApi\Models\Reports\ProductAdReport
      */
-    public function downloadProductAdsReport(string $location): ProductAdReportList
+    public function downloadProductAdsReport(string $location): ProductAdReport
     {
-        return new ProductAdReportList($this->downloadReport($location));
+        return new ProductAdReport($this->downloadReport($location));
     }
 
     /**
      * @param string $location
      *
-     * @throws ClassNotFoundException
-     * @throws HttpException
+     *@throws HttpException
      * @throws ReportGZDecodeError
+     * @throws ClassNotFoundException
      *
-     * @return TargetReportList
+     * @return TargetReport
      */
-    public function downloadTargetsReport(string $location): TargetReportList
+    public function downloadTargetsReport(string $location): TargetReport
     {
-        return new TargetReportList($this->downloadReport($location));
+        return new TargetReport($this->downloadReport($location));
     }
 }

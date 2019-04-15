@@ -6,10 +6,10 @@ namespace PowerSrc\AmazonAdvertisingApi\Support;
 
 use Closure;
 use InvalidArgumentException;
-use stdClass;
 use function is_callable;
 use function is_object;
 use function property_exists;
+use stdClass;
 
 final class Obj
 {

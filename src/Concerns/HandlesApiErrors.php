@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace PowerSrc\AmazonAdvertisingApi\Concerns;
 
 use Exception;
+use function implode;
 use InvalidArgumentException;
 use PowerSrc\AmazonAdvertisingApi\Enums\MimeType;
 use PowerSrc\AmazonAdvertisingApi\Exceptions\AccessDeniedHttpException;
@@ -30,7 +31,6 @@ use PowerSrc\AmazonAdvertisingApi\Support\Data;
 use PowerSrc\AmazonAdvertisingApi\Support\Str;
 use Psr\Http\Message\ResponseInterface;
 use ReflectionException;
-use function implode;
 
 trait HandlesApiErrors
 {

@@ -22,7 +22,7 @@ final class Config
      *
      * @var int
      */
-    private $defaultMaxPageSize = 5000;
+    private static $defaultMaxPageSize = 5000;
 
     /**
      * @var HttpRequestAuth
@@ -81,9 +81,9 @@ final class Config
     /**
      * @return int
      */
-    public function getDefaultMaxPageSize(): int
+    public static function getDefaultMaxPageSize(): int
     {
-        return $this->defaultMaxPageSize;
+        return static::$defaultMaxPageSize;
     }
 
     /**

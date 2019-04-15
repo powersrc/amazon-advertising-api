@@ -6,9 +6,8 @@ namespace PowerSrc\AmazonAdvertisingApi\Models\Lists\Campaign;
 
 use PowerSrc\AmazonAdvertisingApi\Concerns\HasListItemClass;
 use PowerSrc\AmazonAdvertisingApi\Models\CampaignEx;
-use PowerSrc\AmazonAdvertisingApi\Models\Lists\ModelList;
 
-class CampaignExList extends ModelList
+class CampaignExList extends CampaignList
 {
     use HasListItemClass;
 

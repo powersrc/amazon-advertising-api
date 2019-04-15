@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace PowerSrc\AmazonAdvertisingApi\Components;
 
+use function array_merge;
 use GuzzleHttp\ClientInterface as HttpClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\RequestOptions;
@@ -16,7 +17,6 @@ use PowerSrc\AmazonAdvertisingApi\Models\LWAAuthResponse;
 use PowerSrc\AmazonAdvertisingApi\Support\CastType;
 use ReflectionException;
 use Throwable;
-use function array_merge;
 use function time;
 
 final class HttpAuthManager implements HttpRequestAuth
@@ -127,7 +127,7 @@ final class HttpAuthManager implements HttpRequestAuth
      * @throws GuzzleException
      * @throws ReflectionException
      *
-     * @return null|string
+     * @return string|null
      */
     public function getAuthData(): ?string
     {

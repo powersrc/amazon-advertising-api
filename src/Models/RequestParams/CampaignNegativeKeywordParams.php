@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace PowerSrc\AmazonAdvertisingApi\Models\RequestParams;
 
+use PowerSrc\AmazonAdvertisingApi\Config;
 use PowerSrc\AmazonAdvertisingApi\Enums\NegativeKeywordMatchType;
 
 final class CampaignNegativeKeywordParams extends RequestParams
@@ -85,7 +86,7 @@ final class CampaignNegativeKeywordParams extends RequestParams
      */
     public function getCount(): int
     {
-        return (int) $this->params['count'];
+        return (int) ($this->params['count'] ?? Config::getDefaultMaxPageSize());
     }
 
     /**

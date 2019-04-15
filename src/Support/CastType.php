@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace PowerSrc\AmazonAdvertisingApi\Support;
 
 use InvalidArgumentException;
-use PowerSrc\AmazonAdvertisingApi\Enums\PrimitiveType;
 use function is_string;
 use function json_decode;
 use function json_encode;
+use PowerSrc\AmazonAdvertisingApi\Enums\PrimitiveType;
 use function preg_replace;
 use function ucfirst;
 
@@ -89,6 +89,25 @@ final class CastType
      */
     public static function fromJson($json, bool $assoc = false, int $depth = 512, int $options = 0)
     {
+        return json_decode($json, $assoc, $depth, $options);
+    }
+
+    /**
+     * Wrapper for json_decode that throws when an error occurs.
+     *
+     * @param string $json    JSON data to parse
+     * @param bool   $assoc   When true, returned objects will be converted into associative arrays
+     * @param int    $depth   User specified recursion depth
+     * @param int    $options Bitmask of JSON decode options
+     *
+     * @throws InvalidArgumentException if the JSON cannot be decoded
+     *
+     * @see http://www.php.net/manual/en/function.json-decode.php
+     *
+     * @return mixed
+     */
+    public static function throwableFromJson($json, bool $assoc = false, int $depth = 512, int $options = 0)
+    {
         $data = json_decode($json, $assoc, $depth, $options);
         if (JSON_ERROR_NONE !== json_last_error()) {
             throw new InvalidArgumentException('json_decode error: ' . json_last_error_msg());
@@ -111,6 +130,24 @@ final class CastType
      * @return string
      */
     public static function toJson($value, int $options = 0, int $depth = 512)
+    {
+        return json_encode($value, $options, $depth);
+    }
+
+    /**
+     * Wrapper for JSON encoding that throws when an error occurs.
+     *
+     * @param mixed $value   The value being encoded
+     * @param int   $options JSON encode option bitmask
+     * @param int   $depth   Set the maximum depth. Must be greater than zero.
+     *
+     * @throws InvalidArgumentException if the JSON cannot be encoded
+     *
+     * @see http://www.php.net/manual/en/function.json-encode.php
+     *
+     * @return string
+     */
+    public static function throwableToJson($value, int $options = 0, int $depth = 512)
     {
         $json = json_encode($value, $options, $depth);
         if (JSON_ERROR_NONE !== json_last_error()) {

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace PowerSrc\AmazonAdvertisingApi\Models\RequestParams;
 
+use PowerSrc\AmazonAdvertisingApi\Config;
 use PowerSrc\AmazonAdvertisingApi\Enums\CampaignType;
 use PowerSrc\AmazonAdvertisingApi\Enums\State;
 
@@ -91,7 +92,7 @@ final class CampaignParams extends RequestParams
      */
     public function getCount(): int
     {
-        return (int) $this->params['count'];
+        return (int) ($this->params['count'] ?? Config::getDefaultMaxPageSize());
     }
 
     /**

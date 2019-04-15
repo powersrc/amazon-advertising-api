@@ -6,9 +6,8 @@ namespace PowerSrc\AmazonAdvertisingApi\Models\Lists\Keyword;
 
 use PowerSrc\AmazonAdvertisingApi\Concerns\HasListItemClass;
 use PowerSrc\AmazonAdvertisingApi\Models\KeywordEx;
-use PowerSrc\AmazonAdvertisingApi\Models\Lists\ModelList;
 
-class KeywordExList extends ModelList
+class KeywordExList extends KeywordList
 {
     use HasListItemClass;
 

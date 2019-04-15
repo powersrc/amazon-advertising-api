@@ -16,4 +16,9 @@ class ResponseCode extends Enum
     public const INVALID_ARGUMENT = 'INVALID_ARGUMENT';
     public const UNAUTHORIZED     = 'UNAUTHORIZED';
     public const FORBIDDEN        = 'FORBIDDEN';
+
+    public function isSuccess(): bool
+    {
+        return $this->getValue() === self::SUCCESS;
+    }
 }
