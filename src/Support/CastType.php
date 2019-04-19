@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace PowerSrc\AmazonAdvertisingApi\Support;
 
 use InvalidArgumentException;
+use PowerSrc\AmazonAdvertisingApi\Enums\PrimitiveType;
 use function is_string;
 use function json_decode;
 use function json_encode;
-use PowerSrc\AmazonAdvertisingApi\Enums\PrimitiveType;
 use function preg_replace;
 use function ucfirst;
 

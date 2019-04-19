@@ -7,8 +7,6 @@ namespace PowerSrc\AmazonAdvertisingApi;
 use GuzzleHttp\ClientInterface as HttpClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\RequestOptions;
-use function gzdecode;
-use function http_build_query;
 use InvalidArgumentException;
 use JsonSerializable;
 use PowerSrc\AmazonAdvertisingApi\Concerns\HandlesApiErrors;
@@ -33,6 +31,8 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use ReflectionException;
+use function gzdecode;
+use function http_build_query;
 use function usleep;
 
 class Client implements LoggerAwareInterface

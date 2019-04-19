@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace PowerSrc\AmazonAdvertisingApi\Models\RequestParams;
 
-use function get_class;
 use PowerSrc\AmazonAdvertisingApi\Enums\ReportSegment;
 use PowerSrc\AmazonAdvertisingApi\Exceptions\InvalidMetricListTypeException;
 use PowerSrc\AmazonAdvertisingApi\Models\Lists\ReportMetricsList;
+use function get_class;
 use function sprintf;
 
 abstract class ReportParams extends RequestParams

@@ -4,14 +4,11 @@ declare(strict_types=1);
 
 namespace PowerSrc\AmazonAdvertisingApi\Models\Lists;
 
-use function array_walk;
 use ArrayAccess;
 use ArrayIterator;
 use Countable;
 use ErrorException;
-use function implode;
 use InvalidArgumentException;
-use function is_string;
 use IteratorAggregate;
 use JsonSerializable;
 use PowerSrc\AmazonAdvertisingApi\Contracts\Arrayable;
@@ -21,6 +18,9 @@ use PowerSrc\AmazonAdvertisingApi\Enums\ReportRecordType;
 use PowerSrc\AmazonAdvertisingApi\Exceptions\InvalidMetricException;
 use PowerSrc\AmazonAdvertisingApi\Support\CastType;
 use ReflectionException;
+use function array_walk;
+use function implode;
+use function is_string;
 use function sprintf;
 
 abstract class ReportMetricsList implements ArrayAccess, Arrayable, Countable, Jsonable, JsonSerializable, IteratorAggregate

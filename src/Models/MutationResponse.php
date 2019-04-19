@@ -6,7 +6,6 @@ namespace PowerSrc\AmazonAdvertisingApi\Models;
 
 use PowerSrc\AmazonAdvertisingApi\Concerns\HasPropertyCasts;
 use PowerSrc\AmazonAdvertisingApi\Enums\PrimitiveType;
-use PowerSrc\AmazonAdvertisingApi\Enums\ResponseCode;
 
 abstract class MutationResponse extends Model
 {
@@ -15,7 +14,7 @@ abstract class MutationResponse extends Model
     /**
      * An enumerated success or error code for machine use.
      *
-     * @var ResponseCode
+     * @var string
      */
     public $code;
 
@@ -34,7 +33,7 @@ abstract class MutationResponse extends Model
      * @var array
      */
     private $casts = [
-        'code'        => ResponseCode::class,
+        'code'        => PrimitiveType::STRING,
         'description' => PrimitiveType::STRING,
     ];
 }
