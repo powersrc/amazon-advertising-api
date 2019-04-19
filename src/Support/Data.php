@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace PowerSrc\AmazonAdvertisingApi\Support;
 
-use function array_shift;
 use Closure;
+use function array_shift;
 use function explode;
 use function in_array;
 use function is_array;
