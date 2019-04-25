@@ -7,7 +7,7 @@ namespace PowerSrc\AmazonAdvertisingApi\Models\Lists\Keyword;
 use PowerSrc\AmazonAdvertisingApi\Models\NegativeKeyword;
 use PowerSrc\AmazonAdvertisingApi\Support\Obj;
 
-class NegativeKeywordCreateList extends KeywordList
+class NegativeKeywordCreateList extends NegativeKeywordList
 {
     public function toArray(): array
     {
