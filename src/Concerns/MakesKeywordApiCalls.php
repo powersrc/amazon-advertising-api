@@ -401,20 +401,21 @@ trait MakesKeywordApiCalls
     }
 
     /**
-     * Sets the keyword status to archived.
+     * Deletes the keyword permanently.
      *
      * This same operation can be performed via an update, but is included for completeness.
-     * Archived entities cannot be made active again.
+     * Deleted entities cannot be made active again and attempting to fetch
+     * a deleted entity from the api by id will return an error.
      *
      * @param int $keywordId
      *
-     * @throws ClassNotFoundException
      * @throws HttpException
      * @throws ReflectionException
+     * @throws ClassNotFoundException
      *
      * @return CampaignNegativeKeywordResponse
      */
-    public function archiveCampaignNegativeKeyword(int $keywordId): CampaignNegativeKeywordResponse
+    public function removeCampaignNegativeKeyword(int $keywordId): CampaignNegativeKeywordResponse
     {
         $response = $this->operation(HttpMethod::DELETE(), $this->getApiUrl('sp/campaignNegativeKeywords/' . $keywordId));
 
