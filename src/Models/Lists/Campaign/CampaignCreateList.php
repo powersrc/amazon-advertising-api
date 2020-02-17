@@ -17,6 +17,7 @@ class CampaignCreateList extends CampaignList
     public function toArray(): array
     {
         $props = [
+            'portfolioId'   => null,
             'campaignType'  => null,
             'name'          => null,
             'targetingType' => null,
@@ -55,11 +56,6 @@ class CampaignCreateList extends CampaignList
         return $data;
     }
 
-    /**
-     * @param int $portfolioId
-     *
-     * @return CampaignCreateList
-     */
     public function setPortfolioId(int $portfolioId): CampaignCreateList
     {
         $this->portfolioId = $portfolioId;
