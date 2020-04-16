@@ -24,6 +24,7 @@ use PowerSrc\AmazonAdvertisingApi\Models\RequestParams\KeywordReportParams;
 use PowerSrc\AmazonAdvertisingApi\Models\RequestParams\ProductAdReportParams;
 use PowerSrc\AmazonAdvertisingApi\Models\RequestParams\ReportParams;
 use PowerSrc\AmazonAdvertisingApi\Models\RequestParams\TargetReportParams;
+use Psr\Http\Message\ResponseInterface;
 use ReflectionException;
 
 trait MakesReportCalls
@@ -77,6 +78,14 @@ trait MakesReportCalls
         $response = $this->operation(HttpMethod::GET(), $location);
 
         return $this->decodeReport($response, $location);
+    }
+
+    /**
+     * Returns a stream resource handler for location provided.
+     */
+    public function getReportResponse(string $location): ResponseInterface
+    {
+        return $this->operation(HttpMethod::GET(), $location);
     }
 
     /**

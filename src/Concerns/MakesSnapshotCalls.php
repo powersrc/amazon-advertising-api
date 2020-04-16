@@ -18,6 +18,7 @@ use PowerSrc\AmazonAdvertisingApi\Models\Lists\Portfolio\PortfolioList;
 use PowerSrc\AmazonAdvertisingApi\Models\Lists\ProductAd\ProductAdList;
 use PowerSrc\AmazonAdvertisingApi\Models\RequestParams\SnapshotParams;
 use PowerSrc\AmazonAdvertisingApi\Models\SnapshotResponse;
+use Psr\Http\Message\ResponseInterface;
 use ReflectionException;
 
 trait MakesSnapshotCalls
@@ -71,6 +72,14 @@ trait MakesSnapshotCalls
         $response = $this->operation(HttpMethod::GET(), $location);
 
         return $this->decodeResponseBody($response, MimeType::JSON());
+    }
+
+    /**
+     * Returns a stream resource handler for location provided.
+     */
+    public function getSnapshotResponse(string $location): ResponseInterface
+    {
+        return $this->operation(HttpMethod::GET(), $location);
     }
 
     /**
