@@ -13,6 +13,11 @@ final class CampaignReportRecord extends Model
     use HasPropertyCasts;
 
     /**
+     * @var string
+     */
+    public $placement;
+
+    /**
      * @var int
      */
     public $campaignId;
@@ -180,6 +185,7 @@ final class CampaignReportRecord extends Model
         'impressions'                     => PrimitiveType::INT,
         'clicks'                          => PrimitiveType::INT,
         'cost'                            => PrimitiveType::FLOAT,
+        'placement'                       => PrimitiveType::STRING,
         'attributedConversions1d'         => PrimitiveType::FLOAT,
         'attributedConversions7d'         => PrimitiveType::FLOAT,
         'attributedConversions14d'        => PrimitiveType::FLOAT,
