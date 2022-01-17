@@ -6,6 +6,7 @@ namespace PowerSrc\AmazonAdvertisingApi\Models;
 
 use PowerSrc\AmazonAdvertisingApi\Concerns\HasPropertyCasts;
 use PowerSrc\AmazonAdvertisingApi\Enums\PrimitiveType;
+use PowerSrc\AmazonAdvertisingApi\Enums\ProfileSubType;
 use PowerSrc\AmazonAdvertisingApi\Enums\ProfileType;
 
 class ProfileAccountInfo extends Model
@@ -43,6 +44,20 @@ class ProfileAccountInfo extends Model
     public $type;
 
     /**
+     * The account subtype.
+     *
+     * @var ProfileSubType
+     */
+    public $subType;
+
+    /**
+     * This returns whether the Advertiser has set up a valid payment method or not.
+     *
+     * @var bool
+     */
+    public $validPaymentMethod;
+
+    /**
      * An array of types to cast values to on object creation.
      *
      * The property to cast is the key and the type to cast to is the value.
@@ -54,5 +69,7 @@ class ProfileAccountInfo extends Model
         'id'                   => PrimitiveType::STRING,
         'name'                 => PrimitiveType::STRING,
         'type'                 => ProfileType::class,
+        'subType'              => ProfileSubType::class,
+        'validPaymentMethod'   => PrimitiveType::BOOL,
     ];
 }
