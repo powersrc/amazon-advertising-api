@@ -11,7 +11,7 @@ namespace PowerSrc\AmazonAdvertisingApi\Enums;
  */
 class ProgramType extends Enum
 {
-    public const SB = 'SB'; // Sponsored Brands
-    public const SD = 'SD'; // Sponsored Display
-    public const SP = 'SP'; // Sponsored Products
+    public const SB = 'sb'; // Sponsored Brands
+    public const SD = 'sd'; // Sponsored Display
+    public const SP = 'sp'; // Sponsored Products
 }
