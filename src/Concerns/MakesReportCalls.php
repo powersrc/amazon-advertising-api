@@ -7,6 +7,7 @@ namespace PowerSrc\AmazonAdvertisingApi\Concerns;
 use PowerSrc\AmazonAdvertisingApi\Enums\HttpMethod;
 use PowerSrc\AmazonAdvertisingApi\Enums\MimeType;
 use PowerSrc\AmazonAdvertisingApi\Enums\ReportRecordType;
+use PowerSrc\AmazonAdvertisingApi\Enums\ProgramType;
 use PowerSrc\AmazonAdvertisingApi\Exceptions\ClassNotFoundException;
 use PowerSrc\AmazonAdvertisingApi\Exceptions\HttpException;
 use PowerSrc\AmazonAdvertisingApi\Exceptions\ReportGZDecodeError;
@@ -32,6 +33,7 @@ trait MakesReportCalls
     /**
      * @param ReportRecordType $type
      * @param ReportParams     $params
+     * @param ProgramType      $programType
      *
      * @throws ClassNotFoundException
      * @throws HttpException
@@ -39,9 +41,9 @@ trait MakesReportCalls
      *
      * @return ReportResponse
      */
-    public function requestReport(ReportRecordType $type, ReportParams $params): ReportResponse
+    public function requestReport(ReportRecordType $type, ReportParams $params, ProgramType $programType): ReportResponse
     {
-        $response = $this->operation(HttpMethod::POST(), $this->getApiUrl('sp/' . $type->getValue() . '/report'), $params);
+        $response = $this->operation(HttpMethod::POST(), $this->getApiUrl($programType->getValue() . '/' . $type->getValue() . '/report'), $params);
 
         return new ReportResponse($this->decodeResponseBody($response, MimeType::JSON()));
     }
@@ -90,6 +92,7 @@ trait MakesReportCalls
 
     /**
      * @param CampaignReportParams $params
+     * @param ProgramType          $programType
      *
      * @throws ClassNotFoundException
      * @throws HttpException
@@ -97,13 +100,14 @@ trait MakesReportCalls
      *
      * @return ReportResponse
      */
-    public function requestCampaignsReport(CampaignReportParams $params)
+    public function requestCampaignsReport(CampaignReportParams $params, ProgramType $programType)
     {
-        return $this->requestReport(ReportRecordType::CAMPAIGNS(), $params);
+        return $this->requestReport(ReportRecordType::CAMPAIGNS(), $params, $programType);
     }
 
     /**
      * @param AdGroupReportParams $params
+     * @param ProgramType         $programType
      *
      * @throws ClassNotFoundException
      * @throws HttpException
@@ -111,13 +115,14 @@ trait MakesReportCalls
      *
      * @return ReportResponse
      */
-    public function requestAdGroupsReport(AdGroupReportParams $params)
+    public function requestAdGroupsReport(AdGroupReportParams $params, ProgramType $programType)
     {
-        return $this->requestReport(ReportRecordType::AD_GROUPS(), $params);
+        return $this->requestReport(ReportRecordType::AD_GROUPS(), $params, $programType);
     }
 
     /**
      * @param ProductAdReportParams $params
+     * @param ProgramType           $programType
      *
      * @throws ClassNotFoundException
      * @throws HttpException
@@ -125,13 +130,14 @@ trait MakesReportCalls
      *
      * @return ReportResponse
      */
-    public function requestProductAdsReport(ProductAdReportParams $params)
+    public function requestProductAdsReport(ProductAdReportParams $params, ProgramType $programType)
     {
-        return $this->requestReport(ReportRecordType::PRODUCT_ADS(), $params);
+        return $this->requestReport(ReportRecordType::PRODUCT_ADS(), $params, $programType);
     }
 
     /**
      * @param KeywordReportParams $params
+     * @param ProgramType         $programType
      *
      * @throws ClassNotFoundException
      * @throws HttpException
@@ -139,13 +145,14 @@ trait MakesReportCalls
      *
      * @return ReportResponse
      */
-    public function requestKeywordsReport(KeywordReportParams $params)
+    public function requestKeywordsReport(KeywordReportParams $params, ProgramType $programType)
     {
-        return $this->requestReport(ReportRecordType::KEYWORDS(), $params);
+        return $this->requestReport(ReportRecordType::KEYWORDS(), $params, $programType);
     }
 
     /**
      * @param TargetReportParams $params
+     * @param ProgramType        $programType
      *
      * @throws ClassNotFoundException
      * @throws HttpException
@@ -153,13 +160,14 @@ trait MakesReportCalls
      *
      * @return ReportResponse
      */
-    public function requestTargetsReport(TargetReportParams $params)
+    public function requestTargetsReport(TargetReportParams $params, ProgramType $programType)
     {
-        return $this->requestReport(ReportRecordType::TARGETS(), $params);
+        return $this->requestReport(ReportRecordType::TARGETS(), $params, $programType);
     }
 
     /**
      * @param AsinReportParams $params
+     * @param ProgramType      $programType
      *
      * @throws ClassNotFoundException
      * @throws HttpException
@@ -167,9 +175,9 @@ trait MakesReportCalls
      *
      * @return ReportResponse
      */
-    public function requestAsinsReport(AsinReportParams $params)
+    public function requestAsinsReport(AsinReportParams $params, ProgramType $programType)
     {
-        return $this->requestReport(ReportRecordType::ASINS(), $params);
+        return $this->requestReport(ReportRecordType::ASINS(), $params, $programType);
     }
 
     /**

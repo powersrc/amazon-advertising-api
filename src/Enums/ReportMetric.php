@@ -59,6 +59,8 @@ use function in_array;
  * @method static ReportMetric ATTRIBUTED_SALES_7D_OTHER_SKU()
  * @method static ReportMetric ATTRIBUTED_SALES_14D_OTHER_SKU()
  * @method static ReportMetric ATTRIBUTED_SALES_30D_OTHER_SKU()
+ * @method static ReportMetric ATTRIBUTED_DETAIL_PAGE_VIEW_14D()
+ * @method static ReportMetric VIEWABLE_IMPRESSIONS()
  */
 class ReportMetric extends Enum
 {
@@ -129,6 +131,10 @@ class ReportMetric extends Enum
     public const ATTRIBUTED_SALES_14D_OTHER_SKU = 'attributedSales14dOtherSKU';
     public const ATTRIBUTED_SALES_30D_OTHER_SKU = 'attributedSales30dOtherSKU';
 
+    public const ATTRIBUTED_DETAIL_PAGE_VIEW_14D = 'attributedDetailPageView14d';
+
+    public const VIEWABLE_IMPRESSIONS = 'viewableImpressions';
+
     private const validMetrics = [
         ReportRecordType::CAMPAIGNS => [
             self::BID_PLUS,
@@ -161,6 +167,8 @@ class ReportMetric extends Enum
             self::ATTRIBUTED_SALES_7D_SAME_SKU,
             self::ATTRIBUTED_SALES_14D_SAME_SKU,
             self::ATTRIBUTED_SALES_30D_SAME_SKU,
+            self::ATTRIBUTED_DETAIL_PAGE_VIEW_14D,
+            self::VIEWABLE_IMPRESSIONS,
         ],
         ReportRecordType::AD_GROUPS   => [
             self::CAMPAIGN_NAME,
