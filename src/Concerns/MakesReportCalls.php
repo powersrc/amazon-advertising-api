@@ -43,7 +43,9 @@ trait MakesReportCalls
      */
     public function requestReport(ReportRecordType $type, ReportParams $params, ProgramType $programType): ReportResponse
     {
-        $response = $this->operation(HttpMethod::POST(), $this->getApiUrl($programType->getValue() . '/' . $type->getValue() . '/report'), $params);
+        $programTypeValue = $programType->getValue() === ProgramType::SB ? 'hsa' : $programType->getValue();
+
+        $response = $this->operation(HttpMethod::POST(), $this->getApiUrl($programTypeValue . '/' . $type->getValue() . '/report'), $params);
 
         return new ReportResponse($this->decodeResponseBody($response, MimeType::JSON()));
     }
