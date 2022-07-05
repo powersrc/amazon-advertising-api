@@ -59,6 +59,14 @@ class ReportResponse extends Model
     public $fileSize;
 
     /**
+     * The expiration of the report file in milliseconds.
+     * It's only available if status is SUCCESS.
+     *
+     * @var int
+     */
+    public $expiration;
+
+    /**
      * An array of types to cast values to on object creation.
      *
      * The property to cast is the key and the type to cast to is the value.
@@ -72,5 +80,6 @@ class ReportResponse extends Model
         'statusDetails' => PrimitiveType::STRING,
         'location'      => PrimitiveType::STRING,
         'fileSize'      => PrimitiveType::INT,
+        'expiration'    => PrimitiveType::INT,
     ];
 }
