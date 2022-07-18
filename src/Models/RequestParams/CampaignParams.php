@@ -51,11 +51,6 @@ final class CampaignParams extends RequestParams
         'portfolioIdFilter',
     ];
 
-    /**
-     * @param int $startIndex
-     *
-     * @return CampaignParams
-     */
     public function setStartIndex(int $startIndex): self
     {
         $this->params['startIndex'] = $startIndex;
@@ -63,11 +58,6 @@ final class CampaignParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @param int $count
-     *
-     * @return CampaignParams
-     */
     public function addToStartIndex(int $count): self
     {
         $this->params['startIndex'] += $count;
@@ -75,11 +65,6 @@ final class CampaignParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @param int $count
-     *
-     * @return CampaignParams
-     */
     public function setCount(int $count): self
     {
         $this->params['count'] = $count;
@@ -87,19 +72,11 @@ final class CampaignParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getCount(): int
     {
         return (int) ($this->params['count'] ?? Config::getDefaultMaxPageSize());
     }
 
-    /**
-     * @param CampaignType $type
-     *
-     * @return CampaignParams
-     */
     public function setCampaignType(CampaignType $type): self
     {
         $this->params['campaignType'] = $type;
@@ -107,11 +84,6 @@ final class CampaignParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @param string $name
-     *
-     * @return CampaignParams
-     */
     public function setName(string $name): self
     {
         $this->params['name'] = $name;
@@ -121,8 +93,6 @@ final class CampaignParams extends RequestParams
 
     /**
      * @param State[] $states
-     *
-     * @return CampaignParams
      */
     public function addStates(array $states): self
     {
@@ -137,11 +107,6 @@ final class CampaignParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @param State $state
-     *
-     * @return CampaignParams
-     */
     public function addState(State $state): self
     {
         $this->params['stateFilter'][] = $state;
@@ -151,8 +116,6 @@ final class CampaignParams extends RequestParams
 
     /**
      * @param int[] $campaigns
-     *
-     * @return CampaignParams
      */
     public function addCampaignIds(array $campaigns): self
     {
@@ -167,11 +130,6 @@ final class CampaignParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @param int $campaignId
-     *
-     * @return CampaignParams
-     */
     public function addCampaignId(int $campaignId): self
     {
         $this->params['campaignIdFilter'][] = $campaignId;
@@ -181,8 +139,6 @@ final class CampaignParams extends RequestParams
 
     /**
      * @param int[] $portfolioIds
-     *
-     * @return CampaignParams
      */
     public function addPortfolioIds(array $portfolioIds): self
     {
@@ -197,11 +153,6 @@ final class CampaignParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @param int $portfolioId
-     *
-     * @return CampaignParams
-     */
     public function addPortfolioId(int $portfolioId): self
     {
         $this->params['portfolioIdFilter'][] = $portfolioId;

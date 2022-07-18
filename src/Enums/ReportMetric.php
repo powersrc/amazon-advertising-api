@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace PowerSrc\AmazonAdvertisingApi\Enums;
 
 use PowerSrc\AmazonAdvertisingApi\Support\Arr;
-use function in_array;
 
 /**
  * @method static ReportMetric BID_PLUS()
@@ -129,7 +128,7 @@ class ReportMetric extends Enum
     public const ATTRIBUTED_SALES_14D_OTHER_SKU = 'attributedSales14dOtherSKU';
     public const ATTRIBUTED_SALES_30D_OTHER_SKU = 'attributedSales30dOtherSKU';
 
-    private const validMetrics = [
+    private const VALID_METRICS = [
         ReportRecordType::CAMPAIGNS => [
             self::BID_PLUS,
             self::CAMPAIGN_NAME,
@@ -307,37 +306,21 @@ class ReportMetric extends Enum
         ],
     ];
 
-    /**
-     * @param ReportRecordType $type
-     *
-     * @return bool
-     */
     public function belongsTo(ReportRecordType $type): bool
     {
-        return Arr::has(self::validMetrics, $type->getValue())
-               && in_array($this->getValue(), self::validMetrics[$type->getValue()]);
+        return Arr::has(self::VALID_METRICS, $type->getValue())
+               && \in_array($this->getValue(), self::VALID_METRICS[$type->getValue()]);
     }
 
-    /**
-     * @param ReportRecordType $type
-     * @param string           $value
-     *
-     * @return bool
-     */
     public static function isValidFor(ReportRecordType $type, string $value): bool
     {
         return self::isValid($value)
-               && Arr::has(self::validMetrics, $type->getValue())
-               && in_array($value, self::validMetrics[$type->getValue()]);
+               && Arr::has(self::VALID_METRICS, $type->getValue())
+               && \in_array($value, self::VALID_METRICS[$type->getValue()]);
     }
 
-    /**
-     * @param ReportRecordType $type
-     *
-     * @return array|null
-     */
     public static function getValidMetricsFor(ReportRecordType $type): ?array
     {
-        return Arr::has(self::validMetrics, $type->getValue()) ? self::validMetrics[$type->getValue()] : null;
+        return Arr::has(self::VALID_METRICS, $type->getValue()) ? self::VALID_METRICS[$type->getValue()] : null;
     }
 }

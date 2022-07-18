@@ -18,7 +18,7 @@ class NegativeKeywordUpdateList extends NegativeKeywordList
             'state' => null,
         ];
 
-        return array_map(function (NegativeKeyword $keyword) use ($props) {
+        return \array_map(function (NegativeKeyword $keyword) use ($props) {
             /*
              * Unset properties that are not set on the NegativeKeyword object.
              */
@@ -29,7 +29,7 @@ class NegativeKeywordUpdateList extends NegativeKeywordList
             }
             $props['keywordId'] = null;
 
-            return Obj::transpose((object) $props, $keyword, ...array_keys($props));
+            return Obj::transpose((object) $props, $keyword, ...\array_keys($props));
         }, $this->itemList);
     }
 }

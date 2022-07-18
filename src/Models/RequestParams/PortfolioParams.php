@@ -43,8 +43,6 @@ final class PortfolioParams extends RequestParams
 
     /**
      * @param int[] $portfolioIds
-     *
-     * @return PortfolioParams
      */
     public function addPortfolioIds(array $portfolioIds): self
     {
@@ -59,11 +57,6 @@ final class PortfolioParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @param int $portfolioId
-     *
-     * @return PortfolioParams
-     */
     public function addPortfolioId(int $portfolioId): self
     {
         $this->params['portfolioIdFilter'][] = $portfolioId;
@@ -73,8 +66,6 @@ final class PortfolioParams extends RequestParams
 
     /**
      * @param string[] $portfolioNames
-     *
-     * @return PortfolioParams
      */
     public function addPortfolioNames(array $portfolioNames): self
     {
@@ -89,11 +80,6 @@ final class PortfolioParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @param string $portfolioName
-     *
-     * @return PortfolioParams
-     */
     public function addPortfolioName(string $portfolioName): self
     {
         $this->params['portfolioNameFilter'][] = $portfolioName;
@@ -103,8 +89,6 @@ final class PortfolioParams extends RequestParams
 
     /**
      * @param State[] $portfolioStates
-     *
-     * @return PortfolioParams
      */
     public function addPortfolioStates(array $portfolioStates): self
     {
@@ -119,11 +103,6 @@ final class PortfolioParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @param State $portfolioState
-     *
-     * @return PortfolioParams
-     */
     public function addPortfolioState(State $portfolioState): self
     {
         $this->params['portfolioStateFilter'][] = $portfolioState;

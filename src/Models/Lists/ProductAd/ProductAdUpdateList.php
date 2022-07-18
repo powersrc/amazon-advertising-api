@@ -18,7 +18,7 @@ class ProductAdUpdateList extends ProductAdList
             'state'      => null,
         ];
 
-        return array_map(function (ProductAd $productAd) use ($props) {
+        return \array_map(function (ProductAd $productAd) use ($props) {
             /*
              * Unset properties that are not set on the ProductAd object.
              */
@@ -29,7 +29,7 @@ class ProductAdUpdateList extends ProductAdList
             }
             $props['adId'] = null;
 
-            return Obj::transpose((object) $props, $productAd, ...array_keys($props));
+            return Obj::transpose((object) $props, $productAd, ...\array_keys($props));
         }, $this->itemList);
     }
 }

@@ -19,8 +19,8 @@ class NegativeKeywordCreateList extends NegativeKeywordList
             'state'       => null,
         ];
 
-        return array_map(function (NegativeKeyword $keyword) use ($props) {
-            return Obj::transpose((object) $props, $keyword, ...array_keys($props));
+        return \array_map(function (NegativeKeyword $keyword) use ($props) {
+            return Obj::transpose((object) $props, $keyword, ...\array_keys($props));
         }, $this->itemList);
     }
 }

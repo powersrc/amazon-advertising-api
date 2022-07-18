@@ -16,8 +16,6 @@ interface RequestThrottle
      * If these are not throttled then the response will be returned immediately
      * and it will be up to the user to make the subsequent calls to fetch
      * the status and download the report or snapshot data.
-     *
-     * @return bool
      */
     public function shouldThrottleDownloads(): bool;
 
@@ -26,10 +24,6 @@ interface RequestThrottle
      *
      * If the request is an attempt to download a report or snapshot,
      * the $isDownloadAttempt property will be true.
-     *
-     * @param bool $isDownloadAttempt
-     *
-     * @return int
      */
     public function getMaxAttempts(bool $isDownloadAttempt = false): int;
 
@@ -41,12 +35,6 @@ interface RequestThrottle
      *
      * If the request is an attempt to download a report or snapshot,
      * the $isDownloadAttempt property will be true.
-     *
-     * @param int  $attempt
-     * @param int  $retryAfter
-     * @param bool $isDownloadAttempt
-     *
-     * @return int
      */
     public function getWaitTime(int $attempt, int $retryAfter, bool $isDownloadAttempt = false): int;
 }

@@ -13,8 +13,6 @@ trait HasPropertyCasts
      *
      * The type to cast should be a PrimitiveType value or fully qualified class name.
      * If a FQCN is used then the class will be instantiated, passing the value into the constructor.
-     *
-     * @return array|null
      */
     protected function getPropertyCasts(): ?array
     {

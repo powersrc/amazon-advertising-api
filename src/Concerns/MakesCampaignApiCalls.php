@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace PowerSrc\AmazonAdvertisingApi\Concerns;
 
+use GuzzleHttp\Exception\GuzzleException;
 use PowerSrc\AmazonAdvertisingApi\Enums\HttpMethod;
 use PowerSrc\AmazonAdvertisingApi\Enums\MimeType;
 use PowerSrc\AmazonAdvertisingApi\Exceptions\ClassNotFoundException;
@@ -25,13 +26,10 @@ trait MakesCampaignApiCalls
      * Retrieves a campaign by campaignId. Note that this call returns the minimal
      * set of campaign fields, but is more efficient than getCampaignEx.
      *
-     * @param int $campaignId
-     *
      * @throws ClassNotFoundException
      * @throws HttpException
      * @throws ReflectionException
-     *
-     * @return Campaign
+     * @throws GuzzleException
      */
     public function getCampaign(int $campaignId): Campaign
     {
@@ -47,13 +45,10 @@ trait MakesCampaignApiCalls
      * (including serving status and other read-only fields),
      * but is less efficient than getCampaign.
      *
-     * @param int $campaignId
-     *
      * @throws ClassNotFoundException
      * @throws HttpException
      * @throws ReflectionException
-     *
-     * @return CampaignEx
+     * @throws GuzzleException
      */
     public function getCampaignEx(int $campaignId): CampaignEx
     {
@@ -66,12 +61,9 @@ trait MakesCampaignApiCalls
      * Creates one or more campaigns. Successfully created campaigns
      * will be assigned a unique campaignId.
      *
-     * @param CampaignCreateList $campaignList
-     *
      * @throws ClassNotFoundException
-     * @throws HttpException
-     *
-     * @return CampaignResponseList
+     * @throws GuzzleException
+     * @throws ReflectionException
      */
     public function createCampaigns(CampaignCreateList $campaignList): CampaignResponseList
     {
@@ -84,12 +76,9 @@ trait MakesCampaignApiCalls
      * Updates one or more campaigns. A list of up to 100 updates
      * containing campaignId, and the mutable fields to be modified.
      *
-     * @param CampaignUpdateList $campaignList
-     *
      * @throws ClassNotFoundException
-     * @throws HttpException
-     *
-     * @return CampaignResponseList
+     * @throws GuzzleException
+     * @throws ReflectionException
      */
     public function updateCampaigns(CampaignUpdateList $campaignList): CampaignResponseList
     {
@@ -99,15 +88,12 @@ trait MakesCampaignApiCalls
     }
 
     /**
-     * Sets the campaign status to archived. Archived entities cannot be made active again.
-     *
-     * @param int $campaignId
+     * Sets the campaign status archived. Archived entities cannot be made active again.
      *
      * @throws ClassNotFoundException
+     * @throws GuzzleException
      * @throws HttpException
      * @throws ReflectionException
-     *
-     * @return CampaignResponse
      */
     public function archiveCampaign(int $campaignId): CampaignResponse
     {
@@ -119,12 +105,10 @@ trait MakesCampaignApiCalls
     /**
      * Retrieves a list of Sponsored Products campaigns satisfying optional filtering criteria.
      *
-     * @param CampaignParams $params
-     *
      * @throws ClassNotFoundException
+     * @throws GuzzleException
      * @throws HttpException
-     *
-     * @return CampaignList
+     * @throws ReflectionException
      */
     public function listCampaigns(CampaignParams $params): CampaignList
     {
@@ -136,12 +120,10 @@ trait MakesCampaignApiCalls
     /**
      * Retrieves a list of Sponsored Products campaigns with extended fields satisfying optional filtering criteria.
      *
-     * @param CampaignParams $params
-     *
      * @throws ClassNotFoundException
+     * @throws GuzzleException
      * @throws HttpException
-     *
-     * @return CampaignExList
+     * @throws ReflectionException
      */
     public function listCampaignsEx(CampaignParams $params): CampaignExList
     {

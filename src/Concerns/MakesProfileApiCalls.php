@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace PowerSrc\AmazonAdvertisingApi\Concerns;
 
+use GuzzleHttp\Exception\GuzzleException;
 use PowerSrc\AmazonAdvertisingApi\Enums\HttpMethod;
 use PowerSrc\AmazonAdvertisingApi\Enums\MimeType;
 use PowerSrc\AmazonAdvertisingApi\Exceptions\ClassNotFoundException;
@@ -21,9 +22,8 @@ trait MakesProfileApiCalls
      * Retrieves profiles associated with an auth token.
      *
      * @throws ClassNotFoundException
-     * @throws HttpException
-     *
-     * @return ProfileList
+     * @throws GuzzleException
+     * @throws ReflectionException
      */
     public function listProfiles(): ProfileList
     {
@@ -35,13 +35,10 @@ trait MakesProfileApiCalls
     /**
      * Retrieves a single profile by ID.
      *
-     * @param int $profileId
-     *
      * @throws ClassNotFoundException
      * @throws HttpException
      * @throws ReflectionException
-     *
-     * @return Profile
+     * @throws GuzzleException
      */
     public function getProfile(int $profileId): Profile
     {
@@ -53,12 +50,9 @@ trait MakesProfileApiCalls
     /**
      * Updates one or more profiles. Advertisers are identified using their profileId.
      *
-     * @param ProfileUpdateList $profileList
-     *
      * @throws ClassNotFoundException
-     * @throws HttpException
-     *
-     * @return ProfileResponseList
+     * @throws GuzzleException
+     * @throws ReflectionException
      */
     public function updateProfiles(ProfileUpdateList $profileList): ProfileResponseList
     {
@@ -70,13 +64,10 @@ trait MakesProfileApiCalls
     /**
      * Registers a profile in sandbox. If this call is made to a production endpoint you will receive an error.
      *
-     * @param Profile $profile
-     *
      * @throws ClassNotFoundException
      * @throws HttpException
      * @throws ReflectionException
-     *
-     * @return ProfileResponse
+     * @throws GuzzleException
      */
     public function registerProfile(Profile $profile): ProfileResponse
     {

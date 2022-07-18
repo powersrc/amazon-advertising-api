@@ -16,8 +16,6 @@ use PowerSrc\AmazonAdvertisingApi\Models\LWAAuthResponse;
 use PowerSrc\AmazonAdvertisingApi\Support\CastType;
 use ReflectionException;
 use Throwable;
-use function array_merge;
-use function time;
 
 final class HttpAuthManager implements HttpRequestAuth
 {
@@ -72,8 +70,6 @@ final class HttpAuthManager implements HttpRequestAuth
 
     /**
      * Return the current access token.
-     *
-     * @return string|null
      */
     public function getAccessToken(): ?string
     {
@@ -82,8 +78,6 @@ final class HttpAuthManager implements HttpRequestAuth
 
     /**
      * Return the current timestamp expiration of the access token.
-     *
-     * @return int|null
      */
     public function getValidTill(): ?int
     {
@@ -92,8 +86,6 @@ final class HttpAuthManager implements HttpRequestAuth
 
     /**
      * Determines whether authentication information is present.
-     *
-     * @return bool
      */
     public function canAuthorize(): bool
     {
@@ -102,8 +94,6 @@ final class HttpAuthManager implements HttpRequestAuth
 
     /**
      * Gets the name of the header needed to use for authorization.
-     *
-     * @return string
      */
     public function getHeaderName(): string
     {
@@ -112,8 +102,6 @@ final class HttpAuthManager implements HttpRequestAuth
 
     /**
      * Gets the authentication type.
-     *
-     * @return string
      */
     public function getAuthType(): string
     {
@@ -126,8 +114,6 @@ final class HttpAuthManager implements HttpRequestAuth
      * @throws ClassNotFoundException
      * @throws GuzzleException
      * @throws ReflectionException
-     *
-     * @return string|null
      */
     public function getAuthData(): ?string
     {
@@ -140,8 +126,6 @@ final class HttpAuthManager implements HttpRequestAuth
 
     /**
      * Returns the Amazon request identifier for the previous API call.
-     *
-     * @return string|null
      */
     public function getLastRequestId(): ?string
     {
@@ -150,8 +134,6 @@ final class HttpAuthManager implements HttpRequestAuth
 
     /**
      * Gets the LWA client identifier.
-     *
-     * @return string
      */
     public function getClientId(): string
     {
@@ -173,7 +155,7 @@ final class HttpAuthManager implements HttpRequestAuth
             'client_id'     => $this->clientId,
             'client_secret' => $this->clientSecret,
         ];
-        $options = array_merge([
+        $options = \array_merge([
             RequestOptions::HEADERS     => ['Accept' => MimeType::JSON],
             RequestOptions::HTTP_ERRORS => false,
             'curl'                      => [CURLOPT_SSLVERSION => CURL_SSLVERSION_TLSv1_2],
@@ -196,9 +178,6 @@ final class HttpAuthManager implements HttpRequestAuth
         $this->validTill   = $lwaAuthResponse->validTill;
     }
 
-    /**
-     * @return bool
-     */
     private function authTokenIsValid(): bool
     {
         if ( ! $this->authTokenIsExpired()) {
@@ -207,8 +186,6 @@ final class HttpAuthManager implements HttpRequestAuth
 
         try {
             $this->refreshAuthToken();
-        } catch (GuzzleException $e) {
-            return false;
         } catch (Throwable $e) {
             return false;
         }
@@ -216,11 +193,8 @@ final class HttpAuthManager implements HttpRequestAuth
         return true;
     }
 
-    /**
-     * @return bool
-     */
     private function authTokenIsExpired(): bool
     {
-        return $this->validTill === null || (int) $this->validTill < time();
+        return $this->validTill === null || (int) $this->validTill < \time();
     }
 }

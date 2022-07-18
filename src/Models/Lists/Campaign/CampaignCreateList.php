@@ -36,7 +36,7 @@ class CampaignCreateList extends CampaignList
             'bidding',
         ];
 
-        $data = array_map(function (Campaign $campaign) use ($props, $optional) {
+        $data = \array_map(function (Campaign $campaign) use ($props, $optional) {
             /*
              * Unset properties that are not set on the Campaign object.
              */
@@ -46,7 +46,7 @@ class CampaignCreateList extends CampaignList
                 }
             }
 
-            return Obj::transpose((object) $props, $campaign, ...array_keys($props));
+            return Obj::transpose((object) $props, $campaign, ...\array_keys($props));
         }, $this->itemList);
 
         if (isset($this->portfolioId)) {

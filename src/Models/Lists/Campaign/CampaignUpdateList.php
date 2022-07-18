@@ -24,7 +24,7 @@ class CampaignUpdateList extends CampaignList
             'bidding'     => null,
         ];
 
-        return array_map(function (Campaign $campaign) use ($props) {
+        return \array_map(function (Campaign $campaign) use ($props) {
             /*
              * Unset properties that are not set on the Campaign object.
              */
@@ -35,7 +35,7 @@ class CampaignUpdateList extends CampaignList
             }
             $props['campaignId'] = null;
 
-            return Obj::transpose((object) $props, $campaign, ...array_keys($props));
+            return Obj::transpose((object) $props, $campaign, ...\array_keys($props));
         }, $this->itemList);
     }
 }

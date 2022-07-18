@@ -9,7 +9,6 @@ use PowerSrc\AmazonAdvertisingApi\Contracts\RequestThrottle;
 use PowerSrc\AmazonAdvertisingApi\Enums\RegionCode;
 use PowerSrc\AmazonAdvertisingApi\Support\Region;
 use PowerSrc\AmazonAdvertisingApi\Support\Version;
-use function sprintf;
 
 final class Config
 {
@@ -78,27 +77,16 @@ final class Config
         $this->userAgent       = self::APP_NAME . ' ' . $this->appVersion;
     }
 
-    /**
-     * @return int
-     */
     public static function getDefaultMaxPageSize(): int
     {
-        return static::$defaultMaxPageSize;
+        return self::$defaultMaxPageSize;
     }
 
-    /**
-     * @return bool
-     */
     public function shouldUseSandbox(): bool
     {
         return $this->useSandbox;
     }
 
-    /**
-     * @param int $connectTimeout
-     *
-     * @return Config
-     */
     public function setConnectTimeout(int $connectTimeout): Config
     {
         $this->connectTimeout = $connectTimeout;
@@ -106,11 +94,6 @@ final class Config
         return $this;
     }
 
-    /**
-     * @param int $timeout
-     *
-     * @return Config
-     */
     public function setTimeout(int $timeout): Config
     {
         $this->timeout = $timeout;
@@ -118,131 +101,83 @@ final class Config
         return $this;
     }
 
-    /**
-     * @return HttpRequestAuth
-     */
     public function getHttpRequestAuth(): HttpRequestAuth
     {
         return $this->auth;
     }
 
-    /**
-     * @return string
-     */
     public function getClientId(): string
     {
         return $this->auth->getClientId();
     }
 
-    /**
-     * @return bool
-     */
     public function canAuthorize(): bool
     {
         return $this->auth->canAuthorize();
     }
 
-    /**
-     * @return string
-     */
     public function getAuthHeaderName(): string
     {
         return $this->auth->getHeaderName();
     }
 
-    /**
-     * @return string
-     */
     public function getAuthType(): string
     {
         return $this->auth->getAuthType();
     }
 
-    /**
-     * @return string|null
-     */
     public function getAuthData(): ?string
     {
         return $this->auth->getAuthData();
     }
 
-    /**
-     * @return Region
-     */
     public function getRegion(): Region
     {
         return $this->region;
     }
 
-    /**
-     * @return string
-     */
     public function getApiVersion(): string
     {
         return $this->apiVersion;
     }
 
-    /**
-     * @return string
-     */
     public function getAppVersion(): string
     {
         return $this->appVersion;
     }
 
-    /**
-     * @return string
-     */
     public function getUserAgent(): string
     {
         return $this->userAgent;
     }
 
-    /**
-     * @return int
-     */
     public function getConnectTimeout(): int
     {
         return $this->connectTimeout;
     }
 
-    /**
-     * @return int
-     */
     public function getTimeout(): int
     {
         return $this->timeout;
     }
 
-    /**
-     * @return string
-     */
     public function getProtocol(): string
     {
         return self::API_PROTOCOL;
     }
 
-    /**
-     * @return string
-     */
     public function getApiEndpoint(): string
     {
         $domain = $this->useSandbox ? $this->region->getSandboxDomain() : $this->region->getProdDomain();
 
-        return sprintf('%s://%s/%s/', self::API_PROTOCOL, $domain, $this->apiVersion);
+        return \sprintf('%s://%s/%s/', self::API_PROTOCOL, $domain, $this->apiVersion);
     }
 
-    /**
-     * @return string
-     */
     public function getTokenEndpoint(): string
     {
-        return sprintf('%s://%s', self::API_PROTOCOL, $this->region->getTokenDomain());
+        return \sprintf('%s://%s', self::API_PROTOCOL, $this->region->getTokenDomain());
     }
 
-    /**
-     * @return RequestThrottle|null
-     */
     public function getRequestThrottle(): ?RequestThrottle
     {
         return $this->requestThrottle;

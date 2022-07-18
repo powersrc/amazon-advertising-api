@@ -31,21 +31,18 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use ReflectionException;
-use function gzdecode;
-use function http_build_query;
-use function usleep;
 
 class Client implements LoggerAwareInterface
 {
-    use HandlesApiErrors,
-        MakesAdGroupApiCalls,
-        MakesCampaignApiCalls,
-        MakesKeywordApiCalls,
-        MakesPortfolioApiCalls,
-        MakesProductAdApiCalls,
-        MakesProfileApiCalls,
-        MakesSnapshotCalls,
-        MakesReportCalls;
+    use HandlesApiErrors;
+    use MakesAdGroupApiCalls;
+    use MakesCampaignApiCalls;
+    use MakesKeywordApiCalls;
+    use MakesPortfolioApiCalls;
+    use MakesProductAdApiCalls;
+    use MakesProfileApiCalls;
+    use MakesSnapshotCalls;
+    use MakesReportCalls;
 
     /**
      * @var HttpRequestAuth
@@ -127,33 +124,16 @@ class Client implements LoggerAwareInterface
         $this->apiEndpoint = $config->getApiEndpoint();
     }
 
-    /**
-     * @param Config              $config
-     * @param HttpClientInterface $httpClient
-     * @param string|null         $profileId
-     *
-     * @return Client
-     */
     public static function with(Config $config, HttpClientInterface $httpClient, ?string $profileId = null): Client
     {
         return new static($config, $httpClient, $profileId);
     }
 
-    /**
-     * @param LoggerInterface $logger
-     *
-     * @return void
-     */
     public function setLogger(LoggerInterface $logger): void
     {
         $this->logger = $logger;
     }
 
-    /**
-     * @param int $profileId
-     *
-     * @return void
-     */
     public function setProfileId(int $profileId): void
     {
         $this->profileId = $profileId;
@@ -161,8 +141,6 @@ class Client implements LoggerAwareInterface
 
     /**
      * Returns the Amazon request identifier for the previous API call.
-     *
-     * @return string|null
      */
     public function getLastRequestId(): ?string
     {
@@ -171,9 +149,6 @@ class Client implements LoggerAwareInterface
 
     /**
      * Helper function to log data within the Client.
-     *
-     * @param string $message
-     * @param array  $context
      */
     protected function logMessage(string $message, array $context = [])
     {
@@ -184,46 +159,34 @@ class Client implements LoggerAwareInterface
 
     /**
      * Return the API url to call with request params added.
-     *
-     * @param string         $fragment
-     * @param Arrayable|null $params
-     *
-     * @return string
      */
     protected function getApiUrl(string $fragment = '', ?Arrayable $params = null): string
     {
         $url = $this->apiEndpoint . $fragment;
 
-        return $params instanceof Arrayable ? $url . '?' . http_build_query($params->toArray()) : $url;
+        return $params instanceof Arrayable ? $url . '?' . \http_build_query($params->toArray()) : $url;
     }
 
     /**
-     * @param HttpMethod            $method
-     * @param string                $url
-     * @param JsonSerializable|null $body
-     * @param bool                  $isDownload
-     *
      * @throws ClassNotFoundException
      * @throws GuzzleException
      * @throws InvalidArgumentException
      * @throws ReflectionException
-     *
-     * @return ResponseInterface
      */
     protected function operation(HttpMethod $method, string $url, ?JsonSerializable $body = null, bool $isDownload = false): ResponseInterface
     {
-        $options = $this->httpOptions;
-        $headers = $this->headers;
+        $options               = $this->httpOptions;
+        $requestOptionsHeaders = $this->headers;
 
         if ($this->requestAuth->canAuthorize()) {
-            $headers[$this->requestAuth->getHeaderName()] = $this->requestAuth->getAuthType() . ' ' . $this->requestAuth->getAuthData();
+            $requestOptionsHeaders[$this->requestAuth->getHeaderName()] = $this->requestAuth->getAuthType() . ' ' . $this->requestAuth->getAuthData();
         }
 
         if ($this->profileId !== null) {
-            $headers['Amazon-Advertising-API-Scope'] = $this->profileId;
+            $requestOptionsHeaders['Amazon-Advertising-API-Scope'] = $this->profileId;
         }
 
-        $options[RequestOptions::HEADERS] = $headers;
+        $options[RequestOptions::HEADERS] = $requestOptionsHeaders;
 
         if ($body !== null) {
             $options[RequestOptions::BODY] = CastType::toJson($body);
@@ -233,18 +196,10 @@ class Client implements LoggerAwareInterface
     }
 
     /**
-     * @param HttpMethod $method
-     * @param string     $url
-     * @param array      $options
-     * @param bool       $isDownload
-     * @param int        $attempt
-     *
      * @throws ClassNotFoundException
      * @throws GuzzleException
      * @throws HttpException
      * @throws ReflectionException
-     *
-     * @return ResponseInterface
      */
     protected function executeRequest(HttpMethod $method, string $url, array $options, bool $isDownload = false, int $attempt = 0): ResponseInterface
     {
@@ -270,24 +225,15 @@ class Client implements LoggerAwareInterface
     /**
      * Determines if requests should be throttled based on the presence of a throttle manager,
      * the response code provided from the server, and whether the max attempts have been exhausted.
-     *
-     * @param int  $statusCode
-     * @param int  $attempt
-     * @param bool $isDownload
-     *
-     * @return bool
      */
     protected function shouldThrottleRequests(int $statusCode, int $attempt, bool $isDownload = false): bool
     {
         return ($this->httpResponseIsThrottleError($statusCode) || $this->httpResponseIsServerError($statusCode))
             && $this->throttleManager instanceof RequestThrottle
-            && ( ! $isDownload ? true : $this->shouldThrottleDownloads())
+            && ($isDownload === false || $this->shouldThrottleDownloads())
             && $attempt < $this->throttleManager->getMaxAttempts($isDownload);
     }
 
-    /**
-     * @return bool
-     */
     protected function shouldThrottleDownloads(): bool
     {
         return $this->throttleManager instanceof RequestThrottle && $this->throttleManager->shouldThrottleDownloads();
@@ -301,14 +247,11 @@ class Client implements LoggerAwareInterface
      */
     protected function snooze(int $waitTime): void
     {
-        usleep($waitTime);
+        \usleep($waitTime);
     }
 
     /**
      * Decode the response body based on the Content-Type header.
-     *
-     * @param ResponseInterface $response
-     * @param MimeType|null     $type
      *
      * @throws InvalidArgumentException
      *
@@ -334,9 +277,6 @@ class Client implements LoggerAwareInterface
      * Attempt to decode the report data.
      * If the response body cannot be json_decoded then it should be gzipped.
      *
-     * @param ResponseInterface $reportResponse
-     * @param string            $location
-     *
      * @throws InvalidArgumentException
      * @throws ReportGZDecodeError
      *
@@ -352,16 +292,11 @@ class Client implements LoggerAwareInterface
     /**
      * Attempt to decode the gzipped report data.
      *
-     * @param string $data
-     * @param string $location
-     *
      * @throws ReportGZDecodeError
-     *
-     * @return string
      */
     protected function gzdecode(string $data, string $location): string
     {
-        $decoded = gzdecode($data);
+        $decoded = \gzdecode($data);
         if ($decoded === false) {
             throw new ReportGZDecodeError('Error decoding report data.', $data, $location);
         }

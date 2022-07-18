@@ -55,11 +55,6 @@ final class KeywordParams extends RequestParams
         'keywordIdFilter',
     ];
 
-    /**
-     * @param int $startIndex
-     *
-     * @return KeywordParams
-     */
     public function setStartIndex(int $startIndex): self
     {
         $this->params['startIndex'] = $startIndex;
@@ -67,11 +62,6 @@ final class KeywordParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @param int $count
-     *
-     * @return KeywordParams
-     */
     public function addToStartIndex(int $count): self
     {
         $this->params['startIndex'] += $count;
@@ -79,11 +69,6 @@ final class KeywordParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @param int $count
-     *
-     * @return KeywordParams
-     */
     public function setCount(int $count): self
     {
         $this->params['count'] = $count;
@@ -91,9 +76,6 @@ final class KeywordParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getCount(): int
     {
         return (int) ($this->params['count'] ?? Config::getDefaultMaxPageSize());
@@ -101,8 +83,6 @@ final class KeywordParams extends RequestParams
 
     /**
      * @param State[] $states
-     *
-     * @return KeywordParams
      */
     public function addStates(array $states): self
     {
@@ -117,11 +97,6 @@ final class KeywordParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @param State $state
-     *
-     * @return KeywordParams
-     */
     public function addState(State $state): self
     {
         $this->params['stateFilter'][] = $state;
@@ -131,8 +106,6 @@ final class KeywordParams extends RequestParams
 
     /**
      * @param int[] $campaigns
-     *
-     * @return KeywordParams
      */
     public function addCampaignIds(array $campaigns): self
     {
@@ -147,11 +120,6 @@ final class KeywordParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @param int $campaignId
-     *
-     * @return KeywordParams
-     */
     public function addCampaignId(int $campaignId): self
     {
         $this->params['campaignIdFilter'][] = $campaignId;
@@ -161,8 +129,6 @@ final class KeywordParams extends RequestParams
 
     /**
      * @param int[] $adGroupIds
-     *
-     * @return KeywordParams
      */
     public function addAdGroupIds(array $adGroupIds): self
     {
@@ -177,11 +143,6 @@ final class KeywordParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @param int $adGroupId
-     *
-     * @return KeywordParams
-     */
     public function addAdGroupId(int $adGroupId): self
     {
         $this->params['adGroupIdFilter'][] = $adGroupId;
@@ -191,8 +152,6 @@ final class KeywordParams extends RequestParams
 
     /**
      * @param KeywordMatchType[] $matchTypes
-     *
-     * @return KeywordParams
      */
     public function addMatchTypes(array $matchTypes): KeywordParams
     {
@@ -207,11 +166,6 @@ final class KeywordParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @param KeywordMatchType $matchType
-     *
-     * @return KeywordParams
-     */
     public function addMatchType(KeywordMatchType $matchType): KeywordParams
     {
         $this->params['matchTypeFilter'][] = $matchType;
@@ -221,8 +175,6 @@ final class KeywordParams extends RequestParams
 
     /**
      * @param int[] $keywordIds
-     *
-     * @return KeywordParams
      */
     public function addKeywordIds(array $keywordIds): KeywordParams
     {
@@ -237,11 +189,6 @@ final class KeywordParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @param int $keywordId
-     *
-     * @return KeywordParams
-     */
     public function addKeywordId(int $keywordId): KeywordParams
     {
         $this->params['keywordIdFilter'][] = $keywordId;
@@ -249,11 +196,6 @@ final class KeywordParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @param string $keywordText
-     *
-     * @return KeywordParams
-     */
     public function setKeywordText(string $keywordText): KeywordParams
     {
         $this->params['keywordText'] = $keywordText;

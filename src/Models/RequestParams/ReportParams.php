@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace PowerSrc\AmazonAdvertisingApi\Models\RequestParams;
 
+use function get_class;
 use PowerSrc\AmazonAdvertisingApi\Enums\ReportSegment;
 use PowerSrc\AmazonAdvertisingApi\Exceptions\InvalidMetricListTypeException;
 use PowerSrc\AmazonAdvertisingApi\Models\Lists\ReportMetricsList;
-use function get_class;
 use function sprintf;
 
 abstract class ReportParams extends RequestParams
@@ -44,13 +44,9 @@ abstract class ReportParams extends RequestParams
     ];
 
     /**
-     * @param ReportMetricsList $metricsList
-     *
      * @throws InvalidMetricListTypeException
-     *
-     * @return ReportParams
      */
-    public function setMetrics(ReportMetricsList $metricsList)
+    public function setMetrics(ReportMetricsList $metricsList): self
     {
         $metricsListClass = $this->getMetricsListType();
         if ( ! $metricsList instanceof $metricsListClass) {
@@ -63,11 +59,6 @@ abstract class ReportParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @param ReportSegment $segment
-     *
-     * @return ReportParams
-     */
     public function setSegment(ReportSegment $segment): self
     {
         $this->params['segment'] = $segment;
@@ -75,11 +66,6 @@ abstract class ReportParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @param string $reportDate
-     *
-     * @return ReportParams
-     */
     public function setReportDate(string $reportDate): self
     {
         $this->params['reportDate'] = $reportDate;
@@ -89,8 +75,6 @@ abstract class ReportParams extends RequestParams
 
     /**
      * Return the classname of the requested report's metric list type.
-     *
-     * @return string
      */
     abstract protected function getMetricsListType(): string;
 }

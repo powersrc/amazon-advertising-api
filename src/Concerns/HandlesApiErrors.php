@@ -30,7 +30,6 @@ use PowerSrc\AmazonAdvertisingApi\Support\Data;
 use PowerSrc\AmazonAdvertisingApi\Support\Str;
 use Psr\Http\Message\ResponseInterface;
 use ReflectionException;
-use function implode;
 
 trait HandlesApiErrors
 {
@@ -38,10 +37,6 @@ trait HandlesApiErrors
     protected $amzHeaderFull  = 'x-amz-request-id';
 
     /**
-     * @param ResponseInterface $response
-     * @param string|null       $message
-     * @param int|null          $status
-     *
      * @throws ClassNotFoundException
      * @throws InvalidArgumentException
      * @throws ReflectionException
@@ -58,11 +53,6 @@ trait HandlesApiErrors
         throw $e;
     }
 
-    /**
-     * @param int $statusCode
-     *
-     * @return bool
-     */
     protected function shouldThrowHttpException(int $statusCode): bool
     {
         return $this->httpResponseIsInformational($statusCode)
@@ -70,71 +60,36 @@ trait HandlesApiErrors
                || $this->httpResponseIsServerError($statusCode);
     }
 
-    /**
-     * @param int $statusCode
-     *
-     * @return bool
-     */
     protected function httpResponseIsInformational(int $statusCode): bool
     {
         return $statusCode < 200;
     }
 
-    /**
-     * @param int $statusCode
-     *
-     * @return bool
-     */
     protected function httpResponseIsSuccess(int $statusCode): bool
     {
         return $statusCode >= 200 && $statusCode < 300;
     }
 
-    /**
-     * @param int $statusCode
-     *
-     * @return bool
-     */
     protected function httpResponseIsRedirect(int $statusCode): bool
     {
         return $statusCode >= 300 && $statusCode < 400;
     }
 
-    /**
-     * @param int $statusCode
-     *
-     * @return bool
-     */
     protected function httpResponseIsClientError(int $statusCode): bool
     {
         return $statusCode >= 400 && $statusCode < 500;
     }
 
-    /**
-     * @param int $statusCode
-     *
-     * @return bool
-     */
     protected function httpResponseIsServerError(int $statusCode): bool
     {
         return $statusCode >= 500;
     }
 
-    /**
-     * @param int $statusCode
-     *
-     * @return bool
-     */
     protected function httpResponseIsThrottleError(int $statusCode): bool
     {
         return $statusCode === 429;
     }
 
-    /**
-     * @param ResponseInterface $response
-     *
-     * @return string|null
-     */
     protected function getAmazonRequestId(ResponseInterface $response): ?string
     {
         $getRequestId = function (string $name) use ($response): ?string {
@@ -144,11 +99,6 @@ trait HandlesApiErrors
         return $getRequestId($this->amzHeaderShort) ?? $getRequestId($this->amzHeaderFull);
     }
 
-    /**
-     * @param ResponseInterface $response
-     *
-     * @return bool
-     */
     protected function responseCanBeParsed(ResponseInterface $response): bool
     {
         return $response->hasHeader('Content-Type')
@@ -166,26 +116,11 @@ trait HandlesApiErrors
         );
     }
 
-    /**
-     * @param array  $headers
-     * @param string $name
-     *
-     * @return string|null
-     */
     private function getHeaderStringValue(array $headers, string $name): ?string
     {
-        return ! empty($headers[$name]) ? implode(',', $headers[$name]) : null;
+        return ! empty($headers[$name]) ? \implode(',', $headers[$name]) : null;
     }
 
-    /**
-     * @param int            $status
-     * @param string|null    $message
-     * @param Exception|null $previous
-     * @param int            $code
-     * @param array          $headers
-     *
-     * @return HttpException
-     */
     private function getHttpException(int $status, ?string $message = null, ?Exception $previous = null, int $code = 0, array $headers = []): HttpException
     {
         $requestId = $this->getHeaderStringValue($headers, $this->amzHeaderShort) ?? $this->getHeaderStringValue($headers, $this->amzHeaderFull);
@@ -198,37 +133,54 @@ trait HandlesApiErrors
 
         switch ($status) {
             case 400:
-                return new BadRequestHttpException($message, $previous, $code, $headers);
+                $e = new BadRequestHttpException($message, $previous, $code, $headers);
+                break;
             case 401:
-                return new UnauthorizedHttpException($this->getHeaderStringValue($headers, 'WWW-Authenticate') ?? 'Bearer', $message, $previous, $code, $headers);
+                $e = new UnauthorizedHttpException($this->getHeaderStringValue($headers, 'WWW-Authenticate') ?? 'Bearer', $message, $previous, $code, $headers);
+                break;
             case 403:
-                return new AccessDeniedHttpException($message, $previous, $code, $headers);
+                $e = new AccessDeniedHttpException($message, $previous, $code, $headers);
+                break;
             case 404:
-                return new NotFoundHttpException($message, $previous, $code, $headers);
+                $e = new NotFoundHttpException($message, $previous, $code, $headers);
+                break;
             case 405:
-                return new MethodNotAllowedHttpException($headers['Allow'] ?? [], $message, $previous, $code, $headers);
+                $e = new MethodNotAllowedHttpException($headers['Allow'] ?? [], $message, $previous, $code, $headers);
+                break;
             case 406:
-                return new NotAcceptableHttpException($message, $previous, $code, $headers);
+                $e = new NotAcceptableHttpException($message, $previous, $code, $headers);
+                break;
             case 409:
-                return new ConflictHttpException($message, $previous, $code, $headers);
+                $e = new ConflictHttpException($message, $previous, $code, $headers);
+                break;
             case 410:
-                return new GoneHttpException($message, $previous, $code, $headers);
+                $e = new GoneHttpException($message, $previous, $code, $headers);
+                break;
             case 411:
-                return new LengthRequiredHttpException($message, $previous, $code, $headers);
+                $e = new LengthRequiredHttpException($message, $previous, $code, $headers);
+                break;
             case 412:
-                return new PreconditionFailedHttpException($message, $previous, $code, $headers);
+                $e = new PreconditionFailedHttpException($message, $previous, $code, $headers);
+                break;
             case 415:
-                return new UnsupportedMediaTypeHttpException($message, $previous, $code, $headers);
+                $e = new UnsupportedMediaTypeHttpException($message, $previous, $code, $headers);
+                break;
             case 422:
-                return new UnprocessableEntityHttpException($message, $previous, $code, $headers);
+                $e = new UnprocessableEntityHttpException($message, $previous, $code, $headers);
+                break;
             case 428:
-                return new PreconditionRequiredHttpException($message, $previous, $code, $headers);
+                $e = new PreconditionRequiredHttpException($message, $previous, $code, $headers);
+                break;
             case 429:
-                return new TooManyRequestsHttpException($this->getHeaderStringValue($headers, 'Retry-After'), $message, $previous, $code, $headers);
+                $e = new TooManyRequestsHttpException($this->getHeaderStringValue($headers, 'Retry-After'), $message, $previous, $code, $headers);
+                break;
             case 503:
-                return new ServiceUnavailableHttpException($this->getHeaderStringValue($headers, 'Retry-After'), $message, $previous, $code, $headers);
+                $e = new ServiceUnavailableHttpException($this->getHeaderStringValue($headers, 'Retry-After'), $message, $previous, $code, $headers);
+                break;
+            default:
+                $e = new HttpException($status, $message, $previous, $headers, $code);
         }
 
-        return new HttpException($status, $message, $previous, $headers, $code);
+        return $e;
     }
 }

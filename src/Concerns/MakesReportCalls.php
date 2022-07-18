@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace PowerSrc\AmazonAdvertisingApi\Concerns;
 
+use GuzzleHttp\Exception\GuzzleException;
 use PowerSrc\AmazonAdvertisingApi\Enums\HttpMethod;
 use PowerSrc\AmazonAdvertisingApi\Enums\MimeType;
 use PowerSrc\AmazonAdvertisingApi\Enums\ReportRecordType;
 use PowerSrc\AmazonAdvertisingApi\Exceptions\ClassNotFoundException;
 use PowerSrc\AmazonAdvertisingApi\Exceptions\HttpException;
-use PowerSrc\AmazonAdvertisingApi\Exceptions\ReportGZDecodeError;
 use PowerSrc\AmazonAdvertisingApi\Models\ReportResponse;
 use PowerSrc\AmazonAdvertisingApi\Models\Reports\AdGroupReport;
 use PowerSrc\AmazonAdvertisingApi\Models\Reports\AsinReport;
@@ -30,14 +30,10 @@ use ReflectionException;
 trait MakesReportCalls
 {
     /**
-     * @param ReportRecordType $type
-     * @param ReportParams     $params
-     *
      * @throws ClassNotFoundException
      * @throws HttpException
      * @throws ReflectionException
-     *
-     * @return ReportResponse
+     * @throws GuzzleException
      */
     public function requestReport(ReportRecordType $type, ReportParams $params): ReportResponse
     {
@@ -47,15 +43,12 @@ trait MakesReportCalls
     }
 
     /**
-     * @param string $reportId
-     *
      * @throws ClassNotFoundException
      * @throws HttpException
      * @throws ReflectionException
-     *
-     * @return ReportResponse
+     * @throws GuzzleException
      */
-    public function getReport(string $reportId)
+    public function getReport(string $reportId): ReportResponse
     {
         $response = $this->operation(HttpMethod::GET(), $this->getApiUrl('reports/' . $reportId));
 
@@ -66,10 +59,9 @@ trait MakesReportCalls
      * Downloads the report file at location provided and returns
      * the decoded payload.
      *
-     * @param string $location
-     *
-     * @throws ReportGZDecodeError
-     * @throws HttpException
+     * @throws ClassNotFoundException
+     * @throws GuzzleException
+     * @throws ReflectionException
      *
      * @return mixed
      */
@@ -82,6 +74,10 @@ trait MakesReportCalls
 
     /**
      * Returns a stream resource handler for location provided.
+     *
+     * @throws ClassNotFoundException
+     * @throws GuzzleException
+     * @throws ReflectionException
      */
     public function getReportResponse(string $location): ResponseInterface
     {
@@ -89,97 +85,75 @@ trait MakesReportCalls
     }
 
     /**
-     * @param CampaignReportParams $params
-     *
      * @throws ClassNotFoundException
      * @throws HttpException
      * @throws ReflectionException
-     *
-     * @return ReportResponse
+     * @throws GuzzleException
      */
-    public function requestCampaignsReport(CampaignReportParams $params)
+    public function requestCampaignsReport(CampaignReportParams $params): ReportResponse
     {
         return $this->requestReport(ReportRecordType::CAMPAIGNS(), $params);
     }
 
     /**
-     * @param AdGroupReportParams $params
-     *
      * @throws ClassNotFoundException
      * @throws HttpException
      * @throws ReflectionException
-     *
-     * @return ReportResponse
+     * @throws GuzzleException
      */
-    public function requestAdGroupsReport(AdGroupReportParams $params)
+    public function requestAdGroupsReport(AdGroupReportParams $params): ReportResponse
     {
         return $this->requestReport(ReportRecordType::AD_GROUPS(), $params);
     }
 
     /**
-     * @param ProductAdReportParams $params
-     *
      * @throws ClassNotFoundException
      * @throws HttpException
      * @throws ReflectionException
-     *
-     * @return ReportResponse
+     * @throws GuzzleException
      */
-    public function requestProductAdsReport(ProductAdReportParams $params)
+    public function requestProductAdsReport(ProductAdReportParams $params): ReportResponse
     {
         return $this->requestReport(ReportRecordType::PRODUCT_ADS(), $params);
     }
 
     /**
-     * @param KeywordReportParams $params
-     *
      * @throws ClassNotFoundException
      * @throws HttpException
      * @throws ReflectionException
-     *
-     * @return ReportResponse
+     * @throws GuzzleException
      */
-    public function requestKeywordsReport(KeywordReportParams $params)
+    public function requestKeywordsReport(KeywordReportParams $params): ReportResponse
     {
         return $this->requestReport(ReportRecordType::KEYWORDS(), $params);
     }
 
     /**
-     * @param TargetReportParams $params
-     *
      * @throws ClassNotFoundException
      * @throws HttpException
      * @throws ReflectionException
-     *
-     * @return ReportResponse
+     * @throws GuzzleException
      */
-    public function requestTargetsReport(TargetReportParams $params)
+    public function requestTargetsReport(TargetReportParams $params): ReportResponse
     {
         return $this->requestReport(ReportRecordType::TARGETS(), $params);
     }
 
     /**
-     * @param AsinReportParams $params
-     *
      * @throws ClassNotFoundException
      * @throws HttpException
      * @throws ReflectionException
-     *
-     * @return ReportResponse
+     * @throws GuzzleException
      */
-    public function requestAsinsReport(AsinReportParams $params)
+    public function requestAsinsReport(AsinReportParams $params): ReportResponse
     {
         return $this->requestReport(ReportRecordType::ASINS(), $params);
     }
 
     /**
-     * @param string $location
-     *
-     *@throws HttpException
-     * @throws ReportGZDecodeError
      * @throws ClassNotFoundException
-     *
-     * @return \PowerSrc\AmazonAdvertisingApi\Models\Reports\CampaignReport
+     * @throws GuzzleException
+     * @throws ReflectionException
      */
     public function downloadCampaignsReport(string $location): CampaignReport
     {
@@ -187,13 +161,9 @@ trait MakesReportCalls
     }
 
     /**
-     * @param string $location
-     *
-     *@throws HttpException
-     * @throws ReportGZDecodeError
      * @throws ClassNotFoundException
-     *
-     * @return AdGroupReport
+     * @throws GuzzleException
+     * @throws ReflectionException
      */
     public function downloadAdGroupsReport(string $location): AdGroupReport
     {
@@ -201,13 +171,9 @@ trait MakesReportCalls
     }
 
     /**
-     * @param string $location
-     *
-     *@throws HttpException
-     * @throws ReportGZDecodeError
      * @throws ClassNotFoundException
-     *
-     * @return AsinReport
+     * @throws GuzzleException
+     * @throws ReflectionException
      */
     public function downloadAsinsReport(string $location): AsinReport
     {
@@ -215,13 +181,9 @@ trait MakesReportCalls
     }
 
     /**
-     * @param string $location
-     *
-     *@throws HttpException
-     * @throws ReportGZDecodeError
      * @throws ClassNotFoundException
-     *
-     * @return KeywordReport
+     * @throws GuzzleException
+     * @throws ReflectionException
      */
     public function downloadKeywordsReport(string $location): KeywordReport
     {
@@ -229,13 +191,9 @@ trait MakesReportCalls
     }
 
     /**
-     * @param string $location
-     *
-     *@throws HttpException
-     * @throws ReportGZDecodeError
      * @throws ClassNotFoundException
-     *
-     * @return \PowerSrc\AmazonAdvertisingApi\Models\Reports\ProductAdReport
+     * @throws GuzzleException
+     * @throws ReflectionException
      */
     public function downloadProductAdsReport(string $location): ProductAdReport
     {
@@ -243,13 +201,9 @@ trait MakesReportCalls
     }
 
     /**
-     * @param string $location
-     *
-     *@throws HttpException
-     * @throws ReportGZDecodeError
      * @throws ClassNotFoundException
-     *
-     * @return TargetReport
+     * @throws GuzzleException
+     * @throws ReflectionException
      */
     public function downloadTargetsReport(string $location): TargetReport
     {

@@ -53,11 +53,6 @@ final class ProductAdParams extends RequestParams
         'adIdFilter',
     ];
 
-    /**
-     * @param int $startIndex
-     *
-     * @return ProductAdParams
-     */
     public function setStartIndex(int $startIndex): self
     {
         $this->params['startIndex'] = $startIndex;
@@ -65,11 +60,6 @@ final class ProductAdParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @param int $count
-     *
-     * @return ProductAdParams
-     */
     public function addToStartIndex(int $count): self
     {
         $this->params['startIndex'] += $count;
@@ -77,11 +67,6 @@ final class ProductAdParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @param int $count
-     *
-     * @return ProductAdParams
-     */
     public function setCount(int $count): self
     {
         $this->params['count'] = $count;
@@ -89,19 +74,11 @@ final class ProductAdParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getCount(): int
     {
         return (int) ($this->params['count'] ?? Config::getDefaultMaxPageSize());
     }
 
-    /**
-     * @param string $sku
-     *
-     * @return ProductAdParams
-     */
     public function setSku(string $sku): self
     {
         $this->params['sku'] = $sku;
@@ -109,11 +86,6 @@ final class ProductAdParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @param string $asin
-     *
-     * @return ProductAdParams
-     */
     public function setAsin(string $asin): self
     {
         $this->params['asin'] = $asin;
@@ -123,8 +95,6 @@ final class ProductAdParams extends RequestParams
 
     /**
      * @param State[] $states
-     *
-     * @return ProductAdParams
      */
     public function addStates(array $states): self
     {
@@ -139,11 +109,6 @@ final class ProductAdParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @param State $state
-     *
-     * @return ProductAdParams
-     */
     public function addState(State $state): self
     {
         $this->params['stateFilter'][] = $state;
@@ -153,8 +118,6 @@ final class ProductAdParams extends RequestParams
 
     /**
      * @param int[] $campaigns
-     *
-     * @return ProductAdParams
      */
     public function addCampaignIds(array $campaigns): self
     {
@@ -169,11 +132,6 @@ final class ProductAdParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @param int $campaignId
-     *
-     * @return ProductAdParams
-     */
     public function addCampaignId(int $campaignId): self
     {
         $this->params['campaignIdFilter'][] = $campaignId;
@@ -183,8 +141,6 @@ final class ProductAdParams extends RequestParams
 
     /**
      * @param int[] $adGroupIds
-     *
-     * @return ProductAdParams
      */
     public function addAdGroupIds(array $adGroupIds): self
     {
@@ -199,11 +155,6 @@ final class ProductAdParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @param int $adGroupId
-     *
-     * @return ProductAdParams
-     */
     public function addAdGroupId(int $adGroupId): self
     {
         $this->params['adGroupIdFilter'][] = $adGroupId;
@@ -213,8 +164,6 @@ final class ProductAdParams extends RequestParams
 
     /**
      * @param int[] $adIds
-     *
-     * @return ProductAdParams
      */
     public function addProductAdIds(array $adIds): self
     {
@@ -229,11 +178,6 @@ final class ProductAdParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @param int $adId
-     *
-     * @return ProductAdParams
-     */
     public function addProductAdId(int $adId): self
     {
         $this->params['adIdFilter'][] = $adId;

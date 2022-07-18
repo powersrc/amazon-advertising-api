@@ -13,7 +13,7 @@ class BidRecommendationStatus extends Enum
     public const SUCCESS   = 'SUCCESS';
     public const NOT_FOUND = 'NOT_FOUND';
 
-    public function isSuccess()
+    public function isSuccess(): bool
     {
         return $this->getValue() === self::SUCCESS;
     }

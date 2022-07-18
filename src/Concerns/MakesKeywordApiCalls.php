@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace PowerSrc\AmazonAdvertisingApi\Concerns;
 
+use GuzzleHttp\Exception\GuzzleException;
 use PowerSrc\AmazonAdvertisingApi\Enums\HttpMethod;
 use PowerSrc\AmazonAdvertisingApi\Enums\MimeType;
 use PowerSrc\AmazonAdvertisingApi\Exceptions\ClassNotFoundException;
@@ -48,13 +49,10 @@ trait MakesKeywordApiCalls
      * Note that this call returns the minimal set of keyword fields,
      * but is more efficient than getBiddableKeywordEx.
      *
-     * @param int $keywordId
-     *
      * @throws ClassNotFoundException
      * @throws HttpException
      * @throws ReflectionException
-     *
-     * @return Keyword
+     * @throws GuzzleException
      */
     public function getBiddableKeyword(int $keywordId): Keyword
     {
@@ -70,13 +68,10 @@ trait MakesKeywordApiCalls
      * (including serving status and other read-only fields),
      * but is less efficient than getBiddableKeyword.
      *
-     * @param int $keywordId
-     *
      * @throws ClassNotFoundException
      * @throws HttpException
      * @throws ReflectionException
-     *
-     * @return KeywordEx
+     * @throws GuzzleException
      */
     public function getBiddableKeywordEx(int $keywordId): KeywordEx
     {
@@ -89,12 +84,9 @@ trait MakesKeywordApiCalls
      * Creates one or more keywords for Sponsored Products or Sponsored Brands.
      * Successfully created keywords will be assigned a unique keywordId.
      *
-     * @param KeywordCreateList $keywordCreateList
-     *
      * @throws ClassNotFoundException
-     * @throws HttpException
-     *
-     * @return KeywordResponseList
+     * @throws GuzzleException
+     * @throws ReflectionException
      */
     public function createBiddableKeywords(KeywordCreateList $keywordCreateList): KeywordResponseList
     {
@@ -106,12 +98,9 @@ trait MakesKeywordApiCalls
     /**
      * Updates one or more keywords for Sponsored Products based on unique keywordId.
      *
-     * @param KeywordUpdateList $keywordUpdateList
-     *
      * @throws ClassNotFoundException
-     * @throws HttpException
-     *
-     * @return KeywordResponseList
+     * @throws GuzzleException
+     * @throws ReflectionException
      */
     public function updateBiddableKeywords(KeywordUpdateList $keywordUpdateList): KeywordResponseList
     {
@@ -121,18 +110,15 @@ trait MakesKeywordApiCalls
     }
 
     /**
-     * Sets the keyword status to archived.
+     * Sets the keyword status archived.
      *
      * This same operation can be performed via an update, but is included for completeness.
      * Archived entities cannot be made active again.
      *
-     * @param int $keywordId
-     *
      * @throws ClassNotFoundException
      * @throws HttpException
      * @throws ReflectionException
-     *
-     * @return KeywordResponse
+     * @throws GuzzleException
      */
     public function archiveBiddableKeyword(int $keywordId): KeywordResponse
     {
@@ -147,12 +133,9 @@ trait MakesKeywordApiCalls
      * Note that this call returns the minimal set of keyword fields,
      * but is more efficient than listBiddableKeywordsEx.
      *
-     * @param KeywordParams $params
-     *
      * @throws ClassNotFoundException
-     * @throws HttpException
-     *
-     * @return KeywordList
+     * @throws GuzzleException
+     * @throws ReflectionException
      */
     public function listBiddableKeywords(KeywordParams $params): KeywordList
     {
@@ -168,12 +151,9 @@ trait MakesKeywordApiCalls
      * (including serving status and other read-only fields),
      * but is less efficient than listBiddableKeywords.
      *
-     * @param KeywordParams $params
-     *
      * @throws ClassNotFoundException
-     * @throws HttpException
-     *
-     * @return KeywordExList
+     * @throws GuzzleException
+     * @throws ReflectionException
      */
     public function listBiddableKeywordsEx(KeywordParams $params): KeywordExList
     {
@@ -188,13 +168,10 @@ trait MakesKeywordApiCalls
      * Note that this call returns the minimal set of keyword fields,
      * but is more efficient than getNegativeKeywordEx.
      *
-     * @param int $keywordId
-     *
      * @throws ClassNotFoundException
      * @throws HttpException
      * @throws ReflectionException
-     *
-     * @return NegativeKeyword
+     * @throws GuzzleException
      */
     public function getNegativeKeyword(int $keywordId): NegativeKeyword
     {
@@ -210,13 +187,10 @@ trait MakesKeywordApiCalls
      * (including serving status and other read-only fields),
      * but is less efficient than getNegativeKeyword.
      *
-     * @param int $keywordId
-     *
      * @throws ClassNotFoundException
      * @throws HttpException
      * @throws ReflectionException
-     *
-     * @return NegativeKeywordEx
+     * @throws GuzzleException
      */
     public function getNegativeKeywordEx(int $keywordId): NegativeKeywordEx
     {
@@ -229,12 +203,9 @@ trait MakesKeywordApiCalls
      * Creates one or more negative keywords.
      * Successfully created keywords will be assigned a unique keywordId.
      *
-     * @param NegativeKeywordCreateList $keywordCreateList
-     *
      * @throws ClassNotFoundException
-     * @throws HttpException
-     *
-     * @return NegativeKeywordResponseList
+     * @throws GuzzleException
+     * @throws ReflectionException
      */
     public function createNegativeKeywords(NegativeKeywordCreateList $keywordCreateList): NegativeKeywordResponseList
     {
@@ -246,12 +217,9 @@ trait MakesKeywordApiCalls
     /**
      * Updates one or more negative keywords for Sponsored Products based on unique keywordId.
      *
-     * @param NegativeKeywordUpdateList $keywordUpdateList
-     *
      * @throws ClassNotFoundException
-     * @throws HttpException
-     *
-     * @return NegativeKeywordResponseList
+     * @throws GuzzleException
+     * @throws ReflectionException
      */
     public function updateNegativeKeywords(NegativeKeywordUpdateList $keywordUpdateList): NegativeKeywordResponseList
     {
@@ -261,18 +229,15 @@ trait MakesKeywordApiCalls
     }
 
     /**
-     * Sets the keyword status to archived.
+     * Sets the keyword status archived.
      *
      * This same operation can be performed via an update, but is included for completeness.
      * Archived entities cannot be made active again.
      *
-     * @param int $keywordId
-     *
      * @throws ClassNotFoundException
      * @throws HttpException
      * @throws ReflectionException
-     *
-     * @return NegativeKeywordResponse
+     * @throws GuzzleException
      */
     public function archiveNegativeKeyword(int $keywordId): NegativeKeywordResponse
     {
@@ -287,12 +252,9 @@ trait MakesKeywordApiCalls
      * Note that this call returns the minimal set of keyword fields,
      * but is more efficient than listNegativeKeywordsEx.
      *
-     * @param NegativeKeywordParams $params
-     *
      * @throws ClassNotFoundException
-     * @throws HttpException
-     *
-     * @return NegativeKeywordList
+     * @throws GuzzleException
+     * @throws ReflectionException
      */
     public function listNegativeKeywords(NegativeKeywordParams $params): NegativeKeywordList
     {
@@ -308,12 +270,9 @@ trait MakesKeywordApiCalls
      * (including serving status and other read-only fields),
      * but is less efficient than listNegativeKeywords.
      *
-     * @param NegativeKeywordParams $params
-     *
      * @throws ClassNotFoundException
-     * @throws HttpException
-     *
-     * @return NegativeKeywordExList
+     * @throws GuzzleException
+     * @throws ReflectionException
      */
     public function listNegativeKeywordsEx(NegativeKeywordParams $params): NegativeKeywordExList
     {
@@ -328,13 +287,10 @@ trait MakesKeywordApiCalls
      * Note that this call returns the minimal set of keyword fields,
      * but is more efficient than getCampaignNegativeKeywordEx.
      *
-     * @param int $keywordId
-     *
      * @throws ClassNotFoundException
      * @throws HttpException
      * @throws ReflectionException
-     *
-     * @return CampaignNegativeKeyword
+     * @throws GuzzleException
      */
     public function getCampaignNegativeKeyword(int $keywordId): CampaignNegativeKeyword
     {
@@ -350,13 +306,10 @@ trait MakesKeywordApiCalls
      * (including serving status and other read-only fields),
      * but is less efficient than getCampaignNegativeKeyword.
      *
-     * @param int $keywordId
-     *
      * @throws ClassNotFoundException
      * @throws HttpException
      * @throws ReflectionException
-     *
-     * @return CampaignNegativeKeywordEx
+     * @throws GuzzleException
      */
     public function getCampaignNegativeKeywordEx(int $keywordId): CampaignNegativeKeywordEx
     {
@@ -369,12 +322,9 @@ trait MakesKeywordApiCalls
      * Creates one or more campaign negative keywords.
      * Successfully created keywords will be assigned a unique keywordId.
      *
-     * @param CampaignNegativeKeywordCreateList $keywordCreateList
-     *
      * @throws ClassNotFoundException
-     * @throws HttpException
-     *
-     * @return CampaignNegativeKeywordResponseList
+     * @throws GuzzleException
+     * @throws ReflectionException
      */
     public function createCampaignNegativeKeywords(CampaignNegativeKeywordCreateList $keywordCreateList): CampaignNegativeKeywordResponseList
     {
@@ -386,12 +336,9 @@ trait MakesKeywordApiCalls
     /**
      * Updates one or more campaign negative keywords for Sponsored Products based on unique keywordId.
      *
-     * @param CampaignNegativeKeywordUpdateList $keywordUpdateList
-     *
      * @throws ClassNotFoundException
-     * @throws HttpException
-     *
-     * @return CampaignNegativeKeywordResponseList
+     * @throws GuzzleException
+     * @throws ReflectionException
      */
     public function updateCampaignNegativeKeywords(CampaignNegativeKeywordUpdateList $keywordUpdateList): CampaignNegativeKeywordResponseList
     {
@@ -407,13 +354,10 @@ trait MakesKeywordApiCalls
      * Deleted entities cannot be made active again and attempting to fetch
      * a deleted entity from the api by id will return an error.
      *
-     * @param int $keywordId
-     *
      * @throws HttpException
      * @throws ReflectionException
      * @throws ClassNotFoundException
-     *
-     * @return CampaignNegativeKeywordResponse
+     * @throws GuzzleException
      */
     public function removeCampaignNegativeKeyword(int $keywordId): CampaignNegativeKeywordResponse
     {
@@ -428,12 +372,9 @@ trait MakesKeywordApiCalls
      * Note that this call returns the minimal set of keyword fields,
      * but is more efficient than listCampaignNegativeKeywordsEx.
      *
-     * @param CampaignNegativeKeywordParams $params
-     *
      * @throws ClassNotFoundException
-     * @throws HttpException
-     *
-     * @return CampaignNegativeKeywordList
+     * @throws GuzzleException
+     * @throws ReflectionException
      */
     public function listCampaignNegativeKeywords(CampaignNegativeKeywordParams $params): CampaignNegativeKeywordList
     {
@@ -449,12 +390,9 @@ trait MakesKeywordApiCalls
      * (including serving status and other read-only fields),
      * but is less efficient than listCampaignNegativeKeywords.
      *
-     * @param CampaignNegativeKeywordParams $params
-     *
      * @throws ClassNotFoundException
-     * @throws HttpException
-     *
-     * @return CampaignNegativeKeywordExList
+     * @throws GuzzleException
+     * @throws ReflectionException
      */
     public function listCampaignNegativeKeywordsEx(CampaignNegativeKeywordParams $params): CampaignNegativeKeywordExList
     {
@@ -466,13 +404,10 @@ trait MakesKeywordApiCalls
     /**
      * Retrieve bid recommendation data for the specified keywordId.
      *
-     * @param int $keywordId
-     *
      * @throws ClassNotFoundException
+     * @throws GuzzleException
      * @throws HttpException
      * @throws ReflectionException
-     *
-     * @return KeywordBidRecommendation
      */
     public function getKeywordBidRecommendations(int $keywordId): KeywordBidRecommendation
     {
@@ -482,13 +417,10 @@ trait MakesKeywordApiCalls
     }
 
     /**
-     * @param KeywordBidRecommendationParams $params
-     *
      * @throws ClassNotFoundException
+     * @throws GuzzleException
      * @throws HttpException
      * @throws ReflectionException
-     *
-     * @return BidRecommendationsResponse
      */
     public function createKeywordBidRecommendations(KeywordBidRecommendationParams $params): BidRecommendationsResponse
     {
