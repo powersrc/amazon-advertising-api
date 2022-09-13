@@ -6,37 +6,31 @@ namespace PowerSrc\AmazonAdvertisingApi\Support;
 
 use InvalidArgumentException;
 use PowerSrc\AmazonAdvertisingApi\Enums\PrimitiveType;
-use function is_string;
-use function json_decode;
-use function json_encode;
-use function preg_replace;
-use function ucfirst;
 
 final class CastType
 {
     private function __construct()
     {
-        // Static class.
+        /* Not instantiable */
     }
 
     /**
      * Cast a value to a native PHP type.
      *
-     * @param PrimitiveType $cast
-     * @param mixed         $value
+     * @param mixed $value
      *
      * @return mixed
      */
     public static function to(PrimitiveType $cast, $value)
     {
-        $method = 'to' . ucfirst($cast->getValue());
+        $method = 'to' . \ucfirst($cast->getValue());
 
         return self::$method($value);
     }
 
     public static function toInt($value): int
     {
-        $value = is_string($value) ? preg_replace('/[^0-9.]/', '', $value) : $value;
+        $value = \is_string($value) ? \preg_replace('/[^\d.]/', '', $value) : $value;
 
         return (int) $value;
     }
@@ -48,7 +42,7 @@ final class CastType
 
     public static function toFloat($value): float
     {
-        $value = is_string($value) ? preg_replace('/[^0-9.]/', '', $value) : $value;
+        $value = \is_string($value) ? \preg_replace('/[^\d.]/', '', $value) : $value;
 
         return (float) $value;
     }
@@ -87,9 +81,9 @@ final class CastType
      *
      * @return mixed
      */
-    public static function fromJson($json, bool $assoc = false, int $depth = 512, int $options = 0)
+    public static function fromJson(string $json, bool $assoc = false, int $depth = 512, int $options = 0)
     {
-        return json_decode($json, $assoc, $depth, $options);
+        return \json_decode($json, $assoc, $depth, $options);
     }
 
     /**
@@ -106,11 +100,11 @@ final class CastType
      *
      * @return mixed
      */
-    public static function throwableFromJson($json, bool $assoc = false, int $depth = 512, int $options = 0)
+    public static function throwableFromJson(string $json, bool $assoc = false, int $depth = 512, int $options = 0)
     {
-        $data = json_decode($json, $assoc, $depth, $options);
-        if (JSON_ERROR_NONE !== json_last_error()) {
-            throw new InvalidArgumentException('json_decode error: ' . json_last_error_msg());
+        $data = \json_decode($json, $assoc, $depth, $options);
+        if (JSON_ERROR_NONE !== \json_last_error()) {
+            throw new InvalidArgumentException('json_decode error: ' . \json_last_error_msg());
         }
 
         return $data;
@@ -127,11 +121,11 @@ final class CastType
      *
      * @see http://www.php.net/manual/en/function.json-encode.php
      *
-     * @return string
+     * @return false|string
      */
     public static function toJson($value, int $options = 0, int $depth = 512)
     {
-        return json_encode($value, $options, $depth);
+        return \json_encode($value, $options, $depth);
     }
 
     /**
@@ -145,13 +139,13 @@ final class CastType
      *
      * @see http://www.php.net/manual/en/function.json-encode.php
      *
-     * @return string
+     * @return false|string
      */
     public static function throwableToJson($value, int $options = 0, int $depth = 512)
     {
-        $json = json_encode($value, $options, $depth);
-        if (JSON_ERROR_NONE !== json_last_error()) {
-            throw new InvalidArgumentException('json_encode error: ' . json_last_error_msg());
+        $json = \json_encode($value, $options, $depth);
+        if (JSON_ERROR_NONE !== \json_last_error()) {
+            throw new InvalidArgumentException('json_encode error: ' . \json_last_error_msg());
         }
 
         return $json;

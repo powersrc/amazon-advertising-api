@@ -52,11 +52,6 @@ final class NegativeKeywordParams extends RequestParams
         'matchTypeFilter',
     ];
 
-    /**
-     * @param int $startIndex
-     *
-     * @return NegativeKeywordParams
-     */
     public function setStartIndex(int $startIndex): self
     {
         $this->params['startIndex'] = $startIndex;
@@ -64,11 +59,6 @@ final class NegativeKeywordParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @param int $count
-     *
-     * @return NegativeKeywordParams
-     */
     public function addToStartIndex(int $count): self
     {
         $this->params['startIndex'] += $count;
@@ -76,11 +66,6 @@ final class NegativeKeywordParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @param int $count
-     *
-     * @return NegativeKeywordParams
-     */
     public function setCount(int $count): self
     {
         $this->params['count'] = $count;
@@ -88,9 +73,6 @@ final class NegativeKeywordParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getCount(): int
     {
         return (int) ($this->params['count'] ?? Config::getDefaultMaxPageSize());
@@ -98,8 +80,6 @@ final class NegativeKeywordParams extends RequestParams
 
     /**
      * @param State[] $states
-     *
-     * @return NegativeKeywordParams
      */
     public function addStates(array $states): self
     {
@@ -114,11 +94,6 @@ final class NegativeKeywordParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @param State $state
-     *
-     * @return NegativeKeywordParams
-     */
     public function addState(State $state): self
     {
         $this->params['stateFilter'][] = $state;
@@ -128,8 +103,6 @@ final class NegativeKeywordParams extends RequestParams
 
     /**
      * @param int[] $campaigns
-     *
-     * @return NegativeKeywordParams
      */
     public function addCampaignIds(array $campaigns): self
     {
@@ -144,11 +117,6 @@ final class NegativeKeywordParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @param int $campaignId
-     *
-     * @return NegativeKeywordParams
-     */
     public function addCampaignId(int $campaignId): self
     {
         $this->params['campaignIdFilter'][] = $campaignId;
@@ -158,8 +126,6 @@ final class NegativeKeywordParams extends RequestParams
 
     /**
      * @param int[] $adGroupIds
-     *
-     * @return NegativeKeywordParams
      */
     public function addAdGroupIds(array $adGroupIds): self
     {
@@ -174,11 +140,6 @@ final class NegativeKeywordParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @param int $adGroupId
-     *
-     * @return NegativeKeywordParams
-     */
     public function addAdGroupId(int $adGroupId): self
     {
         $this->params['adGroupIdFilter'][] = $adGroupId;
@@ -188,8 +149,6 @@ final class NegativeKeywordParams extends RequestParams
 
     /**
      * @param NegativeKeywordMatchType[] $matchTypes
-     *
-     * @return NegativeKeywordParams
      */
     public function addMatchTypes(array $matchTypes): NegativeKeywordParams
     {
@@ -204,11 +163,6 @@ final class NegativeKeywordParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @param NegativeKeywordMatchType $matchType
-     *
-     * @return NegativeKeywordParams
-     */
     public function addMatchType(NegativeKeywordMatchType $matchType): NegativeKeywordParams
     {
         $this->params['matchTypeFilter'][] = $matchType;
@@ -216,11 +170,6 @@ final class NegativeKeywordParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @param string $keywordText
-     *
-     * @return NegativeKeywordParams
-     */
     public function setKeywordText(string $keywordText): NegativeKeywordParams
     {
         $this->params['keywordText'] = $keywordText;

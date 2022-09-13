@@ -19,7 +19,7 @@ class KeywordUpdateList extends KeywordList
             'bid'   => null,
         ];
 
-        return array_map(function (Keyword $keyword) use ($props) {
+        return \array_map(function (Keyword $keyword) use ($props) {
             /*
              * Unset properties that are not set on the Keyword object.
              */
@@ -30,7 +30,7 @@ class KeywordUpdateList extends KeywordList
             }
             $props['keywordId'] = null;
 
-            return Obj::transpose((object) $props, $keyword, ...array_keys($props));
+            return Obj::transpose((object) $props, $keyword, ...\array_keys($props));
         }, $this->itemList);
     }
 }

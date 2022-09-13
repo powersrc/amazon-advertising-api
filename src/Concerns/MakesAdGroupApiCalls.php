@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace PowerSrc\AmazonAdvertisingApi\Concerns;
 
+use GuzzleHttp\Exception\GuzzleException;
 use PowerSrc\AmazonAdvertisingApi\Enums\HttpMethod;
 use PowerSrc\AmazonAdvertisingApi\Enums\MimeType;
 use PowerSrc\AmazonAdvertisingApi\Exceptions\ClassNotFoundException;
@@ -28,13 +29,10 @@ trait MakesAdGroupApiCalls
      * Note that this call returns the minimal set of ad group fields,
      * but is more efficient than getAdGroupEx.
      *
-     * @param int $adGroupId
-     *
      * @throws ClassNotFoundException
      * @throws HttpException
      * @throws ReflectionException
-     *
-     * @return AdGroup
+     * @throws GuzzleException
      */
     public function getAdGroup(int $adGroupId): AdGroup
     {
@@ -50,13 +48,10 @@ trait MakesAdGroupApiCalls
      * (including serving status and other read-only fields),
      * but is less efficient than getAdGroup.
      *
-     * @param int $adGroupId
-     *
      * @throws ClassNotFoundException
      * @throws HttpException
      * @throws ReflectionException
-     *
-     * @return AdGroupEx
+     * @throws GuzzleException
      */
     public function getAdGroupEx(int $adGroupId): AdGroupEx
     {
@@ -68,12 +63,9 @@ trait MakesAdGroupApiCalls
     /**
      * Creates one or more ad groups. Successfully created ad groups will be assigned a unique adGroupId.
      *
-     * @param AdGroupCreateList $adGroupCreateList
-     *
      * @throws ClassNotFoundException
-     * @throws HttpException
-     *
-     * @return AdGroupResponseList
+     * @throws GuzzleException
+     * @throws ReflectionException
      */
     public function createAdGroups(AdGroupCreateList $adGroupCreateList): AdGroupResponseList
     {
@@ -85,12 +77,9 @@ trait MakesAdGroupApiCalls
     /**
      * Updates one or more ad groups. Ad groups are identified using their adGroupId.
      *
-     * @param AdGroupUpdateList $adGroupUpdateList
-     *
      * @throws ClassNotFoundException
-     * @throws HttpException
-     *
-     * @return AdGroupResponseList
+     * @throws GuzzleException
+     * @throws ReflectionException
      */
     public function updateAdGroups(AdGroupUpdateList $adGroupUpdateList): AdGroupResponseList
     {
@@ -100,18 +89,15 @@ trait MakesAdGroupApiCalls
     }
 
     /**
-     * Sets the ad group status to archived.
+     * Sets the ad group status archived.
      *
      * This same operation can be performed via an update, but is included for completeness.
      * Archived entities cannot be made active again.
      *
-     * @param int $adGroupId
-     *
      * @throws ClassNotFoundException
      * @throws HttpException
      * @throws ReflectionException
-     *
-     * @return AdGroupResponse
+     * @throws GuzzleException
      */
     public function archiveAdGroup(int $adGroupId): AdGroupResponse
     {
@@ -123,12 +109,10 @@ trait MakesAdGroupApiCalls
     /**
      * Retrieves a list of ad groups satisfying optional criteria.
      *
-     * @param AdGroupParams $params
-     *
      * @throws ClassNotFoundException
+     * @throws GuzzleException
      * @throws HttpException
-     *
-     * @return AdGroupList
+     * @throws ReflectionException
      */
     public function listAdGroups(AdGroupParams $params): AdGroupList
     {
@@ -140,12 +124,10 @@ trait MakesAdGroupApiCalls
     /**
      * Retrieves a list of ad groups with extended fields satisfying optional filtering criteria.
      *
-     * @param AdGroupParams $params
-     *
      * @throws ClassNotFoundException
+     * @throws GuzzleException
      * @throws HttpException
-     *
-     * @return AdGroupExList
+     * @throws ReflectionException
      */
     public function listAdGroupsEx(AdGroupParams $params): AdGroupExList
     {
@@ -157,13 +139,10 @@ trait MakesAdGroupApiCalls
     /**
      * Retrieve bid recommendation data for the specified adGroupId.
      *
-     * @param int $adGroupId
-     *
      * @throws ClassNotFoundException
+     * @throws GuzzleException
      * @throws HttpException
      * @throws ReflectionException
-     *
-     * @return AdGroupBidRecommendation
      */
     public function getAdGroupBidRecommendations(int $adGroupId): AdGroupBidRecommendation
     {

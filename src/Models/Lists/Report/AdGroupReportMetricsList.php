@@ -11,8 +11,6 @@ class AdGroupReportMetricsList extends ReportMetricsList
 {
     /**
      * Return an array of valid values for validation of report metrics.
-     *
-     * @return ReportRecordType
      */
     protected function getReportRecordType(): ReportRecordType
     {

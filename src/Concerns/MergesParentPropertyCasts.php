@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace PowerSrc\AmazonAdvertisingApi\Concerns;
 
-use function array_merge;
-
 trait MergesParentPropertyCasts
 {
     /**
@@ -15,11 +13,9 @@ trait MergesParentPropertyCasts
      *
      * The type to cast should be a PrimitiveType value or fully qualified class name.
      * If a FQCN is used then the class will be instantiated, passing the value into the constructor.
-     *
-     * @return array|null
      */
     protected function getPropertyCasts(): ?array
     {
-        return array_merge($this->casts, parent::getPropertyCasts());
+        return \array_merge($this->casts, parent::getPropertyCasts());
     }
 }

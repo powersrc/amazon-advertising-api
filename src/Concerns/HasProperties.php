@@ -5,17 +5,12 @@ declare(strict_types=1);
 namespace PowerSrc\AmazonAdvertisingApi\Concerns;
 
 use ReflectionClass;
-use ReflectionException;
 use ReflectionProperty;
 
 trait HasProperties
 {
     /**
      * Gets the public properties of the object.
-     *
-     * @throws ReflectionException
-     *
-     * @return array
      */
     public function getProperties(): array
     {

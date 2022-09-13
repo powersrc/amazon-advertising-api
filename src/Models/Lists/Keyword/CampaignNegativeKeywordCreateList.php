@@ -18,8 +18,8 @@ class CampaignNegativeKeywordCreateList extends CampaignNegativeKeywordList
             'state'       => null,
         ];
 
-        return array_map(function (CampaignNegativeKeyword $keyword) use ($props) {
-            return Obj::transpose((object) $props, $keyword, ...array_keys($props));
+        return \array_map(function (CampaignNegativeKeyword $keyword) use ($props) {
+            return Obj::transpose((object) $props, $keyword, ...\array_keys($props));
         }, $this->itemList);
     }
 }

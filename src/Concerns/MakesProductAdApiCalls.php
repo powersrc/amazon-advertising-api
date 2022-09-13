@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace PowerSrc\AmazonAdvertisingApi\Concerns;
 
+use GuzzleHttp\Exception\GuzzleException;
 use PowerSrc\AmazonAdvertisingApi\Enums\HttpMethod;
 use PowerSrc\AmazonAdvertisingApi\Enums\MimeType;
 use PowerSrc\AmazonAdvertisingApi\Exceptions\ClassNotFoundException;
@@ -22,13 +23,10 @@ use ReflectionException;
 trait MakesProductAdApiCalls
 {
     /**
-     * @param int $adId
-     *
      * @throws ClassNotFoundException
      * @throws HttpException
      * @throws ReflectionException
-     *
-     * @return ProductAd
+     * @throws GuzzleException
      */
     public function getProductAd(int $adId): ProductAd
     {
@@ -38,13 +36,10 @@ trait MakesProductAdApiCalls
     }
 
     /**
-     * @param int $adId
-     *
      * @throws ClassNotFoundException
      * @throws HttpException
      * @throws ReflectionException
-     *
-     * @return ProductAdEx
+     * @throws GuzzleException
      */
     public function getProductAdEx(int $adId): ProductAdEx
     {
@@ -54,12 +49,9 @@ trait MakesProductAdApiCalls
     }
 
     /**
-     * @param ProductAdCreateList $adCreateList
-     *
      * @throws ClassNotFoundException
-     * @throws HttpException
-     *
-     * @return ProductAdResponseList
+     * @throws GuzzleException
+     * @throws ReflectionException
      */
     public function createProductAds(ProductAdCreateList $adCreateList): ProductAdResponseList
     {
@@ -69,12 +61,9 @@ trait MakesProductAdApiCalls
     }
 
     /**
-     * @param ProductAdUpdateList $adUpdateList
-     *
      * @throws ClassNotFoundException
-     * @throws HttpException
-     *
-     * @return ProductAdResponseList
+     * @throws GuzzleException
+     * @throws ReflectionException
      */
     public function updateProductAds(ProductAdUpdateList $adUpdateList): ProductAdResponseList
     {
@@ -84,13 +73,10 @@ trait MakesProductAdApiCalls
     }
 
     /**
-     * @param int $adId
-     *
      * @throws ClassNotFoundException
      * @throws HttpException
      * @throws ReflectionException
-     *
-     * @return ProductAdResponse
+     * @throws GuzzleException
      */
     public function archiveProductAd(int $adId): ProductAdResponse
     {
@@ -100,12 +86,9 @@ trait MakesProductAdApiCalls
     }
 
     /**
-     * @param ProductAdParams $params
-     *
      * @throws ClassNotFoundException
-     * @throws HttpException
-     *
-     * @return ProductAdList
+     * @throws GuzzleException
+     * @throws ReflectionException
      */
     public function listProductAds(ProductAdParams $params): ProductAdList
     {
@@ -115,12 +98,9 @@ trait MakesProductAdApiCalls
     }
 
     /**
-     * @param ProductAdParams $params
-     *
      * @throws ClassNotFoundException
-     * @throws HttpException
-     *
-     * @return ProductAdExList
+     * @throws ReflectionException
+     * @throws GuzzleException
      */
     public function listProductAdsEx(ProductAdParams $params): ProductAdExList
     {

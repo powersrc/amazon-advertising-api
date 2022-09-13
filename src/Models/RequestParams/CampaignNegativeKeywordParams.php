@@ -45,11 +45,6 @@ final class CampaignNegativeKeywordParams extends RequestParams
         'campaignIdFilter',
     ];
 
-    /**
-     * @param int $startIndex
-     *
-     * @return CampaignNegativeKeywordParams
-     */
     public function setStartIndex(int $startIndex): self
     {
         $this->params['startIndex'] = $startIndex;
@@ -57,11 +52,6 @@ final class CampaignNegativeKeywordParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @param int $count
-     *
-     * @return CampaignNegativeKeywordParams
-     */
     public function addToStartIndex(int $count): self
     {
         $this->params['startIndex'] += $count;
@@ -69,11 +59,6 @@ final class CampaignNegativeKeywordParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @param int $count
-     *
-     * @return CampaignNegativeKeywordParams
-     */
     public function setCount(int $count): self
     {
         $this->params['count'] = $count;
@@ -81,9 +66,6 @@ final class CampaignNegativeKeywordParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getCount(): int
     {
         return (int) ($this->params['count'] ?? Config::getDefaultMaxPageSize());
@@ -91,8 +73,6 @@ final class CampaignNegativeKeywordParams extends RequestParams
 
     /**
      * @param int[] $campaigns
-     *
-     * @return CampaignNegativeKeywordParams
      */
     public function addCampaignIds(array $campaigns): self
     {
@@ -107,11 +87,6 @@ final class CampaignNegativeKeywordParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @param int $campaignId
-     *
-     * @return CampaignNegativeKeywordParams
-     */
     public function addCampaignId(int $campaignId): self
     {
         $this->params['campaignIdFilter'][] = $campaignId;
@@ -121,8 +96,6 @@ final class CampaignNegativeKeywordParams extends RequestParams
 
     /**
      * @param NegativeKeywordMatchType[] $matchTypes
-     *
-     * @return CampaignNegativeKeywordParams
      */
     public function addMatchTypes(array $matchTypes): CampaignNegativeKeywordParams
     {
@@ -137,11 +110,6 @@ final class CampaignNegativeKeywordParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @param NegativeKeywordMatchType $matchType
-     *
-     * @return CampaignNegativeKeywordParams
-     */
     public function addMatchType(NegativeKeywordMatchType $matchType): CampaignNegativeKeywordParams
     {
         $this->params['matchTypeFilter'][] = $matchType;
@@ -149,11 +117,6 @@ final class CampaignNegativeKeywordParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @param string $keywordText
-     *
-     * @return CampaignNegativeKeywordParams
-     */
     public function setKeywordText(string $keywordText): CampaignNegativeKeywordParams
     {
         $this->params['keywordText'] = $keywordText;

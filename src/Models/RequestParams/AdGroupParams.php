@@ -48,11 +48,6 @@ final class AdGroupParams extends RequestParams
         'adGroupIdFilter',
     ];
 
-    /**
-     * @param int $startIndex
-     *
-     * @return AdGroupParams
-     */
     public function setStartIndex(int $startIndex): self
     {
         $this->params['startIndex'] = $startIndex;
@@ -60,11 +55,6 @@ final class AdGroupParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @param int $count
-     *
-     * @return AdGroupParams
-     */
     public function addToStartIndex(int $count): self
     {
         $this->params['startIndex'] += $count;
@@ -72,11 +62,6 @@ final class AdGroupParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @param int $count
-     *
-     * @return AdGroupParams
-     */
     public function setCount(int $count): self
     {
         $this->params['count'] = $count;
@@ -84,19 +69,11 @@ final class AdGroupParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getCount(): int
     {
         return (int) ($this->params['count'] ?? Config::getDefaultMaxPageSize());
     }
 
-    /**
-     * @param string $name
-     *
-     * @return AdGroupParams
-     */
     public function setName(string $name): self
     {
         $this->params['name'] = $name;
@@ -106,8 +83,6 @@ final class AdGroupParams extends RequestParams
 
     /**
      * @param State[] $states
-     *
-     * @return AdGroupParams
      */
     public function addStates(array $states): self
     {
@@ -122,11 +97,6 @@ final class AdGroupParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @param State $state
-     *
-     * @return AdGroupParams
-     */
     public function addState(State $state): self
     {
         $this->params['stateFilter'][] = $state;
@@ -136,8 +106,6 @@ final class AdGroupParams extends RequestParams
 
     /**
      * @param int[] $campaigns
-     *
-     * @return AdGroupParams
      */
     public function addCampaignIds(array $campaigns): self
     {
@@ -152,11 +120,6 @@ final class AdGroupParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @param int $campaignId
-     *
-     * @return AdGroupParams
-     */
     public function addCampaignId(int $campaignId): self
     {
         $this->params['campaignIdFilter'][] = $campaignId;
@@ -166,8 +129,6 @@ final class AdGroupParams extends RequestParams
 
     /**
      * @param int[] $adGroupIds
-     *
-     * @return AdGroupParams
      */
     public function addAdGroupIds(array $adGroupIds): self
     {
@@ -182,11 +143,6 @@ final class AdGroupParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @param int $adGroupId
-     *
-     * @return AdGroupParams
-     */
     public function addAdGroupId(int $adGroupId): self
     {
         $this->params['adGroupIdFilter'][] = $adGroupId;

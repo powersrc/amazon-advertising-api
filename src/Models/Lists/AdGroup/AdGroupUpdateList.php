@@ -21,7 +21,7 @@ class AdGroupUpdateList extends AdGroupList
             'state'      => null,
         ];
 
-        return array_map(function (AdGroup $adGroup) use ($props) {
+        return \array_map(function (AdGroup $adGroup) use ($props) {
             /*
              * Unset properties that are not set on the AdGroup object.
              */
@@ -32,7 +32,7 @@ class AdGroupUpdateList extends AdGroupList
             }
             $props['adGroupId'] = null;
 
-            return Obj::transpose((object) $props, $adGroup, ...array_keys($props));
+            return Obj::transpose((object) $props, $adGroup, ...\array_keys($props));
         }, $this->itemList);
     }
 }

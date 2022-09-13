@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace PowerSrc\AmazonAdvertisingApi\Concerns;
 
+use GuzzleHttp\Exception\GuzzleException;
 use PowerSrc\AmazonAdvertisingApi\Enums\HttpMethod;
 use PowerSrc\AmazonAdvertisingApi\Enums\MimeType;
 use PowerSrc\AmazonAdvertisingApi\Exceptions\ClassNotFoundException;
@@ -21,12 +22,9 @@ use ReflectionException;
 trait MakesPortfolioApiCalls
 {
     /**
-     * @param PortfolioParams $params
-     *
      * @throws ClassNotFoundException
-     * @throws HttpException
-     *
-     * @return PortfolioList
+     * @throws GuzzleException
+     * @throws ReflectionException
      */
     public function listPortfolios(PortfolioParams $params): PortfolioList
     {
@@ -36,12 +34,9 @@ trait MakesPortfolioApiCalls
     }
 
     /**
-     * @param PortfolioParams $params
-     *
      * @throws ClassNotFoundException
-     * @throws HttpException
-     *
-     * @return PortfolioExList
+     * @throws GuzzleException
+     * @throws ReflectionException
      */
     public function listPortfoliosEx(PortfolioParams $params): PortfolioExList
     {
@@ -51,13 +46,10 @@ trait MakesPortfolioApiCalls
     }
 
     /**
-     * @param int $portfolioId
-     *
      * @throws ClassNotFoundException
      * @throws HttpException
      * @throws ReflectionException
-     *
-     * @return Portfolio
+     * @throws GuzzleException
      */
     public function getPortfolio(int $portfolioId): Portfolio
     {
@@ -67,13 +59,10 @@ trait MakesPortfolioApiCalls
     }
 
     /**
-     * @param int $portfolioId
-     *
      * @throws ClassNotFoundException
      * @throws HttpException
      * @throws ReflectionException
-     *
-     * @return PortfolioEx
+     * @throws GuzzleException
      */
     public function getPortfolioEx(int $portfolioId): PortfolioEx
     {
@@ -83,12 +72,9 @@ trait MakesPortfolioApiCalls
     }
 
     /**
-     * @param PortfolioCreateList $portfolios
-     *
      * @throws ClassNotFoundException
-     * @throws HttpException
-     *
-     * @return PortfolioResponseList
+     * @throws GuzzleException
+     * @throws ReflectionException
      */
     public function createPortfolios(PortfolioCreateList $portfolios): PortfolioResponseList
     {
@@ -98,12 +84,9 @@ trait MakesPortfolioApiCalls
     }
 
     /**
-     * @param PortfolioUpdateList $portfolios
-     *
      * @throws ClassNotFoundException
-     * @throws HttpException
-     *
-     * @return PortfolioResponseList
+     * @throws ReflectionException
+     * @throws GuzzleException
      */
     public function updatePortfolios(PortfolioUpdateList $portfolios): PortfolioResponseList
     {

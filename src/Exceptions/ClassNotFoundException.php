@@ -16,7 +16,6 @@ class ClassNotFoundException extends Exception
     private $classname;
 
     /**
-     * @param string $message
      * @param string $classname Name of class that was not found
      */
     public function __construct(string $message, string $classname)
@@ -28,8 +27,6 @@ class ClassNotFoundException extends Exception
 
     /**
      * Returns the name of the class that was unable to be found.
-     *
-     * @return string
      */
     public function getClassname(): string
     {
