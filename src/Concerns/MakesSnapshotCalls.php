@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace PowerSrc\AmazonAdvertisingApi\Concerns;
 
+use GuzzleHttp\Exception\GuzzleException;
 use PowerSrc\AmazonAdvertisingApi\Enums\HttpMethod;
 use PowerSrc\AmazonAdvertisingApi\Enums\MimeType;
 use PowerSrc\AmazonAdvertisingApi\Enums\SnapshotRecordType;
@@ -24,14 +25,10 @@ use ReflectionException;
 trait MakesSnapshotCalls
 {
     /**
-     * @param SnapshotRecordType $type
-     * @param SnapshotParams     $params
-     *
      * @throws ClassNotFoundException
      * @throws HttpException
      * @throws ReflectionException
-     *
-     * @return SnapshotResponse
+     * @throws GuzzleException
      */
     public function requestSnapshot(SnapshotRecordType $type, SnapshotParams $params): SnapshotResponse
     {
@@ -41,13 +38,10 @@ trait MakesSnapshotCalls
     }
 
     /**
-     * @param string $snapshotId
-     *
      * @throws ClassNotFoundException
      * @throws HttpException
      * @throws ReflectionException
-     *
-     * @return SnapshotResponse
+     * @throws GuzzleException
      */
     public function getSnapshot(string $snapshotId): SnapshotResponse
     {
@@ -59,11 +53,11 @@ trait MakesSnapshotCalls
     /**
      * Downloads the Snapshot file at location provided and returns
      * the decoded payload. The return type can be any type other than a resource,
-     * but should be array or stdClass.
+     * but should be an array or stdClass.
      *
-     * @param string $location
-     *
-     * @throws HttpException
+     * @throws ClassNotFoundException
+     * @throws GuzzleException
+     * @throws ReflectionException
      *
      * @return mixed
      */
@@ -76,6 +70,10 @@ trait MakesSnapshotCalls
 
     /**
      * Returns a stream resource handler for location provided.
+     *
+     * @throws ClassNotFoundException
+     * @throws GuzzleException
+     * @throws ReflectionException
      */
     public function getSnapshotResponse(string $location): ResponseInterface
     {
@@ -83,13 +81,10 @@ trait MakesSnapshotCalls
     }
 
     /**
-     * @param SnapshotParams $params
-     *
      * @throws ClassNotFoundException
      * @throws HttpException
      * @throws ReflectionException
-     *
-     * @return SnapshotResponse
+     * @throws GuzzleException
      */
     public function requestPortfoliosSnapshot(SnapshotParams $params): SnapshotResponse
     {
@@ -97,13 +92,10 @@ trait MakesSnapshotCalls
     }
 
     /**
-     * @param SnapshotParams $params
-     *
      * @throws ClassNotFoundException
      * @throws HttpException
      * @throws ReflectionException
-     *
-     * @return SnapshotResponse
+     * @throws GuzzleException
      */
     public function requestCampaignsSnapshot(SnapshotParams $params): SnapshotResponse
     {
@@ -111,13 +103,10 @@ trait MakesSnapshotCalls
     }
 
     /**
-     * @param SnapshotParams $params
-     *
      * @throws ClassNotFoundException
      * @throws HttpException
      * @throws ReflectionException
-     *
-     * @return SnapshotResponse
+     * @throws GuzzleException
      */
     public function requestAdGroupsSnapshot(SnapshotParams $params): SnapshotResponse
     {
@@ -125,13 +114,10 @@ trait MakesSnapshotCalls
     }
 
     /**
-     * @param SnapshotParams $params
-     *
      * @throws ClassNotFoundException
      * @throws HttpException
      * @throws ReflectionException
-     *
-     * @return SnapshotResponse
+     * @throws GuzzleException
      */
     public function requestProductAdsSnapshot(SnapshotParams $params): SnapshotResponse
     {
@@ -139,13 +125,10 @@ trait MakesSnapshotCalls
     }
 
     /**
-     * @param SnapshotParams $params
-     *
      * @throws ClassNotFoundException
      * @throws HttpException
      * @throws ReflectionException
-     *
-     * @return SnapshotResponse
+     * @throws GuzzleException
      */
     public function requestKeywordsSnapshot(SnapshotParams $params): SnapshotResponse
     {
@@ -153,13 +136,10 @@ trait MakesSnapshotCalls
     }
 
     /**
-     * @param SnapshotParams $params
-     *
      * @throws ClassNotFoundException
      * @throws HttpException
      * @throws ReflectionException
-     *
-     * @return SnapshotResponse
+     * @throws GuzzleException
      */
     public function requestNegativeKeywordsSnapshot(SnapshotParams $params): SnapshotResponse
     {
@@ -167,13 +147,10 @@ trait MakesSnapshotCalls
     }
 
     /**
-     * @param SnapshotParams $params
-     *
      * @throws ClassNotFoundException
      * @throws HttpException
      * @throws ReflectionException
-     *
-     * @return SnapshotResponse
+     * @throws GuzzleException
      */
     public function requestCampaignNegativeKeywordsSnapshot(SnapshotParams $params): SnapshotResponse
     {
@@ -183,12 +160,9 @@ trait MakesSnapshotCalls
     /**
      * Downloads a Portfolios Snapshot file from location provided.
      *
-     * @param string $location
-     *
      * @throws ClassNotFoundException
-     * @throws HttpException
-     *
-     * @return PortfolioList
+     * @throws GuzzleException
+     * @throws ReflectionException
      */
     public function downloadPortfoliosSnapshot(string $location): PortfolioList
     {
@@ -198,12 +172,9 @@ trait MakesSnapshotCalls
     /**
      * Downloads a Campaigns Snapshot file from location provided.
      *
-     * @param string $location
-     *
      * @throws ClassNotFoundException
-     * @throws HttpException
-     *
-     * @return CampaignList
+     * @throws GuzzleException
+     * @throws ReflectionException
      */
     public function downloadCampaignsSnapshot(string $location): CampaignList
     {
@@ -213,12 +184,9 @@ trait MakesSnapshotCalls
     /**
      * Downloads an AdGroups Snapshot file from location provided.
      *
-     * @param string $location
-     *
      * @throws ClassNotFoundException
-     * @throws HttpException
-     *
-     * @return AdGroupList
+     * @throws GuzzleException
+     * @throws ReflectionException
      */
     public function downloadAdGroupsSnapshot(string $location): AdGroupList
     {
@@ -228,12 +196,9 @@ trait MakesSnapshotCalls
     /**
      * Downloads a ProductAds Snapshot file from location provided.
      *
-     * @param string $location
-     *
      * @throws ClassNotFoundException
-     * @throws HttpException
-     *
-     * @return ProductAdList
+     * @throws GuzzleException
+     * @throws ReflectionException
      */
     public function downloadProductAdsSnapshot(string $location): ProductAdList
     {
@@ -243,12 +208,9 @@ trait MakesSnapshotCalls
     /**
      * Downloads a Keywords Snapshot file from location provided.
      *
-     * @param string $location
-     *
      * @throws ClassNotFoundException
-     * @throws HttpException
-     *
-     * @return KeywordList
+     * @throws GuzzleException
+     * @throws ReflectionException
      */
     public function downloadKeywordsSnapshot(string $location): KeywordList
     {
@@ -258,12 +220,9 @@ trait MakesSnapshotCalls
     /**
      * Downloads a NegativeKeywords Snapshot file from location provided.
      *
-     * @param string $location
-     *
      * @throws ClassNotFoundException
-     * @throws HttpException
-     *
-     * @return NegativeKeywordList
+     * @throws GuzzleException
+     * @throws ReflectionException
      */
     public function downloadNegativeKeywordsSnapshot(string $location): NegativeKeywordList
     {
@@ -273,12 +232,9 @@ trait MakesSnapshotCalls
     /**
      * Downloads a CampaignNegativeKeyword Snapshot file from location provided.
      *
-     * @param string $location
-     *
      * @throws ClassNotFoundException
-     * @throws HttpException
-     *
-     * @return CampaignNegativeKeywordList
+     * @throws GuzzleException
+     * @throws ReflectionException
      */
     public function downloadCampaignNegativeKeywordsSnapshot(string $location): CampaignNegativeKeywordList
     {

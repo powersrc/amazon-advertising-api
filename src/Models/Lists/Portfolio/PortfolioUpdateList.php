@@ -21,7 +21,7 @@ class PortfolioUpdateList extends PortfolioList
             'budget' => null,
         ];
 
-        return array_map(function (Portfolio $portfolio) use ($props) {
+        return \array_map(function (Portfolio $portfolio) use ($props) {
             $portfolioClone = clone $portfolio;
 
             /*
@@ -38,7 +38,7 @@ class PortfolioUpdateList extends PortfolioList
                 $portfolioClone->budget = $this->transposeBudget($portfolioClone->budget);
             }
 
-            return Obj::transpose((object) $props, $portfolioClone, ...array_keys($props));
+            return Obj::transpose((object) $props, $portfolioClone, ...\array_keys($props));
         }, $this->itemList);
     }
 
@@ -60,6 +60,6 @@ class PortfolioUpdateList extends PortfolioList
             }
         }
 
-        return Obj::transpose((object) $props, $budget, ...array_keys($props));
+        return Obj::transpose((object) $props, $budget, ...\array_keys($props));
     }
 }

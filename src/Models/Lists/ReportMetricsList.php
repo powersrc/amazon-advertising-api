@@ -17,11 +17,6 @@ use PowerSrc\AmazonAdvertisingApi\Enums\ReportMetric;
 use PowerSrc\AmazonAdvertisingApi\Enums\ReportRecordType;
 use PowerSrc\AmazonAdvertisingApi\Exceptions\InvalidMetricException;
 use PowerSrc\AmazonAdvertisingApi\Support\CastType;
-use ReflectionException;
-use function array_walk;
-use function implode;
-use function is_string;
-use function sprintf;
 
 abstract class ReportMetricsList implements ArrayAccess, Arrayable, Countable, Jsonable, JsonSerializable, IteratorAggregate
 {
@@ -39,12 +34,14 @@ abstract class ReportMetricsList implements ArrayAccess, Arrayable, Countable, J
 
     /**
      * @param ReportMetric[]|string[] $metrics
+     *
+     * @throws InvalidMetricException
      */
     public function __construct(array $metrics = [])
     {
         $this->reportRecordType = $this->getReportRecordType();
 
-        array_walk($metrics, function ($metric) {
+        \array_walk($metrics, function ($metric) {
             $this->addMetric($metric);
         });
     }
@@ -64,9 +61,6 @@ abstract class ReportMetricsList implements ArrayAccess, Arrayable, Countable, J
      * @param ReportMetric|string $metric
      *
      * @throws InvalidMetricException
-     * @throws ReflectionException
-     *
-     * @return ReportMetricsList
      */
     public function addMetric($metric): ReportMetricsList
     {
@@ -83,8 +77,6 @@ abstract class ReportMetricsList implements ArrayAccess, Arrayable, Countable, J
 
     /**
      * @param mixed $offset
-     *
-     * @return bool
      */
     public function offsetExists($offset): bool
     {
@@ -95,8 +87,6 @@ abstract class ReportMetricsList implements ArrayAccess, Arrayable, Countable, J
      * @param mixed $offset
      *
      * @throws ErrorException
-     *
-     * @return ReportMetric
      */
     public function offsetGet($offset): ReportMetric
     {
@@ -112,7 +102,6 @@ abstract class ReportMetricsList implements ArrayAccess, Arrayable, Countable, J
      * @param mixed $value
      *
      * @throws InvalidMetricException
-     * @throws ReflectionException
      */
     public function offsetSet($offset, $value): void
     {
@@ -133,9 +122,6 @@ abstract class ReportMetricsList implements ArrayAccess, Arrayable, Countable, J
     |-------------------------------------------------------------------------------------------------------------------
     */
 
-    /**
-     * @return array
-     */
     public function toArray(): array
     {
         return $this->metricList;
@@ -147,12 +133,9 @@ abstract class ReportMetricsList implements ArrayAccess, Arrayable, Countable, J
     |-------------------------------------------------------------------------------------------------------------------
     */
 
-    /**
-     * @return int
-     */
     public function count(): int
     {
-        return count($this->metricList);
+        return \count($this->metricList);
     }
 
     /*
@@ -162,11 +145,7 @@ abstract class ReportMetricsList implements ArrayAccess, Arrayable, Countable, J
     */
 
     /**
-     * @param int $options
-     *
      * @throws InvalidArgumentException
-     *
-     * @return string
      */
     public function toJson(int $options = 0): string
     {
@@ -179,9 +158,6 @@ abstract class ReportMetricsList implements ArrayAccess, Arrayable, Countable, J
     |-------------------------------------------------------------------------------------------------------------------
     */
 
-    /**
-     * @return array
-     */
     public function jsonSerialize(): array
     {
         return $this->toArray();
@@ -193,9 +169,6 @@ abstract class ReportMetricsList implements ArrayAccess, Arrayable, Countable, J
     |-------------------------------------------------------------------------------------------------------------------
     */
 
-    /**
-     * @return ArrayIterator
-     */
     public function getIterator(): ArrayIterator
     {
         return new ArrayIterator($this->metricList);
@@ -203,8 +176,6 @@ abstract class ReportMetricsList implements ArrayAccess, Arrayable, Countable, J
 
     /**
      * Return the ReportRecordType the metrics belong to.
-     *
-     * @return ReportRecordType
      */
     abstract protected function getReportRecordType(): ReportRecordType;
 
@@ -212,25 +183,20 @@ abstract class ReportMetricsList implements ArrayAccess, Arrayable, Countable, J
      * @param ReportMetric|string $metric
      *
      * @throws InvalidMetricException
-     * @throws ReflectionException
-     *
-     * @return ReportMetric
      */
     protected function getMetric($metric): ReportMetric
     {
         /*
          * If the input is not a string or ReportMetric, throw.
          */
-        if ( ! is_string($metric) && ! $metric instanceof ReportMetric) {
-            throw new InvalidArgumentException(
-                sprintf('Invalid metric type. Must be one of [`string`, `%s`].', ReportMetric::class)
-            );
+        if ( ! \is_string($metric) && ! $metric instanceof ReportMetric) {
+            throw new InvalidArgumentException(\sprintf('Invalid metric type. Must be one of [`string`, `%s`].', ReportMetric::class));
         }
 
         /*
          * If the input is a string, attempt to instantiate an instance of the ReportMetric and return it.
          */
-        if (is_string($metric)) {
+        if (\is_string($metric)) {
             return $this->getValidMetricByString($metric);
         }
 
@@ -248,12 +214,7 @@ abstract class ReportMetricsList implements ArrayAccess, Arrayable, Countable, J
     }
 
     /**
-     * @param string $metric
-     *
      * @throws InvalidMetricException
-     * @throws ReflectionException
-     *
-     * @return ReportMetric
      */
     private function getValidMetricByString(string $metric): ReportMetric
     {
@@ -271,13 +232,7 @@ abstract class ReportMetricsList implements ArrayAccess, Arrayable, Countable, J
      */
     private function throwInvalidMetricException($metric)
     {
-        $metric = is_string($metric) ? $metric : $metric->getValue();
-        throw new InvalidMetricException(
-            sprintf(
-                'Invalid metric `%s` for `%s` report type. Must be one of [`%s`]',
-                $metric, $this->reportRecordType->getValue(),
-                implode('`,`', ReportMetric::getValidMetricsFor($this->reportRecordType))
-            )
-        );
+        $metric = \is_string($metric) ? $metric : $metric->getValue();
+        throw new InvalidMetricException(\sprintf('Invalid metric `%s` for `%s` report type. Must be one of [`%s`]', $metric, $this->reportRecordType->getValue(), \implode('`,`', ReportMetric::getValidMetricsFor($this->reportRecordType))));
     }
 }

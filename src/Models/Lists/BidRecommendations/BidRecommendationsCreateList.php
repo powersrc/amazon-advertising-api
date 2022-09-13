@@ -16,8 +16,8 @@ class BidRecommendationsCreateList extends BidRecommendationsList
             'matchType' => null,
         ];
 
-        return array_map(function (BidRecommendation $bidRecommendation) use ($props) {
-            return Obj::transpose((object) $props, $bidRecommendation, ...array_keys($props));
+        return \array_map(function (BidRecommendation $bidRecommendation) use ($props) {
+            return Obj::transpose((object) $props, $bidRecommendation, ...\array_keys($props));
         }, $this->itemList);
     }
 }

@@ -7,15 +7,6 @@ namespace PowerSrc\AmazonAdvertisingApi\Models\RequestParams;
 use JsonSerializable;
 use PowerSrc\AmazonAdvertisingApi\Contracts\Arrayable;
 use PowerSrc\AmazonAdvertisingApi\Support\Arr;
-use function array_combine;
-use function array_filter;
-use function array_keys;
-use function array_map;
-use function array_unique;
-use function array_walk;
-use function implode;
-use function in_array;
-use function is_array;
 
 abstract class RequestParams implements Arrayable, JsonSerializable
 {
@@ -42,7 +33,7 @@ abstract class RequestParams implements Arrayable, JsonSerializable
 
     public function __construct(array $params = [])
     {
-        array_walk($params, function ($value, $key) {
+        \array_walk($params, function ($value, $key) {
             if ( ! Arr::exists($this->map, $key)) {
                 return;
             }
@@ -55,24 +46,26 @@ abstract class RequestParams implements Arrayable, JsonSerializable
 
     /**
      * Get the instance as an array.
-     *
-     * @return array
      */
     public function toArray(): array
     {
-        $params = array_filter($this->params/*, function ($param) { return $param !== null; }*/);
-        $keys   = array_keys($params);
-        $params = array_map(function ($value, $key) {
-            if (in_array($key, $this->filters) && Arr::accessible($value)) {
-                $value = is_array($value) ? $value : $value->toArray();
+        $filteredParams = \array_filter($this->params);
+        $keys           = \array_keys($filteredParams);
+        $filteredParams = \array_map(
+            function ($value, $key) {
+                if (\in_array($key, $this->filters) && Arr::accessible($value)) {
+                    $value = \is_array($value) ? $value : $value->toArray();
 
-                return implode(',', array_unique($value));
-            }
+                    return \implode(',', \array_unique($value));
+                }
 
-            return $value;
-        }, $params, $keys);
+                return $value;
+            },
+            $filteredParams,
+            $keys
+        );
 
-        return array_combine($keys, $params);
+        return \array_combine($keys, $filteredParams);
     }
 
     public function jsonSerialize()

@@ -35,11 +35,6 @@ class KeywordBidRecommendationParams extends RequestParams
      */
     protected $filters = [];
 
-    /**
-     * @param int $adGroupId
-     *
-     * @return KeywordBidRecommendationParams
-     */
     public function setAdGroupId(int $adGroupId): self
     {
         $this->params['adGroupId'] = $adGroupId;
@@ -47,11 +42,6 @@ class KeywordBidRecommendationParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @param BidRecommendationsCreateList $keywordBidRecommendationCreateList
-     *
-     * @return KeywordBidRecommendationParams
-     */
     public function setKeywords(BidRecommendationsCreateList $keywordBidRecommendationCreateList): self
     {
         $this->params['keywords'] = $keywordBidRecommendationCreateList;

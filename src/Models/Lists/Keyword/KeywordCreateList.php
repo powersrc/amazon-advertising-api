@@ -27,7 +27,7 @@ class KeywordCreateList extends KeywordList
             'bid',
         ];
 
-        return array_map(function (Keyword $keyword) use ($props, $optional) {
+        return \array_map(function (Keyword $keyword) use ($props, $optional) {
             /*
              * Unset properties that are not set on the Keyword object.
              */
@@ -37,7 +37,7 @@ class KeywordCreateList extends KeywordList
                 }
             }
 
-            return Obj::transpose((object) $props, $keyword, ...array_keys($props));
+            return Obj::transpose((object) $props, $keyword, ...\array_keys($props));
         }, $this->itemList);
     }
 }

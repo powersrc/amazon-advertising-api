@@ -5,18 +5,12 @@ declare(strict_types=1);
 namespace PowerSrc\AmazonAdvertisingApi\Support;
 
 use Closure;
-use function array_shift;
-use function explode;
-use function in_array;
-use function is_array;
-use function is_null;
-use function is_object;
 
 final class Data
 {
-    // Static class, don't allow construction.
     private function __construct()
     {
+        /* Not instantiable */
     }
 
     /**
@@ -34,26 +28,32 @@ final class Data
             return $target;
         }
 
-        $key = is_array($key) ? $key : explode('.', $key);
+        $key = \is_array($key) ? $key : \explode('.', $key);
 
-        while ( ! is_null($segment = array_shift($key))) {
+        while ( ! \is_null($segment = \array_shift($key))) {
             if ($segment === '*') {
-                if ( ! is_array($target)) {
-                    return static::value($default);
+                if ( ! \is_array($target)) {
+                    return self::value($default);
                 }
 
                 $result = Arr::pluck($target, $key);
 
-                return in_array('*', $key) ? Arr::collapse($result) : $result;
+                return \in_array('*', $key) ? Arr::collapse($result) : $result;
             }
 
             if (Arr::accessible($target) && Arr::exists($target, $segment)) {
                 $target = $target[$segment];
-            } elseif (is_object($target) && isset($target->{$segment})) {
-                $target = $target->{$segment};
-            } else {
-                return static::value($default);
+
+                continue;
             }
+
+            if (\is_object($target) && isset($target->{$segment})) {
+                $target = $target->{$segment};
+
+                continue;
+            }
+
+            return self::value($default);
         }
 
         return $target;

@@ -8,8 +8,6 @@ trait HasListItemClass
 {
     /**
      * Return the FQCN of the class to cast the list items to.
-     *
-     * @return string
      */
     public function getListItemClass(): string
     {

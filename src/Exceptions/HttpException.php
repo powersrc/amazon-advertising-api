@@ -27,8 +27,6 @@ class HttpException extends RuntimeException implements HttpExceptionInterface
 
     /**
      * Returns the HTTP response status code.
-     *
-     * @return int
      */
     public function getStatusCode(): int
     {
@@ -37,8 +35,6 @@ class HttpException extends RuntimeException implements HttpExceptionInterface
 
     /**
      * Returns the HTTP response headers.
-     *
-     * @return array
      */
     public function getHeaders(): array
     {
@@ -57,18 +53,14 @@ class HttpException extends RuntimeException implements HttpExceptionInterface
 
     /**
      * Set the Amazon error response if available.
-     *
-     * @param Error|null $error
      */
-    public function setErrorResponse(?Error $error)
+    public function setErrorResponse(?Error $error): void
     {
         $this->errorResponse = $error;
     }
 
     /**
      * Return the Amazon error response or null if not present.
-     *
-     * @return Error|null
      */
     public function getErrorResponse(): ?Error
     {

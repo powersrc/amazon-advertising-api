@@ -13,8 +13,6 @@ declare(strict_types=1);
 
 namespace PowerSrc\AmazonAdvertisingApi\Enums;
 
-use function array_values;
-
 abstract class Enum extends \MyCLabs\Enum\Enum
 {
     /**
@@ -46,15 +44,13 @@ abstract class Enum extends \MyCLabs\Enum\Enum
      */
     public static function validValues(): array
     {
-        return array_values(self::toArray());
+        return \array_values(self::toArray());
     }
 
     /**
      * Check if is invalid enum value.
      *
-     * @param $value
-     *
-     * @return bool
+     * @param mixed $value
      */
     public static function isInvalid($value): bool
     {
@@ -65,21 +61,14 @@ abstract class Enum extends \MyCLabs\Enum\Enum
      * Check if enum value equals value passed.
      *
      * @param mixed $value
-     * @param bool  $strict
-     *
-     * @return bool
      */
-    public function valueEquals($value, bool $strict = true): bool
+    public function valueEquals($value): bool
     {
-        return $strict ? $this->getValue() === $value : $this->getValue() == $value;
+        return $this->getValue() === $value;
     }
 
     /**
      * Get the enum description if available.
-     *
-     * @param string|null $default
-     *
-     * @return string
      */
     public function description(?string $default = ''): string
     {

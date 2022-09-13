@@ -29,7 +29,7 @@ class ProductAdCreateList extends ProductAdList
             'asin',
         ];
 
-        return array_map(function (ProductAd $productAd) use ($props, $optional) {
+        return \array_map(function (ProductAd $productAd) use ($props, $optional) {
             /*
              * Unset properties that are not set on the ProductAd object.
              */
@@ -39,7 +39,7 @@ class ProductAdCreateList extends ProductAdList
                 }
             }
 
-            return Obj::transpose((object) $props, $productAd, ...array_keys($props));
+            return Obj::transpose((object) $props, $productAd, ...\array_keys($props));
         }, $this->itemList);
     }
 }

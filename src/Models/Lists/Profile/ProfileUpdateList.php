@@ -18,7 +18,7 @@ class ProfileUpdateList extends ProfileList
             'dailyBudget' => null,
         ];
 
-        return array_map(function (Profile $profile) use ($props) {
+        return \array_map(function (Profile $profile) use ($props) {
             /*
              * Unset properties that are not set on the Profile object.
              */
@@ -29,7 +29,7 @@ class ProfileUpdateList extends ProfileList
             }
             $props['profileId'] = null;
 
-            return Obj::transpose((object) $props, $profile, ...array_keys($props));
+            return Obj::transpose((object) $props, $profile, ...\array_keys($props));
         }, $this->itemList);
     }
 }

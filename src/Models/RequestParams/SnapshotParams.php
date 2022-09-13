@@ -37,8 +37,6 @@ final class SnapshotParams extends RequestParams
 
     /**
      * @param State[] $states
-     *
-     * @return SnapshotParams
      */
     public function addStates(array $states): self
     {
@@ -53,11 +51,6 @@ final class SnapshotParams extends RequestParams
         return $this;
     }
 
-    /**
-     * @param State $state
-     *
-     * @return SnapshotParams
-     */
     public function addState(State $state): self
     {
         $this->params['stateFilter'][] = $state;

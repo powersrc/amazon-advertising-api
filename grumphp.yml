@@ -1,12 +1,12 @@
-parameters:
-    git_dir: .
-    bin_dir: vendor/bin
+grumphp:
     stop_on_failure: true
     ignore_unstaged_changes: true
+    hide_circumvention_tip: true
+    process_timeout: 120
+    fixer:
+      enabled: false
     tasks:
-      git_conflict: ~
-      phpcsfixer2:
+      phpcsfixer:
         using_cache: false
-        config: .php_cs
+        config: .php-cs-fixer.php
       phpunit: ~
-      securitychecker: ~

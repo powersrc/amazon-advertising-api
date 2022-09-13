@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace PowerSrc\AmazonAdvertisingApi\Support;
 
-use function strlen;
-use function substr;
-
 final class Str
 {
     // Static class, don't allow construction.
@@ -17,15 +14,12 @@ final class Str
     /**
      * Determine if a given string starts with a given substring.
      *
-     * @param string       $haystack
      * @param string|array $needles
-     *
-     * @return bool
      */
-    public static function startsWith($haystack, $needles)
+    public static function startsWith(string $haystack, $needles): bool
     {
         foreach ((array) $needles as $needle) {
-            if ($needle !== '' && substr($haystack, 0, strlen($needle)) === (string) $needle) {
+            if ($needle !== '' && \substr($haystack, 0, \strlen($needle)) === (string) $needle) {
                 return true;
             }
         }

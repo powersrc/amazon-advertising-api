@@ -103,17 +103,11 @@ class LWAAuthResponse extends Model
         $this->expires_in = $this->expires_in !== null ? (int) $this->expires_in + time() : $this->expires_in;
     }
 
-    /**
-     * @return bool
-     */
     public function isSuccessResponse(): bool
     {
         return ! $this->isErrorResponse();
     }
 
-    /**
-     * @return bool
-     */
     public function isErrorResponse(): bool
     {
         return $this->error instanceof LWAErrorType;
@@ -121,8 +115,6 @@ class LWAAuthResponse extends Model
 
     /**
      * Get the http mapped error code based on the error type.
-     *
-     * @return int
      */
     public function getErrorCode(): int
     {

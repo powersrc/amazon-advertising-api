@@ -18,8 +18,8 @@ class AdGroupCreateList extends AdGroupList
             'state'      => null,
         ];
 
-        return array_map(function (AdGroup $adGroup) use ($props) {
-            return Obj::transpose((object) $props, $adGroup, ...array_keys($props));
+        return \array_map(function (AdGroup $adGroup) use ($props) {
+            return Obj::transpose((object) $props, $adGroup, ...\array_keys($props));
         }, $this->itemList);
     }
 }

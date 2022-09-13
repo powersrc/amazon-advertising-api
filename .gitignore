@@ -4,3 +4,4 @@
 /.php_cs.cache
 /phpunit.xml
 /.idea
+.phpunit.result.cache

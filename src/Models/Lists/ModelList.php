@@ -41,11 +41,11 @@ abstract class ModelList implements ArrayAccess, Arrayable, Countable, Jsonable,
     {
         $this->class = $this->getListItemClass();
 
-        if ( ! class_exists($this->class)) {
+        if ( ! \class_exists($this->class)) {
             throw new ClassNotFoundException('Invalid model class `' . $this->class ?? 'null' . '`.', $this->class);
         }
 
-        $this->itemList = array_map(function ($rawRecord) {
+        $this->itemList = \array_map(function ($rawRecord) {
             return $rawRecord instanceof $this->class ? $rawRecord : new $this->class($rawRecord);
         }, $rawRecords);
     }
@@ -61,11 +61,6 @@ abstract class ModelList implements ArrayAccess, Arrayable, Countable, Jsonable,
         return $this->toJson();
     }
 
-    /**
-     * @param Model $item
-     *
-     * @return ModelList
-     */
     public function addItem(Model $item): ModelList
     {
         if ( ! $item instanceof $this->class) {
@@ -84,8 +79,6 @@ abstract class ModelList implements ArrayAccess, Arrayable, Countable, Jsonable,
 
     /**
      * @param mixed $offset
-     *
-     * @return bool
      */
     public function offsetExists($offset): bool
     {
@@ -94,8 +87,6 @@ abstract class ModelList implements ArrayAccess, Arrayable, Countable, Jsonable,
 
     /**
      * @param mixed $offset
-     *
-     * @return Model|null
      */
     public function offsetGet($offset): ?Model
     {
@@ -128,9 +119,6 @@ abstract class ModelList implements ArrayAccess, Arrayable, Countable, Jsonable,
     |-------------------------------------------------------------------------------------------------------------------
     */
 
-    /**
-     * @return array
-     */
     public function toArray(): array
     {
         return $this->itemList;
@@ -142,12 +130,9 @@ abstract class ModelList implements ArrayAccess, Arrayable, Countable, Jsonable,
     |-------------------------------------------------------------------------------------------------------------------
     */
 
-    /**
-     * @return int
-     */
     public function count(): int
     {
-        return count($this->itemList);
+        return \count($this->itemList);
     }
 
     /*
@@ -157,11 +142,7 @@ abstract class ModelList implements ArrayAccess, Arrayable, Countable, Jsonable,
     */
 
     /**
-     * @param int $options
-     *
      * @throws InvalidArgumentException
-     *
-     * @return string
      */
     public function toJson(int $options = 0): string
     {
@@ -174,9 +155,6 @@ abstract class ModelList implements ArrayAccess, Arrayable, Countable, Jsonable,
     |-------------------------------------------------------------------------------------------------------------------
     */
 
-    /**
-     * @return array
-     */
     public function jsonSerialize(): array
     {
         return $this->toArray();
@@ -188,16 +166,10 @@ abstract class ModelList implements ArrayAccess, Arrayable, Countable, Jsonable,
     |-------------------------------------------------------------------------------------------------------------------
     */
 
-    /**
-     * @return ArrayIterator
-     */
     public function getIterator(): ArrayIterator
     {
         return new ArrayIterator($this->itemList);
     }
 
-    /**
-     * @return string
-     */
     abstract protected function getListItemClass(): string;
 }

@@ -7,15 +7,12 @@ namespace PowerSrc\AmazonAdvertisingApi\Support;
 use Closure;
 use InvalidArgumentException;
 use stdClass;
-use function is_callable;
-use function is_object;
-use function property_exists;
 
 final class Obj
 {
-    // Static class, don't allow construction.
     private function __construct()
     {
+        /* Not instantiable */
     }
 
     /**
@@ -29,19 +26,19 @@ final class Obj
      */
     public static function transpose($dest, $source, string ...$properties)
     {
-        if ( ! is_object($source)) {
+        if ( ! \is_object($source)) {
             throw new InvalidArgumentException('$source is not an object');
         }
 
-        if ( ! is_object($dest) && ! is_callable($dest)) {
+        if ( ! \is_object($dest) && ! \is_callable($dest)) {
             throw new InvalidArgumentException('$dest is not an object or callable');
         }
 
-        if (is_callable($dest)) {
+        if (\is_callable($dest)) {
             $object = new stdClass();
             $dest   = Closure::fromCallable($dest);
             foreach ($properties as $property) {
-                if (property_exists($source, $property)) {
+                if (\property_exists($source, $property)) {
                     $object->{$property} = $dest($property, $source->{$property});
                 }
             }
@@ -50,7 +47,7 @@ final class Obj
         }
 
         foreach ($properties as $property) {
-            if (property_exists($source, $property) && property_exists($dest, $property)) {
+            if (\property_exists($source, $property) && \property_exists($dest, $property)) {
                 $dest->{$property} = $source->{$property};
             }
         }

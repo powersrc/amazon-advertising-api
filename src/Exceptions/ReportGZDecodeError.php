@@ -25,12 +25,6 @@ class ReportGZDecodeError extends RuntimeException
 
     /**
      * Initializes a new instance of the ReportGZDecodeError class.
-     *
-     * @param string         $message
-     * @param string|null    $data
-     * @param string|null    $url
-     * @param int            $code
-     * @param Throwable|null $previous
      */
     public function __construct(string $message = 'Report gzdecode data error.', string $data = null, string $url = null, int $code = 0, Throwable $previous = null)
     {
@@ -41,8 +35,6 @@ class ReportGZDecodeError extends RuntimeException
 
     /**
      * Gets the data that triggered the exception.
-     *
-     * @return string|null
      */
     final public function getData(): ?string
     {
@@ -51,8 +43,6 @@ class ReportGZDecodeError extends RuntimeException
 
     /**
      * Gets the URL from which the data that triggered the exception came.
-     *
-     * @return string|null
      */
     final public function getUrl(): ?string
     {
